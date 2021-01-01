@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "brotchengold"
+    }
+  },
+  "defaultProject": "brotchengold",
+  "cli": {
+    "analytics": false
+  }
 }
