@@ -1,0 +1,38 @@
+.baner{
+    background-image:url(src/assets/images/franchies-banner.jpg);
+    padding: 7rem 0;
+    background-position: top center !important;
+}
+
+.banner-detail{
+    width: 70%;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+}
+.h-1{
+    width: 100%;
+    height: auto;
+}
+.mar-up{
+    margin-top: -4rem;
+}
+.bgwhite{
+    background-color: #ffffff;
+}
+/* .lst p{
+    margin: 0;
+} */
+.lst .fa{
+    float: left;
+    color: #ffdf00 !important;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-top: .3rem;
+}
+
+@media (max-width: 768px) {
+    .banner-detail{
+        width: 90%;
+    }
+}

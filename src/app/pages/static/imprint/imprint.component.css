@@ -1,0 +1,52 @@
+.baner{
+    background-image:url(src/assets/images/imprint-banner.jpg);
+    padding: 9rem 0;
+    background-position: top center !important;
+}
+
+.banner-detail{
+    width: 70%;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+}
+.h-1{
+    width: 100%;
+    height: auto;
+}
+.mar-up{
+    margin-top: -4rem;
+    margin-bottom: 5rem;
+}
+.bgwhite{
+    background-color: #ffffff;
+}
+.yellow{
+    color: #ffdf00 !important;
+}
+.icons{
+    width: 40px;
+    height: 40px;
+}
+.addres{
+    margin: 0.6rem;
+}
+.phone{
+    margin: 0.6rem 3rem 0.6rem 0.6rem;
+}
+.ad-detail{
+    width: 50%;
+    float: left;
+    margin: 1rem 0;
+}
+.tb{
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    .banner-detail{
+        width: 90%;
+    }
+    .phone{
+        margin: 0.6rem;
+    }
+}

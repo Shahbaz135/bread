@@ -1,0 +1,31 @@
+.baner{
+    background-image:url(src/assets/images/data-banner.jpg);
+    padding: 7rem 0;
+    background-position: top center !important;
+}
+
+.banner-detail{
+    width: 70%;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+}
+.h-1{
+    width: 100%;
+    height: auto;
+}
+.mar-up{
+    margin-top: -4rem;
+    margin-bottom: 5rem;
+}
+.bgwhite{
+    background-color: #ffffff;
+}
+.yellow{
+    color: #ffdf00 !important;
+}
+@media (max-width: 768px) {
+    .banner-detail{
+        width: 90%;
+    }
+}

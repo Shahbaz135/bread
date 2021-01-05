@@ -1,0 +1,29 @@
+.baner{
+    background-image:url(src/assets/images/break-banner.jpg);
+    padding: 5rem 0;
+}
+
+.banner-detail{
+    width: 70%;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+}
+.h-1{
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+.baner2{
+    background-image: url(src/assets/images/break-img2.jpg);
+    padding: 4rem 0;
+}
+.bh1{
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .banner-detail{
+        width: 90%;
+    }
+}

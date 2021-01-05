@@ -1,0 +1,55 @@
+.baner{
+    background-image:url(src/assets/images/welcome-banner.jpg);
+    height: 30rem;
+    background-position: top center !important;
+}
+
+.fh1{
+    width: 100%;
+    text-align: center;
+}
+.cont-o1{
+    width: 55%;
+    margin: 0 auto;
+}
+.yellow{
+    font-size: 0.8rem;
+}
+.yellow:hover{
+    color: #fae128 !important;
+}
+.fl1{
+    width: 100%;
+}
+.or-box{
+    width: 100%;
+    display: flex;
+    margin: .2rem 0;
+}
+.btm-brd{
+    border-top: 1px solid #000;
+}
+.rht{
+    text-align: right;
+}
+.h-button{
+    padding: 1rem 3rem;
+    background-color: #ffdf00;
+    color: #000000;
+    text-align: center;
+    border: 0px;
+    outline: none;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+@media (max-width: 768px) {
+    .baner{
+        height: 20rem;
+    }
+    .fp{
+        width: 100%;
+    }
+    .cont-o1{
+        width: 95%;
+    }
+}

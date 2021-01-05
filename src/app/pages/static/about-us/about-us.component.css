@@ -1,0 +1,25 @@
+.baner{
+    background-image:url(src/assets/images/about-banner.jpg);
+    padding: 4rem 0;
+}
+
+.banner-detail{
+    width: 70%;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+}
+.h-1{
+    width: 100%;
+    height: auto;
+}
+.baner2{
+    background-image: url(src/assets/images/about-img3.jpg);
+    padding: 4rem 0;
+}
+
+@media (max-width: 768px) {
+    .banner-detail{
+        width: 90%;
+    }
+}
