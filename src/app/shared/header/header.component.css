@@ -35,9 +35,11 @@
 .nav-list li a {
   display: block;
   text-decoration: none;
+  font-size: .8rem;
   /* text-transform: uppercase; */
   padding: 0.5rem;
   color: inherit;
+  cursor: pointer;
 }
 .nav-list li:hover{
   font-weight: bold;
@@ -46,7 +48,7 @@
 .lgn{
   background-color: #ffdf00;
   border-radius: 0.4rem;
-  margin-left: 4rem;
+  margin-left: 0rem;
   padding-left: 2rem !important;
   padding-right: 2rem !important;
 }
