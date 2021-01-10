@@ -12,10 +12,11 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { ImprintComponent } from './imprint/imprint.component';
 import { FaqComponent } from './faq/faq.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
+import { TestySliderComponent } from './testy-slider/testy-slider.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent],
+  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent, TestySliderComponent],
   imports: [
     CommonModule,
     StaticRoutingModule

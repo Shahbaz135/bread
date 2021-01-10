@@ -1,7 +1,7 @@
 <div class="top-header">
   <div class="container">
     <nav class="navbar">
-      <a href="#" class="brand">
+      <a [routerLink]="['home']" class="brand">
         <img src="../assets/images/brotchengoldlogo.png" alt="BrotchenGold">
       </a>
 
@@ -13,10 +13,10 @@
 
       <div class="nav-list-container top-menu">
         <ul class="nav-list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Breakfast Service</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Franchies</a></li>
+          <li><a [routerLink]="['home']">Home</a></li>
+          <li><a [routerLink]="['breakfast']">Breakfast Service</a></li>
+          <li><a [routerLink]="['about-us']">About</a></li>
+          <li><a [routerLink]="['franchies']" >Franchies</a></li>
           <li><a href="#">Online Journal</a></li>
           <li><a [routerLink]="['auth/login']" class="lgn">Login</a></li>
         </ul>

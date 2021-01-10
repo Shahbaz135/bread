@@ -119,6 +119,9 @@ h1{
     transition: all 0.3s linear;
     opacity: 0.5;
   }
+  .lgn{
+    border-radius: 0rem;
+}
 }
 
 /*make nav visible by transform*/

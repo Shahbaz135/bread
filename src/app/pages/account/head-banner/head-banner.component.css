@@ -1,0 +1,10 @@
+.baner{
+    background-image:url(src/assets/images/account-banner.jpg);
+    padding: 10rem 0;
+}
+
+@media (max-width: 768px){
+    .baner{
+        padding: 6rem 0;
+    }
+}

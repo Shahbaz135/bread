@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   constructor() { }
+  
+  coinwallet: string[] = ['wallet1','wallet2'];
+  selectedwallet = this.coinwallet[0];
 
   ngOnInit(): void {
+    
   }
 
 }

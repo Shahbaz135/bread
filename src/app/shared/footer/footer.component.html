@@ -2,26 +2,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 right-line">
-                <img src="../assets/images/footer-logo.png" class="footer-logo">
+                <a href="#"><img src="../assets/images/footer-logo.png" class="footer-logo"></a>
                 <p class="my-0 ">Copyright © 2020 Brotchengold</p>
             </div>
             <div class="col-md-3 f-pad">
                 <ul class="fm-list">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Franchies</a></li>
-                    <li><a href="#">Online Journal</a></li>
-                    <li><a href="#">Breakfast Service</a></li>
+                    <li><a [routerLink]="['about-us']">About</a></li>
+                    <li><a [routerLink]="['auth/login']">Login</a></li>
+                    <li><a [routerLink]="['franchies']">Franchies</a></li>
+                    <li><a [routerLink]="['home']">Online Journal</a></li>
+                    <li><a [routerLink]="['breakfast']">Breakfast Service</a></li>
                 </ul>
             </div>
             <div class="col-md-3 f-pad">
                 <ul class="fm-list">
-                    <li><a href="#">Explore More</a></li>
-                    <li><a href="#">Imprint</a></li>
-                    <li><a href="#">Data Protection</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Important Question</a></li>
+                    <li><a [routerLink]="['home']">Explore More</a></li>
+                    <li><a [routerLink]="['imprint']">Imprint</a></li>
+                    <li><a [routerLink]="['data-protection']">Data Protection</a></li>
+                    <li><a [routerLink]="['data-protection']">Privacy Policy</a></li>
+                    <li><a [routerLink]="['faq']">Important Question</a></li>
                 </ul>
             </div>
             <div class="col-md-3">

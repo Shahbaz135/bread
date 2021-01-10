@@ -1,0 +1,65 @@
+.cont-5{
+    width: 100%;
+    background-image:url(src/assets/images/h-img3.jpg);
+    padding: 2rem 0 10rem;
+
+}
+.center{
+    width: 100%;
+    text-align: center;
+}
+.slideshow-container {
+    text-align: center;
+  position: relative;
+  width: 60rem;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Slides */
+.mySlides {
+  display: block;
+  text-align: center;
+}
+
+.mySlidesContainer {
+  padding: 0rem 6rem;
+  background: transparent;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  margin-top: -1.875rem;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  color: #232323;
+  user-select: none;
+  transition: 0.4s;
+}
+
+.prev:hover,
+.next:hover {
+  color: #FFDF00;
+  text-decoration: none;
+}
+.dot-container {
+  display: none;
+}
+.active {
+  background-color: #232323;
+}
+
+@media (max-width: 768px) {
+    .cont-5{
+        padding: 2rem 0rem 5rem;
+    }
+    .slideshow-container{
+        max-width: 90%;
+    }
+    .mySlidesContainer{
+        padding: 0 2rem;
+        color: #000000;
+    }
+}

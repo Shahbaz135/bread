@@ -24,7 +24,7 @@ body{
   background-size: cover;
 }
 .yellow{
-  color: #fae128;
+  color: #FFDF00;
 }
 
 /*media Query for mobile*/
@@ -32,4 +32,5 @@ body{
   .background-img {
     background-position: center center;
   }
+  
 }
