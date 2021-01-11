@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,24 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) {
+    /// detects whenever route changes
+    router.events.forEach(event => {
+      if (event instanceof NavigationEnd) {
+        this.removeClass();
+      }
+    });
+  }
 
   ngOnInit(): void {
-    const toggler = document.querySelector('.navbar > .toggler'),
-      navListContainer = document.querySelector('.navbar > .nav-list-container');
+  }
 
-    /*when toggler button is clicked*/
-    toggler.addEventListener(
-      "click",
-      () => {
-        //convert hamburger to close
-        toggler.classList.toggle('cross');
-        //make nav visible
-        navListContainer.classList.toggle('nav-active');
-      },
-      true
-    );
+  toggleClasses(): void {
+    const navListContainer = document.querySelector('.navbar > .nav-list-container');
+    const toggler = document.querySelector('.navbar > .toggler');
 
+    // convert hamburger to close
+    toggler.classList.toggle('cross');
+     // make nav visible
+    navListContainer.classList.toggle('nav-active');
+  }
+
+  removeClass(): void {
+    const navListContainer = document.querySelector('.navbar > .nav-list-container');
+    const toggler = document.querySelector('.navbar > .toggler');
+
+    toggler.classList.remove('cross');
+    navListContainer.classList.remove('nav-active');
   }
 
 }
