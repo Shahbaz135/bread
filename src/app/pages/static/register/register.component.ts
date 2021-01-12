@@ -6,16 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  // coinwallet: string[] = ['wallet1','wallet2'];
-  // selectedwallet = this.coinwallet[0];
-
-  
+  public showDiv = 1;
 
   constructor() { }
 
   ngOnInit(): void {
-    
+  }
+
+  nextDiv(): void {
+    if ( this.showDiv !== 4) {
+      this.showDiv += 1;
+    }
+  }
+
+  previousDiv(): void {
+    if (this.showDiv !== 1) {
+      this.showDiv -= 1;
+    }
   }
 
 }

@@ -1,0 +1,22 @@
+<!-- main div start here -->
+<div>
+  <div *ngIf="showDiv == 1">
+    DIV 1 IS HERE....... <br>
+    <button (click)='nextDiv()'>Continue</button>
+  </div>
+  <div *ngIf="showDiv == 2">
+    DIV 2 IS HERE....... <br>
+    <button (click)='previousDiv()'>Back</button>
+    <button (click)='nextDiv()'>Continue</button>
+  </div>
+  <div *ngIf="showDiv == 3">
+    DIV 3 IS HERE....... <br>
+    <button (click)='previousDiv()'>Back</button>
+    <button (click)='nextDiv()'>Continue</button>
+  </div>
+  <div *ngIf="showDiv == 4">
+    DIV 4 IS HERE....... <br>
+    <button (click)='previousDiv()'>Back</button>
+    <button >Submit</button>
+  </div>
+</div>
