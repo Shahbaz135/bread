@@ -7,13 +7,19 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AccountLayoutComponent } from './layouts/account-layout/account-layout.component';
+import { HeadBannerComponent } from './pages/account/head-banner/head-banner.component';
+import { AccountMenuComponent } from './pages/account/account-menu/account-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AccountLayoutComponent,
+    HeadBannerComponent,
+    AccountMenuComponent
   ],
   imports: [
     BrowserModule,
