@@ -21,13 +21,13 @@ const routes: Routes = [
         path: 'account',
         loadChildren: () =>
           import('./pages/account/account.module').then((m) => m.AccountModule),
-      },
-      {
-        path: 'auth',
-        loadChildren: () =>
-          import('./pages/auth/auth.module').then((m) => m.AuthModule),
       }
     ],
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./pages/auth/auth.module').then((m) => m.AuthModule),
   }
 ];
 

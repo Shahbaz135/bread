@@ -35,7 +35,7 @@
 .nav-list li a {
   display: block;
   text-decoration: none;
-  font-size: .8rem;
+  
   /* text-transform: uppercase; */
   padding: 0.5rem;
   color: inherit;

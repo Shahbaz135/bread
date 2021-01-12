@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./testy-slider.component.css']
 })
 export class TestySliderComponent implements OnInit {
-  
 
   constructor() { }
 

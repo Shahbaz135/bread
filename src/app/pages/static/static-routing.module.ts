@@ -8,6 +8,8 @@ import { FranchiesComponent } from './franchies/franchies.component';
 import { HomeComponent } from './home/home.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
+import { RegisterComponent } from './register/register.component';
+import { TestySliderComponent } from './testy-slider/testy-slider.component';
 
 
 const routes: Routes = [
@@ -46,6 +48,14 @@ const routes: Routes = [
   {
     path: 'order-review',
     component: OrderReviewComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path:'testy',
+    component:TestySliderComponent
   }
   
 ];

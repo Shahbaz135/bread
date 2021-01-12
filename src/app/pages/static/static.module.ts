@@ -13,10 +13,11 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { FaqComponent } from './faq/faq.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent, TestySliderComponent],
+  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent, TestySliderComponent, RegisterComponent],
   imports: [
     CommonModule,
     StaticRoutingModule
