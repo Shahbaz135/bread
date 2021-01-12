@@ -2,25 +2,25 @@
 <div class="container my-5">
 
 <div class="row text-center m-0">
-  <div class="r-colr activate point">
+  <div class="r-colr point" [class.activate]="showDiv>0" (click)="specificDiv(1)">
     <div class="round">1</div>
     <p class="my-2 r-txt">Availability</p>
   </div>
   <div class="col-1 lne"></div>
 
-  <div class="r-colr point">
+  <div class="r-colr point" [class.activate]="showDiv>1" (click)="specificDiv(2)">
     <div class="round">2</div>
     <p class="my-2 r-txt">Desired Date</p>
   </div>
 
   <div class="col-1 lne"></div>
-  <div class="r-colr point">
+  <div class="r-colr point" [class.activate]="showDiv>2" (click)="specificDiv(3)">
     <div class="round">3</div>
     <p class="my-2 r-txt">Customer Account</p>
   </div>
 
   <div class="col-1 lne"></div>
-  <div class="r-colr point">
+  <div class="r-colr point" [class.activate]="showDiv>3" (click)="specificDiv(4)">
     <div class="round">4</div>
     <p class="my-1 r-txt">Summary</p></div>
 </div>

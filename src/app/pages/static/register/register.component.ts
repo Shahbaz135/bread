@@ -25,4 +25,10 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  specificDiv(value): void {
+    if (value) {
+      this.showDiv = value;
+    }
+  }
+
 }
