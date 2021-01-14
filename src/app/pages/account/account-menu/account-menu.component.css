@@ -22,9 +22,10 @@
     color: #fae128 ;
 }
 
-.actives{
+.actives, .activate{
     color: #FFDF00 !important;
 }
+
 
 .mobile-menu{
     display: none !important;
@@ -46,6 +47,7 @@
         margin-bottom: 1rem;
         cursor: pointer;
         letter-spacing: 1px;
+        
     }
     .acnt-mtogle:hover{
         font-size: 1.1rem;

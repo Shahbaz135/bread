@@ -36,4 +36,19 @@
     border: 2px solid #b8b8b8;
     height: 1px;
     margin-top: 2rem;
+    background-color: #b8b8b8;
 }
+.h-1{
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+@media(max-width:768px){
+    .col-md-9 {
+        padding: 0 1rem !important;
+        margin-top: 1rem;
+    }
+}
+
+

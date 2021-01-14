@@ -1,0 +1,12 @@
+.tb-row{
+    background: #fff5b3;
+    padding: .5rem 0;
+  }
+
+  .table td{
+    padding: 0.78rem 0.45rem;
+    border: 0px solid #fff5b3;
+  }
+  .table th{
+    border: 0px solid #fff5b3;
+  }

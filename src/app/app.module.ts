@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountLayoutComponent } from './layouts/account-layout/account-layout.component';
 import { HeadBannerComponent } from './pages/account/head-banner/head-banner.component';
 import { AccountMenuComponent } from './pages/account/account-menu/account-menu.component';
+import { BillsComponent } from './bills/bills.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AccountMenuComponent } from './pages/account/account-menu/account-menu.
     FooterComponent,
     AccountLayoutComponent,
     HeadBannerComponent,
-    AccountMenuComponent
+    AccountMenuComponent,
+    BillsComponent
   ],
   imports: [
     BrowserModule,

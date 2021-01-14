@@ -23,6 +23,15 @@ export class AccountMenuComponent implements OnInit {
       this.className += " actives";
       });
     }
+    var sidemenu = document.getElementById("menu-ul-m");
+    var linker = sidemenu.getElementsByClassName("link2");
+    for (var i = 0; i < linker.length; i++) {
+      linker[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("activate");
+      current[0].className = current[0].className.replace(" activate", "");
+      this.className += " activate";
+      });
+    }
 
    
     

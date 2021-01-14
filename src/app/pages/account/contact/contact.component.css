@@ -1,0 +1,23 @@
+.a-button{
+    padding: .8rem 2rem;
+    background-color: #ffdf00;
+    color: #000000;
+    text-align: center;
+    border: 0px;
+    outline: none;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+
+  .tb-row{
+    background: #fff5b3;
+    padding: .5rem 0;
+  }
+
+  .table td{
+    padding: 0.78rem 0.45rem;
+    border: 0px solid #fff5b3;
+  }
+  .table th{
+    border: 0px solid #fff5b3;
+  }

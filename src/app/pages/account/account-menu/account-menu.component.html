@@ -1,98 +1,86 @@
-<div class="col-md-3 desktop-menu">
-    <div class="acnt-menu" id="acnt-menu" open>
-        <h4>Order</h4>
+
+<div class="desktop-menu">
+    <div class="acnt-menu">
+        <h4 class="my-3">Order</h4>
         <ul class="menu-ul" id="menu-ul">
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links actives">Create</a></li>
+            <li><a [routerLink]="['create-order']" class="links actives">Create</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Change</a></li>
+            <li><a [routerLink]="['change-order']" class="links">Change</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Interrupt</a></li>
+            <li><a [routerLink]="['order-breakage']" class="links">Interrupt</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Order Additionally</a></li>
+            <li><a [routerLink]="['additional-order']" class="links">Order Additionally</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Order History</a></li>
+            <li><a [routerLink]="['order-history']" class="links">Order History</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Invoice History</a></li>
-        </ul>
-        <h4>Accounting</h4>
-        <ul class="menu-ul" id="menu-ul">
+            <li><a [routerLink]="['invoice-history']" class="links">Invoice History</a></li>
+        <h4 class="my-3">Accounting</h4>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Bills</a></li>
+            <li><a [routerLink]="['bills']" class="links">Bills</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Credits</a></li>
+            <li><a [routerLink]="['credits']" class="links">Credits</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Payment Option</a></li>
-        </ul>
-        <h4>Your Data</h4>
-        <ul class="menu-ul" id="menu-ul">
+            <li><a [routerLink]="['payment']" class="links">Payment Option</a></li>
+        <h4 class="my-3">Your Data</h4>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Personal Details</a></li>
+            <li><a [routerLink]="['personal-detail']" class="links">Personal Details</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Delivery Addres</a></li>
+            <li><a [routerLink]="['delivery-address']" class="links">Delivery Addres</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Billing Address</a></li>
+            <li><a [routerLink]="['billing-address']" class="links">Billing Address</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Password</a></li>
-        </ul>
-        <h4>Contact</h4>
-        <ul class="menu-ul" id="menu-ul">
+            <li><a [routerLink]="['change-password']" class="links">Password</a></li>
+        <h4 class="my-3">Contact</h4>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#">Contact </a></li>
+            <li><a [routerLink]="['contact']" class="links">Contact </a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#">Imprint</a></li>
+            <li><a [routerLink]="['imprint']" class="links">Imprint</a></li>
         </ul>
     </div>
 </div>
 
-
 <!-- /////////////////////////////////////// -->
 
-<div class="col-md-3 mobile-menu">
+<div class="mobile-menu" id="actn-menu">
     <div class="acnt-mtogle" (click)="showMyContainer=!showMyContainer">Sidebar</div>
    
     <div class="acnt-menu" *ngIf="showMyContainer">
-        <h4>Order</h4>
-        <ul class="menu-ul" id="menu-ul">
+        <h4 class="my-3">Order</h4>
+        <ul class="menu-ul" id="menu-ul-m">
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links actives">Create</a></li>
+            <li><a [routerLink]="['create-order']" class="links link2 activate">Create</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Change</a></li>
+            <li><a [routerLink]="['change-order']" class="links link2">Change</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Interrupt</a></li>
+            <li><a [routerLink]="['order-breakage']" class="links link2">Interrupt</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Order Additionally</a></li>
+            <li><a [routerLink]="['additional-order']" class="links link2">Order Additionally</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Order History</a></li>
+            <li><a [routerLink]="['order-history']" class="links link2">Order History</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Invoice History</a></li>
-        </ul>
-        <h4>Accounting</h4>
-        <ul class="menu-ul" id="menu-ul">
+            <li><a [routerLink]="['invoice-history']" class="links link2">Invoice History</a></li>
+        <h4 class="my-3">Accounting</h4>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Bills</a></li>
+            <li><a [routerLink]="['bills']" class="links link2">Bills</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Credits</a></li>
+            <li><a [routerLink]="['credits']" class="links link2">Credits</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Payment Option</a></li>
-        </ul>
-        <h4>Your Data</h4>
-        <ul class="menu-ul" id="menu-ul">
+            <li><a [routerLink]="['payment']" class="links link2">Payment Option</a></li>
+        <h4 class="my-3">Your Data</h4>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Personal Details</a></li>
+            <li><a [routerLink]="['personal-detail']" class="links link2">Personal Details</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Delivery Addres</a></li>
+            <li><a [routerLink]="['delivery-address']" class="links link2">Delivery Addres</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Billing Address</a></li>
+            <li><a [routerLink]="['billing-address']" class="links link2">Billing Address</a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#" class="links">Password</a></li>
-        </ul>
-        <h4>Contact</h4>
-        <ul class="menu-ul" id="menu-ul">
+            <li><a [routerLink]="['change-password']" class="links link2">Password</a></li>
+        <h4 class="my-3">Contact</h4>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#">Contact </a></li>
+            <li><a [routerLink]="['contact']" class="links link2">Contact </a></li>
             <i class="fa fa-circle yellow fl"></i>
-            <li><a href="#">Imprint</a></li>
+            <li><a [routerLink]="['imprint']" class="links link2">Imprint</a></li>
         </ul>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <!-- main div start here -->
 <div class="container my-5">
 
-<div class="row text-center m-0">
+<div class="row text-center mx-0 my-5">
   <div class="r-colr point" [class.activate]="showDiv>0" (click)="specificDiv(1)">
     <div class="round">1</div>
     <p class="my-2 r-txt">Availability</p>
@@ -25,26 +25,290 @@
     <p class="my-1 r-txt">Summary</p></div>
 </div>
 
-<div>
-  <div *ngIf="showDiv == 1">
-    DIV 1 IS HERE....... <br>
-    <button (click)='nextDiv()'>Continue</button>
+
+  <div *ngIf="showDiv == 1" class="rrow my-2 p-4 ">
+    <div class="row m-0 px-3 my-2 ">
+      <h4 class="obh3">Available In Your Area</h4>
+      <p class="obh3">The following Brotchengold partner regularly supplies you with fresh
+         baked goods.
+      </p>
+    </div>
+    <div class="row m-0 px-3">
+      <div class="col-md-3 p-0">
+        <img src="../assets/images/franchies-01.jpg" class="h-1">
+      </div>
+      <div class="col-md-9 px-5">
+        <h5 class="mb-4">Brotchengold Breakfast service Kassel</h5>
+        <div class="row mx-0 my-1">
+          <img src="../assets/images/icons/b-icon1.png" class="icns">
+          <p class="pt-2">1282 Vick Rd, Effie, LA, 71331 Germany</p>
+        </div>
+        <div class="row mx-0 my-1">
+          <img src="../assets/images/icons/email-icon.png" class="icns">
+          <p class="pt-2">sufi22@brotchengold.de</p>
+        </div>
+        <div class="row mx-0 my-1">
+          <img src="../assets/images/icons/phone-icon.png" class="icns">
+          <p class="pt-2">0711/658 30 7-69</p>
+        </div>
+        <button (click)='nextDiv()' class="a-button rbtn">Continue</button>
+      </div>
+    </div>
+    
   </div>
-  <div *ngIf="showDiv == 2">
-    DIV 2 IS HERE....... <br>
-    <button (click)='previousDiv()'>Back</button>
-    <button (click)='nextDiv()'>Continue</button>
+
+  <div *ngIf="showDiv == 2" class="rrow my-2 p-4 ">
+    <div class="row m-0 px-3 my-2 ">
+      <h4 class="obh3">Desired Date for your Sample Shipment</h4>
+      <p >Desired Date <span class="yellow mx-2">
+        <i class="fa fa-calendar yellow mx-3" aria-hidden="true">October 20,2021</i></span>
+      </p>
+    </div>
+    <div class="row m-0 px-3 my-2">
+      <div class="col-md-12">
+        <input type="date" id="date" class="form-control" >
+      </div>
+    </div>
+
+    <button (click)='previousDiv()' class="a-button">Back</button>
+    <button (click)='nextDiv()' class="a-button ml-5">Continue</button>
   </div>
-  <div *ngIf="showDiv == 3">
-    DIV 3 IS HERE....... <br>
-    <button (click)='previousDiv()'>Back</button>
-    <button (click)='nextDiv()'>Continue</button>
+
+
+  <div *ngIf="showDiv == 3" class="rrow my-2 p-4">
+    <form class="border border-light frm my-3">
+      <h3 class="m-3">Access Data</h3>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Phone *</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-6 my-2">
+          <label>Password</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+        <div class="col-md-6 my-2">
+          <label>Confirm Password</label>
+          <input type="text" id="firstname" class="form-control" >
+        </div>
+      </div>
+      <h4 class="m-3">Delivery Address</h4>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Salutation *</label>
+          <select class="form-control">
+            <option>Mr</option>
+            <option>Mrs</option>
+            <option>Ms</option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-6 my-2">
+          <label>First Name*</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+        <div class="col-md-6 my-2">
+          <label>Surname *</label>
+          <input type="text" id="firstname" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Company</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Road *</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-6 my-2">
+          <label>postcode / Town</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+        <div class="col-md-6 my-2">
+          <label>Different Address</label>
+          <input type="text" id="firstname" class="form-control" >
+        </div>
+      </div>
+      <h4 class="m-3">Email Address</h4>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-6 my-2">
+          <label>E-mail *</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+        <div class="col-md-6 my-2">
+          <label>Repeat E-mail *</label>
+          <input type="text" id="firstname" class="form-control" >
+        </div>
+      </div>
+      <h4 class="m-3">More Information</h4>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Birthday *</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Notes for the deliverer</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>Parties in the house</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-md-12">
+          <label>On the recommendation of</label>
+          <input type="text" id="company" class="form-control" >
+        </div>
+      </div>
+
+      <h3 class="m-3">Consents</h3>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-1"><input type="checkbox"></div>
+        <div class="col-11">I acceptthe terms and conditions and the data protection 
+          regulations of my Brotchrngold partner. *
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-1"><input type="checkbox"></div>
+        <div class="col-11">I agree that my Morgengold partner can inform me 
+          by phone about their offer, new products or promotions and offer them to me. 
+          I consent to the use of my personal data required for this.<br><br>
+          You can revoke your consent to your Morgengold partner at any time 
+          after receipt of the sample delivery (by telephone or in writing by
+           e-mail or letter). You can find the contact details of the Morgengold
+            partner responsible for you here . *
+
+        </div>
+      </div>
+      <div class="row m-0 px-0 my-3">
+        <div class="col-1"><input type="checkbox"></div>
+        <div class="col-11">
+          You can revoke your consent to your Morgengold partner at any time 
+          after receipt of the sample delivery (by telephone or in writing by
+           e-mail or letter). You can find the contact details of the Morgengold 
+           partner responsible for you here . *<br><br>
+           You can revoke your consent to your Morgengold partner at any time 
+           after receipt of the sample delivery (by telephone or in writing by 
+           e-mail or letter). You can find the contact details of the Morgengold 
+           partner responsible for you here . *
+
+        </div>
+      </div>
+
+    </form>
+
+
+    <button (click)='previousDiv()' class="a-button mr-5">Back</button>
+    <button (click)='nextDiv()' class="a-button ml-5">Continue</button>
   </div>
-  <div *ngIf="showDiv == 4">
-    DIV 4 IS HERE....... <br>
-    <button (click)='previousDiv()'>Back</button>
-    <button >Submit</button>
+
+  <div *ngIf="showDiv == 4" class="rrow my-2 p-4">
+    
+    <div class="row m-0 px-3 my-2 ">
+      <h5 class="obh3">Available In Your Area</h5>
+      <p class="obh3">The following Brotchengold partner regularly supplies you with fresh
+         baked goods.
+      </p>
+    </div>
+    <div class="row m-0 px-3">
+      <div class="col-md-3 p-0">
+        <img src="../assets/images/franchies-01.jpg" class="h-1">
+      </div>
+      <div class="col-md-9 px-5">
+        <h5 class="mb-4">Brotchengold Breakfast service Kassel</h5>
+        <div class="row mx-0 my-1">
+          <img src="../assets/images/icons/b-icon1.png" class="icns">
+          <p class="pt-2">1282 Vick Rd, Effie, LA, 71331 Germany</p>
+        </div>
+        <div class="row mx-0 my-1">
+          <img src="../assets/images/icons/email-icon.png" class="icns">
+          <p class="pt-2">sufi22@brotchengold.de</p>
+        </div>
+        <div class="row mx-0 my-1">
+          <img src="../assets/images/icons/phone-icon.png" class="icns">
+          <p class="pt-2">0711/658 30 7-69</p>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="row m-0 px-3 my-4 ">
+      <div class="col-sm-3 my-1 bld">My Trial Order:</div>
+      <div class="col-sm-9 my-1">Desired date: Tuesday, October 20, 2020</div>
+      <div class="col-sm-3 my-1 bld">My Phone Number:</div>
+      <div class="col-sm-9 my-1">The phone number also serves as the registration name for logging in
+        017632861967</div>
+      <div class="col-sm-3 my-1 bld">Delivery Address:</div>
+      <div class="col-sm-9 my-1">Gabriel sufi, Helsaer Strabe, 34253 Lohfelden</div>
+      <div class="col-sm-3 my-1 bld">Email Address:</div>
+      <div class="col-sm-9 my-1">53limitedgroup@gmail.com</div>
+      <div class="col-sm-3 my-1 bld">More Information:</div>
+      <div class="col-sm-9 my-1">My birthday: October 23, 1997</div>
+    </div>
+
+    <div class="row m-0 px-3 my-4 ">
+      <h5 class="mb-4 obh3">My Declerations of Consents</h5>
+      <div class="lst">
+        <i class="fa fa-circle hl"></i>
+        <p>I accept the terms and conditions and the privacy policy of my Brotchengold partner.</p>
+        <i class="fa fa-circle hl"></i>
+        <p>I agree that my Brotchengold partner can inform me by phone about their offer, new products 
+          or promotions and offer them to me. I consent to the use of my personal data required for this.
+        <br>
+        You can revoke your consent to your Brotchengold partner at any time after receipt of the 
+        sample delivery (by telephone or in writing by e-mail or letter). You can find the contact 
+        details of the Brotchengold partner responsible for you here .
+        </p>
+        <i class="fa fa-circle hl"></i>
+        <p>I consent to my Brotchengold partner informing me about their offer,
+           new products or promotions by email and offering them to me. I consent 
+           to the use of my personal data required for this.<br>
+           You can revoke your consent to your Brotchengold partner at any 
+           time after receipt of the sample delivery (by telephone or in 
+           writing by e-mail or letter). You can find the contact details 
+           of the Brotchengold partner responsible for you here .
+        </p>
+        <h5 class="my-4 obh3">My Declerations of Consents</h5>
+        <h6 class="my-1 obh3">Please check your details again for correctness 
+          before sending and correct any errors.</h6>
+        <p>Without your consent that we may send you e-mails, we are not allowed
+           to confirm your trial order via the Internet due to the applicable 
+           legal data protection regulations. In order to be able to clarify any 
+           questions that may arise about the trial order, we also need your 
+           consent that we can call you.<br>
+           We ask for your understanding that we can only process your request 
+           online if you give your consent that we can send you emails or call you.<br>
+           If you do not want that, you have the option of requesting your sample by phone.<br>
+           You can revoke your consent that we may call you or inform you by email at any
+            time to your personal Brotchengold breakfast service. By telephone or 
+            in writing (by email, fax or letter).<br>
+            By submitting the page, you are not placing a paid order. However,
+             you create a personal Morgengold customer account and consent to 
+             your data being electronically stored in order to perform the service.
+        </p>
+      </div>
+      
+    </div>
+    <div class="text-center">
+      <button class="a-button">Continue</button><br>
+      <a href="../imprint" class="yellow">Data Protection Imprint</a>
+    </div>
+    
+    <!-- <button (click)='previousDiv()'>Back</button> -->
+    
   </div>
 </div>
 
-</div>
