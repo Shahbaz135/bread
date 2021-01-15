@@ -142,6 +142,19 @@ border-radius: 12px;
   margin-bottom: 1rem;
   padding-top: .3rem;
 }
+.pointer{
+  cursor: pointer;
+}
+/* .title{
+  flo
+}
+.price{
+  float: right;
+}
+.price, .title{
+  font-weight: bold;
+  font-size: 1.2rem;
+} */
 @media(max-width:992px){
   .infobox{
     width: 90%;

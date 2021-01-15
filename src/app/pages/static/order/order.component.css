@@ -3,3 +3,146 @@
     padding: 12rem 0;
     background-position: top center !important;
 }
+.opp1{
+    padding:1rem 3rem;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    border:0 !important;
+    color:#FFDF00 !important;
+    border-bottom: 1px solid #FFDF00 !important;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs{
+    border: 0;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
+    border:0 !important;
+    color: #FFDF00 !important;
+}
+.nav-tabs .nav-link{
+    color: #000 !important;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
+/* ................................... */
+.toggle,
+[id^=drop] {
+	display: none;
+}
+.daybar { 
+	margin:0;
+	padding: 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.daybar:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+.daybar ul {
+	float: none;
+	padding:0;
+	margin:0;
+	list-style: none;
+    position: relative;
+	}
+.daybar ul li {
+	margin: 0px;
+	display:inline-block;
+	background-color: #ffdf00;
+	border-right: 2px solid gray;
+    color: #000;
+    }
+    .daybar ul li:last-child{
+        border: 0;
+    }
+    .dc{
+        width: 11.4%;
+    }
+    .dc2{
+        width: 20%;
+    }
+.daybar li {
+	display:block;
+	padding:1.2rem 0rem;	
+	color:#fff;
+	font-size:16px;
+	text-decoration:none;
+	cursor: pointer;
+    background-color: #ffdf00;
+    text-align: center;
+}
+.nav-tabs{
+    display: flex !important;
+    justify-content: center !important;
+}
+.h-1{
+    width: 100%;
+}
+.orw{
+    display: flex;
+    justify-content: space-between !important;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width : 992px) {
+    .nav-tabs .nav-link{
+        margin-bottom: .2rem;
+    }
+	.daybar {
+		margin: 0;
+	}
+
+	/* Hide the .daybarigation days by default */
+	/* Also hide the  */
+	.toggle + a,
+	.days {
+		display: none;
+	}
+
+	/* Stylinf the toggle lable */
+	.toggle {
+		display: block;
+		background-color: #fff;
+		padding:14px 20px;	
+		color:#fff;
+		font-size:17px;
+		text-decoration:none;
+		border:none;
+		background-color: #ffdf00;
+	}
+
+	.toggle:hover {
+		background-color: #ffdf00;
+		cursor: pointer;
+		color: #fff;
+
+	}
+
+	[id^=drop]:checked + ul {
+		display: block;
+		background-color: #ffdf00;
+	}
+	.daybar ul li {
+		display: block;
+		width: 100%;
+		float: left;
+		padding: 3px ;
+        padding-left: 1rem;
+        border-right: 0px solid gray;
+        border-bottom: 2px solid gray;
+        text-align: left;
+        padding-left: 1rem;
+		}
+}
+
+@media(max-width:768px){
+    .opp1{
+        padding:1rem 3rem;
+    }
+}

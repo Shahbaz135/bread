@@ -1,36 +1,112 @@
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-  <li [ngbNavItem]="1">
-    <a ngbNavLink>One</a>
-    <ng-template ngbNavContent>
-      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-        keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
-        salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="2">
-    <a ngbNavLink>Two</a>
-    <ng-template ngbNavContent>
-      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-        farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-        ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-        helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-        8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="3">
-    <a ngbNavLink>Three</a>
-    <ng-template ngbNavContent>
-      <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
-        Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
-        Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
-        egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
-        tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
-        magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
-        neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
-    </ng-template>
-  </li>
-</ul>
+<div class="baner background-img"></div>
+<div class="container">
+  <div class="row p-0 my-4 text-center">
+    <h2 class="obh3"> Your Order</h2>
+    <p class="obh3 opp1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+      when an unknown printer took a galley of type and scrambled it to make a type
+      specimen book. It has survived not only five centuries, but also the leap into
+      electronic typesetting, remaining essentially unchanged. It was popularised in the
+      1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+      recently with desktop publishing software like Aldus PageMaker including versions
+      of Lorem Ipsum.</p>
+    <p class="obh3">Valid from:<span class="yellow">january 20, 2021</span><i class="fa fa-calendar yellow"
+        aria-hidden="true"></i> </p>
+  </div>
+  <div class="row p-0">
+    <div class="daybar mb-2">
+      <label for="drop" class="toggle">Select Days <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </label>
+      <input type="checkbox" id="drop" />
+      <ul class="days">
+        <li class="dc">MON </li>
+        <li class="dc">TEU</li>
+        <li class="dc">WED</li>
+        <li class="dc">THUR</li>
+        <li class="dc">FRI</li>
+        <li class="dc">SAT</li>
+        <li class="dc">SUN</li>
+        <li class="dc2">Weekly price € 0.00</li>
+      </ul>
+    </div>
+  </div>
+  <p class="my-2 pointer">
+    <span>Day Takeover</span>
+    <span class="ml-3">Delete Selection</span>
+  </p>
+</div>
+<div class="container my-3">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Breads</a>
+      <ng-template ngbNavContent>
+        <div class="row p-0 ">
+          <div class="col-md-4 ">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess()">-</button>
+                  <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{renderedValue}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore()">
+                    +
+                  </button>
+                </div>
+<!-- 
+                <button class="minus" ng-click="count = count + 1" ng-init="count=3">-</button>
+                <span class="out">count: {{count}}</span> -->
+              </div>
+              <div class="price yellow">€ 4.00</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Sliced Breadss</a>
+      <ng-template ngbNavContent>
+        <p>div 2</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink> Actions </a>
+      <ng-template ngbNavContent>
+        <p>div 3</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>Sweet Bread Goodss</a>
+      <ng-template ngbNavContent>
+        <p>div 4</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="5">
+      <a ngbNavLink> Lye Rools</a>
+      <ng-template ngbNavContent>
+        <p>div 5</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="6">
+      <a ngbNavLink>Buns </a>
+      <ng-template ngbNavContent>
+        <p>div 6</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="7">
+      <a ngbNavLink> Other</a>
+      <ng-template ngbNavContent>
+        <p>div 7</p>
+      </ng-template>
+    </li>
+  </ul>
 
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</div>
