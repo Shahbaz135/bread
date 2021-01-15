@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-menu',
@@ -6,52 +7,71 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-menu.component.css']
 })
 export class AccountMenuComponent implements OnInit {
-  
-  constructor() { }
 
-  showMyContainer: boolean = false;
+  constructor(
+    private router: Router
+  ) {
+    router.events.forEach(event => {
+      if (event instanceof NavigationEnd) {
+        // this.showMyContainer = false;
+        // this.addClass();
+      }
+    });
+  }
 
+  showMyContainer = false;
 
   ngOnInit(): void {
+    const header = document.getElementById("menu-ul");
+    const linkes = header.getElementsByClassName("links");
 
-    var header = document.getElementById("menu-ul");
-    var linkes = header.getElementsByClassName("links");
-    for (var i = 0; i < linkes.length; i++) {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < linkes.length; i++) {
       linkes[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("actives");
-      current[0].className = current[0].className.replace(" actives", "");
-      this.className += " actives";
+        const current = document.getElementsByClassName("actives");
+        current[0].className = current[0].className.replace(" actives", "");
+        this.className += "actives";
       });
     }
-    var sidemenu = document.getElementById("menu-ul-m");
-    var linker = sidemenu.getElementsByClassName("link2");
-    for (var i = 0; i < linker.length; i++) {
+
+    const sidemenu = document.getElementById("menu-ul-m");
+    console.log(`side menu ==`, sidemenu);
+    const linker = sidemenu.getElementsByClassName("link2");
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < linker.length; i++) {
       linker[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("activate");
+        console.log(`linked is clicked --`);
+        const current = document.getElementsByClassName("activate");
+        current[0].className = current[0].className.replace(" activate", "");
+        this.className += " activate";
+      });
+    }
+  }
+
+  addClass(): void {
+    // const header = document.getElementById("menu-ul");
+    // const linkes = header.getElementsByClassName("links");
+
+    // // tslint:disable-next-line: prefer-for-of
+    // for (let i = 0; i < linkes.length; i++) {
+    //   linkes[i].addEventListener("click", function() {
+    //   var current = document.getElementsByClassName("actives");
+    //   current[0].className = current[0].className.replace(" actives", "");
+    //   this.className += " actives";
+    //   });
+    // }
+
+    const sidemenu = document.getElementById("menu-ul-m");
+    const linker = sidemenu.getElementsByClassName("link2");
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < linker.length; i++) {
+      linker[i].addEventListener("click", function() {
+      const current = document.getElementsByClassName("activate");
       current[0].className = current[0].className.replace(" activate", "");
       this.className += " activate";
       });
     }
-
-   
-    
-    // function myFunction(x) {
-    //   if (x.matches) { // If media query matches
-    //     document.getElementById("acnt-menu").style.display="none";
-        
-        
-    //   } else {
-    //     document.getElementById("acnt-menu").style.display="block";
-    //   }
-    // }
-    
-    // var x = window.matchMedia("(max-width: 768px)")
-    // myFunction(x) // Call listener function at run time
-    // x.addListener(myFunction) // Attach listener function on state changes
-    
   }
-
-  
-  
-
 }
