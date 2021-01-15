@@ -1,0 +1,5 @@
+.baner{
+    background-image:url(src/assets/images/welcome-banner.jpg);
+    padding: 12rem 0;
+    background-position: top center !important;
+}

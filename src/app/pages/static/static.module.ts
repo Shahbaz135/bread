@@ -14,9 +14,10 @@ import { FaqComponent } from './faq/faq.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
 import { RegisterComponent } from './register/register.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
-  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent, TestySliderComponent, RegisterComponent],
+  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent, TestySliderComponent, RegisterComponent, OrderComponent],
   imports: [
     CommonModule,
     StaticRoutingModule

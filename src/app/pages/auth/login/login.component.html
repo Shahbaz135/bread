@@ -20,9 +20,9 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="*********" autocomplete="off"> 
               </div>
-              <button class="sub-btn">Login</button>
+              <a [routerLink]="['/account']"><button class="sub-btn">Login</button></a>
         </form>
-        <p class="my-2">Not a Brotchengold customer yet? Please <a [routerLink]="['./register']" class="yellow">register here.</a></p>
+        <p class="my-2">Not a Brotchengold customer yet? Please <a [routerLink]="['/register']" class="yellow">register here.</a></p>
     </div>
 
 </div>

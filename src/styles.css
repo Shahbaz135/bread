@@ -26,6 +26,13 @@ body{
 button{
   outline: none !important;
 }
+.box-shdw{
+  box-shadow: 1px solid #f8f8f8 !important;
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.5);
+-webkit-box-shadow:1px 1px 10px 1px rgba(0,0,0,0.5);
+-moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.5);
+border-radius: 12px !important;
+}
 .rrow{
   width: 80% !important;
   margin: 0 auto !important;
@@ -65,6 +72,11 @@ border-radius: 12px;
 }
 .obh3{
   width: 100%;
+}
+.pdo{
+  padding: 1rem 3rem;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 .frm{
   width: 100%;
@@ -120,10 +132,13 @@ border-radius: 12px;
 .bld{
   font-weight: 500;
 }
+.lst .lm-01{
+  margin-left: 2rem !important;
+}
 .lst .fa{
   float: left;
   color: #ffdf00 !important;
-  margin-right: 1rem;
+  margin-right: 0rem;
   margin-bottom: 1rem;
   padding-top: .3rem;
 }
@@ -144,6 +159,12 @@ border-radius: 12px;
 }
 .txtcntr{
   width: 100% !important;
+}
+.box-shdw{
+  border-radius: 0px !important;
+}
+.pdo{
+  padding: 1rem .5rem;
 }
 }
 /*media Query for mobile*/
