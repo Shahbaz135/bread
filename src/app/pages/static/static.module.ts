@@ -15,12 +15,27 @@ import { OrderReviewComponent } from './order-review/order-review.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
 import { RegisterComponent } from './register/register.component';
 import { OrderComponent } from './order/order.component';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [HomeComponent, AboutUsComponent, LatestPostComponent, ZipSerachComponent, BreakfastComponent, FranchiesComponent, DataProtectionComponent, ImprintComponent, FaqComponent, OrderReviewComponent, TestySliderComponent, RegisterComponent, OrderComponent],
+  declarations: [
+    HomeComponent,
+    AboutUsComponent,
+    LatestPostComponent,
+    ZipSerachComponent,
+    BreakfastComponent,
+    FranchiesComponent,
+    DataProtectionComponent,
+    ImprintComponent,
+    FaqComponent,
+    OrderReviewComponent,
+    TestySliderComponent,
+    RegisterComponent,
+    OrderComponent],
   imports: [
     CommonModule,
-    StaticRoutingModule
+    StaticRoutingModule,
+    NgbNavModule
   ]
 })
 export class StaticModule { }
