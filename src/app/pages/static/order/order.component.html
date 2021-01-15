@@ -51,15 +51,32 @@
             <div class="row my-2 mx-1 orw">
               <div class="title">
                 <div class="stepper-input stepper__input">
-                  <button class="toggle-less" (click)="toggleLess()">-</button>
+                  <button class="toggle-less" (click)="toggleLess(1)">-</button>
                   <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
-                    {{renderedValue}}
+                    {{product1Value}}
                   </div>
-                  <button class="toggle-more" (click)="toggleMore()">+</button>
+                  <button class="toggle-more" (click)="toggleMore(1)">+</button>
                 </div>
-<!-- 
-                <button class="minus" ng-click="count = count + 1" ng-init="count=3">-</button>
-                <span class="out">count: {{count}}</span> -->
+              </div>
+              <div class="price yellow">€ 4.00</div>
+            </div>
+          </div>
+          <div class="col-md-4 ">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
               </div>
               <div class="price yellow">€ 4.00</div>
             </div>
