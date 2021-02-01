@@ -6,7 +6,7 @@
             <h2>Fresh Bread,</h2>
             <h3>Fresh Start.</h3>
             <p>fresh baked goods for breakfast we deliver them to your door early in the morning.</p>
-            <button class="h-button">Check PostCode</button>
+            <a [routerLink]="['/register']"><button class="h-button">Check PostCode</button></a>
             <img src="../assets/images/bb-box.png" class="bb-img" >
         </div>
     </div>
@@ -24,14 +24,14 @@
                  But I must explain to you how all this mistaken idea of denouncing pleasure and 
                  praising pain was born and I will give you a complete account of the system.
                 </p>
-            <div class="lst">
-                <i class="fa fa-check hl"></i>
+            <div class="">
+                <i class="fa fa-check hl yellow"></i>
                 <p>Quisque mollis nisl non ultrices commodo.</p>
-                <i class="fa fa-check hl"></i>
+                <i class="fa fa-check hl yellow"></i>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </div>
-            <button class="h-button">About Us</button>
+            <a [routerLink]="['/about-us']"><button class="h-button">About Us</button></a>
         </div>
     </div>
 </div>

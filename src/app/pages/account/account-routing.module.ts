@@ -10,10 +10,12 @@ import { CreateOrderComponent } from './create-order/create-order.component';
 import { CreditsComponent } from './credits/credits.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { InvoiceHistoryComponent } from './invoice-history/invoice-history.component';
+import { OneTimeComponent } from './one-time/one-time.component';
 import { OrderBreakageComponent } from './order-breakage/order-breakage.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { PersonalDetailComponent } from './personal-detail/personal-detail.component';
+import { RecurringComponent } from './recurring/recurring.component';
 
 const routes: Routes = [
   { path: ``,
@@ -60,7 +62,15 @@ const routes: Routes = [
   },
   { path: `delivery-address`,
    component: DeliveryAddressComponent
+  },
+  { path: `one-time`,
+   component: OneTimeComponent
+  },
+  { path: `recurring`,
+   component: RecurringComponent
   }
+
+  
   
   
   

@@ -31,8 +31,9 @@
     </div>
   </div>
   <p class="my-2 pointer">
-    <span>Day Takeover</span>
-    <span class="ml-3">Delete Selection</span>
+    <span (click)="pop1(days)">Day Takeover</span>
+    
+    <span class="ml-3" (click)="pop2(delet)">Delete Selection</span>
   </p>
 </div>
 <div class="container my-3">
@@ -41,7 +42,216 @@
       <a ngbNavLink>Breads</a>
       <ng-template ngbNavContent>
         <div class="row p-0 ">
-          <div class="col-md-4 ">
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="cssCircle minusSign toggle-less" (click)="toggleLess(1)">&#8211;</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product1Value}}
+                  </div>
+                  <button class="cssCircle plusSign toggle-more" (click)="toggleMore(1)">&#43;</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
+      </ng-template>
+    </li>
+
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Sliced Breadss</a>
+      <ng-template ngbNavContent>
+        
+        <div class="row p-0 ">
+          <div class="col-md-4 mb-3">
             <img src="../assets/images/share/1.jpg" class="h-1">
             <div class="row my-2 mx-1 orw">
               <div class="title">Rye mix 50g</div>
@@ -52,16 +262,204 @@
               <div class="title">
                 <div class="stepper-input stepper__input">
                   <button class="toggle-less" (click)="toggleLess(1)">-</button>
-                  <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
                     {{product1Value}}
                   </div>
                   <button class="toggle-more" (click)="toggleMore(1)">+</button>
                 </div>
               </div>
-              <div class="price yellow">€ 4.00</div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
             </div>
           </div>
-          <div class="col-md-4 ">
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
+      </ng-template>
+    </li>
+
+    <li [ngbNavItem]="3">
+      <a ngbNavLink> Actions </a>
+      <ng-template ngbNavContent>
+        <div class="row p-0 ">
+          <div class="col-md-4 mb-3">
             <img src="../assets/images/share/1.jpg" class="h-1">
             <div class="row my-2 mx-1 orw">
               <div class="title">Rye mix 50g</div>
@@ -71,53 +469,1029 @@
             <div class="row my-2 mx-1 orw">
               <div class="title">
                 <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(1)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product1Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(1)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
                   <button class="toggle-less" (click)="toggleLess(2)">-</button>
-                  <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
                     {{product2Value}}
                   </div>
                   <button class="toggle-more" (click)="toggleMore(2)">+</button>
                 </div>
               </div>
-              <div class="price yellow">€ 4.00</div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
             </div>
           </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
         </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
       </ng-template>
     </li>
-    <li [ngbNavItem]="2">
-      <a ngbNavLink>Sliced Breadss</a>
-      <ng-template ngbNavContent>
-        <p>div 2</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="3">
-      <a ngbNavLink> Actions </a>
-      <ng-template ngbNavContent>
-        <p>div 3</p>
-      </ng-template>
-    </li>
+
     <li [ngbNavItem]="4">
       <a ngbNavLink>Sweet Bread Goodss</a>
       <ng-template ngbNavContent>
-        <p>div 4</p>
+        <div class="row p-0 ">
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(1)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product1Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(1)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
       </ng-template>
     </li>
+
     <li [ngbNavItem]="5">
       <a ngbNavLink> Lye Rools</a>
       <ng-template ngbNavContent>
-        <p>div 5</p>
+        <div class="row p-0 ">
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(1)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product1Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(1)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
       </ng-template>
     </li>
+
     <li [ngbNavItem]="6">
       <a ngbNavLink>Buns </a>
       <ng-template ngbNavContent>
-        <p>div 6</p>
+        <div class="row p-0 ">
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(1)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product1Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(1)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
       </ng-template>
     </li>
+
     <li [ngbNavItem]="7">
       <a ngbNavLink> Other</a>
       <ng-template ngbNavContent>
-        <p>div 7</p>
+        <div class="row p-0 ">
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/1.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Rye mix 50g</div>
+              <div class="price">€ 4.00</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(1)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product1Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(1)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product1Value}} *€ 4.00</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/2.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(2)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product2Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(2)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product2Value}} *€ 3.50</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/3.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.20</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(3)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product3Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(3)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product3Value}} *€ 5.20</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/4.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Pumpkin bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(4)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product4Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(4)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product4Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/5.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Onion bread 500g</div>
+              <div class="price">€ 2.80</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(5)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product5Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(5)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product5Value}} *€ 2.80</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/6.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">White bread 500g</div>
+              <div class="price">€ 3.90</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(6)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product6Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(6)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product6Value}} *€ 3.90</div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/7.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(7)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product7Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(7)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product7Value}} *€  3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/8.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Heather bread 750g</div>
+              <div class="price">€ 3.50</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(8)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product8Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(8)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product8Value}} *€ 3.50</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <img src="../assets/images/share/9.jpg" class="h-1">
+            <div class="row my-2 mx-1 orw">
+              <div class="title">Three grain bread 500g</div>
+              <div class="price">€ 5.25</div>
+            </div>
+            <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+            <div class="row my-2 mx-1 orw">
+              <div class="title">
+                <div class="stepper-input stepper__input">
+                  <button class="toggle-less" (click)="toggleLess(9)">-</button>
+                  <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+                    {{product9Value}}
+                  </div>
+                  <button class="toggle-more" (click)="toggleMore(9)">+</button>
+                </div>
+              </div>
+              <div class="price yellow">{{product9Value}} *€ 5.25</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="my-2">
+          The prices given apply to one item including VAT and excluding delivery charges. 
+          The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays, 
+          Sundays and public holidays. The delivery fee is charged per delivery. 
+          The minimum order value for your breakfast service is € 15.00 per 4 weeks 
+          (including delivery fee).
+        </p>
+        <div class="text-center">
+          <button class="a-button">Continue</button>
+        </div>
+
       </ng-template>
     </li>
   </ul>
@@ -125,3 +1499,67 @@
   <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
 </div>
+
+<ng-template #days let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-2 text-center">
+    <h3>Unfortunately, the following baked goods are not available</h3>
+    <h4>Friday</h4>
+    <p>All positions have been taken over</p>
+    <h4>Wednessday</h4>
+    <p>All positions have been taken over</p>
+    <h4>Saturday</h4>
+    <p>All positions have been taken over</p>
+    <h4>Sunday</h4>
+    <p>There will be no delivery on this day as<br>
+       none of the baked goods ordered are <br>
+       available:
+    </p>
+    <div class="">
+      <p class="lm-01"><i class="fa fa-circle yellow mx-2 "></i> Rye mix 500 g</p>
+      <p class="lm-01"><i class="fa fa-circle yellow mx-2 "></i> Heather bread 750 g</p>
+      <p class="lm-01"><i class="fa fa-circle yellow mx-2 "></i> Pumpkin bread 750 g</p>
+    </div>
+    <h4>Monday</h4>
+    <p>All positions have been taken over</p>
+    <h4>Teusday</h4>
+    <p>All positions have been taken over</p>
+    <h4>Thursday</h4>
+    <p>All positions have been taken over</p>
+    <div class="text-center">
+      <button class="a-button" (click)="modal.close('Save click')">Continue</button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #delet let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-5 text-center">
+    <h3>For which days would you like to  use the Monday selection</h3>
+    <div class="row p-2">
+      <ul class="ul1">
+        <li>MON</li>
+        <li>TEU</li>
+        <li>WED</li>
+        <li>THUR</li>
+        <li>FRI</li>
+      </ul>
+      <ul class="ul2">
+        <li>SAT</li>
+        <li>SUN</li>
+      </ul>
+    </div>
+    <div class="text-center mt-4">
+      <button class="a-button" (click)="modal.close('Save click')">Continue</button>
+    </div>
+  </div>
+</ng-template>

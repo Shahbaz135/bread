@@ -1,0 +1,30 @@
+.ul-one{
+    width: 100%;
+    list-style: none;
+}
+.ul-one li{
+    list-style: none;
+    padding: 1rem 0;
+    text-align: center;
+    width: 25%;
+    float: left;
+}
+.one-img{
+    width: 100px;
+    height: 80px;
+}
+.tbl td{
+    vertical-align: middle;
+    
+}
+.tbl tr{
+    border-bottom: 1px solid gray !important;
+}
+.tbl tr:last-child{
+    border: 0 !important;
+}
+@media (max-width: 520px) {
+    .ul-one li{
+        width: 50%;
+    }
+}

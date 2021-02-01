@@ -16,10 +16,12 @@ import { CreditsComponent } from './credits/credits.component';
 import { PersonalDetailComponent } from './personal-detail/personal-detail.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { OneTimeComponent } from './one-time/one-time.component';
+import { RecurringComponent } from './recurring/recurring.component';
 
 
 @NgModule({
-  declarations: [CreateOrderComponent, AdditionalOrderComponent, ContactComponent, ChangeOrderComponent, BillsComponent, BillingAddressComponent, InvoiceHistoryComponent, OrderBreakageComponent, ChangePasswordComponent, PaymentsComponent, CreditsComponent, PersonalDetailComponent, OrderHistoryComponent, DeliveryAddressComponent],
+  declarations: [CreateOrderComponent, AdditionalOrderComponent, ContactComponent, ChangeOrderComponent, BillsComponent, BillingAddressComponent, InvoiceHistoryComponent, OrderBreakageComponent, ChangePasswordComponent, PaymentsComponent, CreditsComponent, PersonalDetailComponent, OrderHistoryComponent, DeliveryAddressComponent, OneTimeComponent, RecurringComponent],
   imports: [
     CommonModule,
     AccountRoutingModule

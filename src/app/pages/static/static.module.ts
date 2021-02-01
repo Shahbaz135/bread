@@ -15,7 +15,7 @@ import { OrderReviewComponent } from './order-review/order-review.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
 import { RegisterComponent } from './register/register.component';
 import { OrderComponent } from './order/order.component';
-import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
