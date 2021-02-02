@@ -16,6 +16,7 @@ import { TestySliderComponent } from './testy-slider/testy-slider.component';
 import { RegisterComponent } from './register/register.component';
 import { OrderComponent } from './order/order.component';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     StaticRoutingModule,
-    NgbNavModule
+    NgbNavModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class StaticModule { }

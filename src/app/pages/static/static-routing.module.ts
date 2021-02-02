@@ -51,6 +51,10 @@ const routes: Routes = [
     component: OrderReviewComponent
   },
   {
+    path: 'register/:code',
+    component: RegisterComponent
+  },
+  {
     path: 'register',
     component: RegisterComponent
   },
@@ -62,8 +66,8 @@ const routes: Routes = [
     path:'order',
     component:OrderComponent
   }
-  
-  
+
+
 ];
 
 @NgModule({
