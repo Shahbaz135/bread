@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { OrderComponent } from './order/order.component';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TrailOrderComponent } from './trail-order/trail-order.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OrderReviewComponent,
     TestySliderComponent,
     RegisterComponent,
-    OrderComponent],
+    OrderComponent,
+    TrailOrderComponent],
   imports: [
     CommonModule,
     StaticRoutingModule,

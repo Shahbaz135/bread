@@ -1,0 +1,98 @@
+.baner{
+    background-image:url(src/assets/images/register-banner.jpg);
+    padding: 12rem 0;
+}
+.r-colr{
+    width:18%;
+    float: left;
+    text-align: center;
+}
+.r-colr p{
+    width: 100%;
+}
+.r-coll{
+    width: 10%;
+    float: left;
+}
+.round{
+    width: 60px;
+    background-color: #b8b8b8;
+    color: #fff;
+    border-radius: 50%;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    z-index: 10000;
+}
+.r-txt{
+    color: #b8b8b8;
+}
+.activate .r-txt{
+    color: #000;
+}
+.activate .round{
+    background-color: #ffdf00;
+}
+.point{
+    cursor: pointer;
+}
+.lne{
+    border: 2px solid #b8b8b8;
+    height: 1px;
+    margin-top: 2rem;
+    background-color: #b8b8b8;
+}
+.h-1{
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+.text-danger{
+    margin-bottom: 0 !important;
+}
+.rght{
+    text-align: right;
+    width: 100%;
+}
+
+@media(max-width:768px){
+    .col-md-9 {
+        padding: 0 1rem !important;
+        margin-top: 1rem;
+    }
+    .baner{
+        padding: 6rem 0;
+    }
+    .lne{
+        margin-top: 1.5rem;
+    }
+    .round{
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 1rem;
+    }
+    .r-txt, .r-colr{
+        font-size: 14px;
+    }
+}
+@media(max-width:420px){
+    .round{
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
+    }
+    .r-txt{
+        font-size: 0.8rem;
+    }
+    .lne{
+        margin-top: 1.5rem;
+    }
+    .rrow{
+        padding: 0.5rem !important;
+    }
+}
+
+

@@ -2,30 +2,19 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 // import { PartnerService } from `../../../services/partner/partner.service`;
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: 'app-trail-order',
+  templateUrl: './trail-order.component.html',
+  styleUrls: ['./trail-order.component.css'],
   encapsulation: ViewEncapsulation.None,
 
 })
-export class RegisterComponent implements OnInit {
-  public RegistrationForm: FormGroup;
-  public active = 1;
+export class TrailOrderComponent implements OnInit {
 
-  public product1Value = 0;
-  public product2Value = 0;
-  public product3Value = 0;
-  public product4Value = 0;
-  public product5Value = 0;
-  public product6Value = 0;
-  public product7Value = 0;
-  public product8Value = 0;
-  public product9Value = 0;
-  public closeResult: any;
+  public RegistrationForm: FormGroup;
+
   public showDiv = 1;
   public newregister: FormGroup;
 
@@ -45,12 +34,10 @@ export class RegisterComponent implements OnInit {
         : { isMatching: 'no' };
     };
  }
-
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private toasterService: ToastrService,
-    private modalService: NgbModal
     // private partnerService: PartnerService
   ) {
     // tslint:disable-next-line: deprecation
@@ -59,15 +46,15 @@ export class RegisterComponent implements OnInit {
         this.postalCode = + params[`code`];
       }
     });
-  }
+   }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.renderForm();
 
     //// get partner by postal code
 
   }
-
+  
   //// initializing form
   renderForm(): void {
     this.RegistrationForm = this.formBuilder.group({
@@ -76,10 +63,10 @@ export class RegisterComponent implements OnInit {
       lName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       salutation: ['', [Validators.required]],
       email: ['', [Validators.required , Validators.email, Validators.maxLength(100)]],
-      confirmEmail: ['', [Validators.required, Validators.email, Validators.maxLength(100), RegisterComponent.matchValues('email')]],
+      confirmEmail: ['', [Validators.required, Validators.email, Validators.maxLength(100), TrailOrderComponent.matchValues('email')]],
       phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), RegisterComponent.matchValues('password')]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), TrailOrderComponent.matchValues('password')]],
       postalCode: ['', []],
       town: ['', []],
       houseStreetNumber: ['', [Validators.required]],
@@ -244,121 +231,5 @@ export class RegisterComponent implements OnInit {
     return this.rf.houseStreetNumber.hasError('required') ? 'Please enter house Street Number or Road name' :
       '';
   }
-
-
-  pop1(days) {
-    this.modalService.open(days, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  pop2(delet) {
-    this.modalService.open(delet, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-
-  toggleMore(value): void {
-    if ( value == 1) {
-      this.product1Value++;
-    }
-
-    if ( value == 2) {
-      this.product2Value++;
-    }
-
-    if ( value == 3) {
-      this.product3Value++;
-    }
-
-    if ( value == 4) {
-      this.product4Value++;
-    }
-
-    if ( value == 5) {
-      this.product5Value++;
-    }
-
-    if ( value == 6) {
-      this.product6Value++;
-    }
-    if ( value == 7) {
-      this.product7Value++;
-    }
-    if ( value == 8) {
-      this.product8Value++;
-    }
-    if ( value == 9) {
-      this.product9Value++;
-    }
-  }
-
-  toggleLess(value): void {
-    if (value == 1) {
-      if (this.product1Value > 0) {
-        this.product1Value--;
-      }
-    }
-
-    if (value == 2) {
-      if (this.product2Value > 0) {
-        this.product2Value--;
-      }
-    }
-    if (value == 3) {
-      if (this.product3Value > 0) {
-        this.product3Value--;
-      }
-    }
-    if (value == 4) {
-      if (this.product4Value > 0) {
-        this.product4Value--;
-      }
-    }
-    if (value == 5) {
-      if (this.product5Value > 0) {
-        this.product5Value--;
-      }
-    }
-
-    if (value == 6) {
-      if (this.product6Value > 0) {
-        this.product6Value--;
-      }
-    }
-    if (value == 7) {
-      if (this.product7Value > 0) {
-        this.product7Value--;
-      }
-    }
-    if (value == 8) {
-      if (this.product8Value > 0) {
-        this.product8Value--;
-      }
-    }
-    if (value == 9) {
-      if (this.product9Value > 0) {
-        this.product9Value--;
-      }
-    }
-  }
-
 
 }

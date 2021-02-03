@@ -12,6 +12,7 @@ import { OrderComponent } from './order/order.component';
 import { RegisterComponent } from './register/register.component';
 import { ShowPopComponent } from './show-pop/show-pop.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
+import { TrailOrderComponent } from './trail-order/trail-order.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path:'order',
     component:OrderComponent
+  },
+  {
+    path:'trail-order',
+    component:TrailOrderComponent
   },
   {
     path:'',
