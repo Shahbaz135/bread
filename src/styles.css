@@ -45,6 +45,9 @@ border-radius: 12px;
 .yellow{
   color: #FFDF00;
 }
+.bg-yellow{
+  background-color: #FFDF00;
+}
 .d-yellow{
   color: #f1d40c;
 }
@@ -113,6 +116,10 @@ border-radius: 12px;
 .tb-row{
   padding: .5rem 0;
 }
+.dflex{
+  display: flex;
+  justify-content: space-between;
+}
 
 .table td{
   padding: 0.78rem 0.45rem;
@@ -142,6 +149,19 @@ border-radius: 12px;
   margin-bottom: 1rem;
   padding-top: .3rem;
 }
+.pointer{
+  cursor: pointer;
+}
+/* .title{
+  flo
+}
+.price{
+  float: right;
+}
+.price, .title{
+  font-weight: bold;
+  font-size: 1.2rem;
+} */
 @media(max-width:992px){
   .infobox{
     width: 90%;
@@ -165,6 +185,9 @@ border-radius: 12px;
 }
 .pdo{
   padding: 1rem .5rem;
+}
+.pmob{
+  padding: 1rem 0 !important;
 }
 }
 /*media Query for mobile*/

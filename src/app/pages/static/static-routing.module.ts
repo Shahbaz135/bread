@@ -10,6 +10,7 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
 import { OrderComponent } from './order/order.component';
 import { RegisterComponent } from './register/register.component';
+import { ShowPopComponent } from './show-pop/show-pop.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
 
 
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path:'order',
     component:OrderComponent
+  },
+  {
+    path:'',
+    component:ShowPopComponent
   }
 
 
