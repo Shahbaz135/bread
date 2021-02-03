@@ -23,6 +23,7 @@
     line-height: 60px;
     margin: 0 auto;
     font-size: 1.5rem;
+    z-index: 10000;
 }
 .r-txt{
     color: #b8b8b8;
@@ -47,6 +48,13 @@
     height: auto;
     border-radius: 12px;
 }
+.text-danger{
+    margin-bottom: 0 !important;
+}
+.rght{
+    text-align: right;
+    width: 100%;
+}
 
 @media(max-width:768px){
     .col-md-9 {
@@ -55,6 +63,18 @@
     }
     .baner{
         padding: 6rem 0;
+    }
+    .lne{
+        margin-top: 1.5rem;
+    }
+    .round{
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 1rem;
+    }
+    .r-txt, .r-colr{
+        font-size: 14px;
     }
 }
 @media(max-width:420px){

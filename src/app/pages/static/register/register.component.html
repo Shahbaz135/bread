@@ -28,7 +28,34 @@
 
   <form [formGroup]="RegistrationForm">
     <div *ngIf="showDiv == 1" class="rrow my-2 p-4 ">
-      <div>
+      <div >
+        <div class="row p-0 m-0">
+          <div class="col-md-5">
+            <img src="../assets/images/service_map_small.jpg" class="h-1">
+          </div>
+          <div class="col-md-7 mt-3 ">
+          <h4 class="obh3">BROTCHENGOLD AVAILABLE TO YOU?</h4>
+          <p class="obh3">
+            Here you can easily find out whether a Morgengold delivery 
+            service is available in your area. Simply enter your postcode and click on "Check".
+          </p>
+          <div class="row m-0 px-0 my-2">
+              <input type="text" id="date"  class="form-control" >
+              <!-- <span *ngIf="rf.desiredDate.touched && rf.desiredDate.invalid">
+                <p class="text-danger mx-">{{desiredDate()}}</p>
+              </span> -->
+              <div class="rght my-2">
+              <button type="submit" class="a-button rbtn">Check</button>
+            </div>
+          </div>
+
+        </div>
+        <div class="rght mr-3">
+        <button (click)='nextDiv()' class="a-button rbtn">Continue</button>
+      </div>
+        </div>
+      </div>
+      <!-- <div>
         <div class="row m-0 px-3 my-2 ">
           <h4 class="obh3">Available In Your Area</h4>
           <p class="obh3">The following Brotchengold partner regularly supplies you with fresh
@@ -56,7 +83,7 @@
             <button (click)='nextDiv()' class="a-button rbtn">Continue</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div *ngIf="showDiv == 2" class="rrow my-2 p-4 ">
@@ -69,14 +96,11 @@
       <div class="row m-0 px-3 my-2">
         <div class="col-md-12">
           <input type="date" id="date" formControlName="desiredDate" class="form-control" >
+          <span *ngIf="rf.desiredDate.touched && rf.desiredDate.invalid">
+            <p class="text-danger mx-">{{desiredDate()}}</p>
+          </span>
         </div>
       </div>
-      <div>
-        <span *ngIf="rf.desiredDate.touched && rf.desiredDate.invalid">
-          <p class="text-danger">{{desiredDate()}}</p>
-        </span>
-      </div>
-
       <button (click)='previousDiv()' class="a-button">Back</button>
       <button (click)='nextDiv()' class="a-button ml-5">Continue</button>
     </div>
@@ -84,18 +108,16 @@
     <div *ngIf="showDiv == 3" class="rrow my-2 p-4">
       <div class="border border-light frm my-3">
         <h3 class="m-3">Access Data</h3>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Phone *</label>
             <input type="text" id="company" formControlName="phone" class="form-control" >
-          </div>
-          <div>
             <span *ngIf="rf.phone.touched && rf.phone.invalid">
               <p class="text-danger">{{phoneError()}}</p>
             </span>
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-6 my-2">
             <label>Password</label>
             <input type="text" id="company" class="form-control" formControlName="password">
@@ -112,7 +134,7 @@
           </div>
         </div>
         <h4 class="m-3">Delivery Address</h4>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Salutation *</label>
             <select class="form-control" formControlName="salutation">
@@ -131,7 +153,7 @@
             </span>
           </div> -->
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-6 my-2">
             <label>First Name*</label>
             <input type="text" id="company" class="form-control" formControlName="fName">
@@ -147,24 +169,22 @@
             </span>
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Company</label>
             <input type="text" id="company" class="form-control" formControlName="company">
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Road *</label>
             <input type="text" id="company" class="form-control" formControlName="houseStreetNumber">
-          </div>
-          <div>
             <span *ngIf="rf.houseStreetNumber.touched && rf.houseStreetNumber.invalid">
               <p class="text-danger">{{houseStreetNumberError()}}</p>
             </span>
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-6 my-2">
             <label>Postcode</label>
             <input type="text" id="company" class="form-control" formControlName="postalCode">
@@ -174,14 +194,14 @@
             <input type="text" id="firstname" class="form-control" formControlName="town">
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Different Address</label>
             <input type="text" id="company" class="form-control" formControlName="differentAddress">
           </div>
         </div>
         <h4 class="m-3">Email Address</h4>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-6 my-2">
             <label>E-mail *</label>
             <input type="text" id="company" class="form-control" formControlName="email">
@@ -208,31 +228,29 @@
           </div> -->
         </div>
         <h4 class="m-3">More Information</h4>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Birthday *</label>
             <!-- <input type="text" id="company" class="form-control" formControlName="birthDay"> -->
             <input type="date" id="date" formControlName="birthDay" class="form-control" >
-          </div>
-          <div>
             <span *ngIf="rf.birthDay.touched && rf.birthDay.invalid">
               <p class="text-danger">{{birthdayError()}}</p>
             </span>
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Notes for the deliverer</label>
             <input type="text" id="company" class="form-control" formControlName="deliverNotes">
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>Parties in the house</label>
             <input type="text" id="company" class="form-control" formControlName="partyInHouse">
           </div>
         </div>
-        <div class="row m-0 px-0 my-3">
+        <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
             <label>On the recommendation of</label>
             <input type="text" id="company" class="form-control" formControlName="recommendationOf">
