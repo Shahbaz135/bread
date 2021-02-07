@@ -16,7 +16,8 @@ import { AccountMenuComponent } from './pages/account/account-menu/account-menu.
 import { BillsComponent } from './bills/bills.component';
 
 import { AuthService } from './services/common/auth.service';
-// import { } from `./services/partner/partner.service`
+import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { AuthService } from './services/common/auth.service';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [ AuthService],
   bootstrap: [AppComponent]

@@ -40,7 +40,7 @@
 [id^=drop] {
 	display: none;
 }
-.daybar { 
+.daybar {
 	margin:0;
 	padding: 0;
     background-color: #fff;
@@ -63,7 +63,8 @@
 .daybar ul li {
 	margin: 0px;
 	display:inline-block;
-	background-color: #ffdf00;
+  /* background-color: #ffdf00; */
+  background-color: #f9f6e2;
 	border-right: 2px solid gray;
     color: #000;
     }
@@ -76,14 +77,18 @@
     .dc2{
         width: 20%;
     }
+
+.activeDay {
+  background-color: #ffdf00 !important;
+}
 .daybar li {
 	display:block;
-	padding:1.2rem 0rem;	
+	padding:1.2rem 0rem;
 	color:#fff;
 	font-size:16px;
 	text-decoration:none;
 	cursor: pointer;
-    background-color: #ffdf00;
+    background-color: #f9f6e2;
     text-align: center;
 }
 .nav-tabs{
@@ -97,7 +102,7 @@
     display: flex;
     justify-content: space-between !important;
     font-weight: bold;
-    
+
 }
 .cssCircle{
     -webkit-border-radius: 999px;
@@ -128,7 +133,7 @@
     margin-bottom: 1px;
     float: left;
   }
-  
+
   .plusSign {
     line-height: 1.1em;
   }
@@ -136,7 +141,7 @@
 .plusSign:hover {
   color: white;
 }
-/* 
+/*
 .toggle-less, .toggle-more{
     border-radius: 50% ;
     padding:2px 4px;
@@ -166,7 +171,7 @@
 .ul1, .ul2{
     width: 100%;
     background-color: #ffdf00;
-    color: #000;   
+    color: #000;
     box-sizing: border-box;
     list-style: none;
     margin: 0 ;
@@ -182,7 +187,7 @@
     text-align: center;
     border-right: 1px solid gray;
     cursor: pointer;
-    
+
 }
 .ul1 li:last-child{
     border: 0;
@@ -282,7 +287,7 @@
 	.toggle {
 		display: block;
 		background-color: #fff;
-		padding:14px 20px;	
+		padding:14px 20px;
 		color:#fff;
 		font-size:17px;
 		text-decoration:none;

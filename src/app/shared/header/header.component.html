@@ -18,7 +18,13 @@
           <li><a [routerLink]="['about-us']">About</a></li>
           <li><a [routerLink]="['franchies']" >Franchies</a></li>
           <li><a [routerLink]="['']">Online Journal</a></li>
-          <li><a [routerLink]="['auth/login']" class="lgn">Login</a></li>
+
+          <li *ngIf="!isLogged"><a [routerLink]="['auth/login']" class="lgn">Login</a></li>
+          <ng-container *ngIf="isLogged">
+            <li><a [routerLink]="['account']">Account</a></li>
+            <li ><a (click)="LogOut()" class="lgn">Logout</a></li>
+          </ng-container>
+
         </ul>
       </div>
     </nav>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/common/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public isLogged: boolean;
 
   constructor(
     private router: Router
@@ -20,6 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLogged = AuthService.isLogged();
   }
 
   toggleClasses(): void {
@@ -38,6 +41,12 @@ export class HeaderComponent implements OnInit {
 
     toggler.classList.remove('cross');
     navListContainer.classList.remove('nav-active');
+  }
+
+  LogOut(): void {
+    this.isLogged = false;
+    AuthService.removeLoggedUser();
+    this.router.navigateByUrl(`auth/login`);
   }
 
 }

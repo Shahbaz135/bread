@@ -18,6 +18,7 @@ import { OrderComponent } from './order/order.component';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrailOrderComponent } from './trail-order/trail-order.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TrailOrderComponent } from './trail-order/trail-order.component';
     StaticRoutingModule,
     NgbNavModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class StaticModule { }

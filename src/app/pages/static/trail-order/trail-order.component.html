@@ -1,4 +1,5 @@
 <!-- main div start here -->
+<ngx-spinner></ngx-spinner>
 <div class="baner background-img"></div>
 <div class="container my-5">
 
@@ -28,83 +29,192 @@
 
   <form [formGroup]="RegistrationForm">
     <div *ngIf="showDiv == 1" class="rrow my-2 p-4 ">
-      <div >
+      <!-- <div *ngIf="!partnerInfo.id">
         <div class="row p-0 m-0">
           <div class="col-md-5">
             <img src="../assets/images/service_map_small.jpg" class="h-1">
           </div>
           <div class="col-md-7 mt-3 ">
-          <h4 class="obh3">BROTCHENGOLD AVAILABLE TO YOU?</h4>
-          <p class="obh3">
-            Here you can easily find out whether a Morgengold delivery 
-            service is available in your area. Simply enter your postcode and click on "Check".
-          </p>
-          <div class="row m-0 px-0 my-2">
-              <input type="text" id="date"  class="form-control" >
-              <!-- <span *ngIf="rf.desiredDate.touched && rf.desiredDate.invalid">
-                <p class="text-danger mx-">{{desiredDate()}}</p>
-              </span> -->
+            <h4 class="obh3">BROTCHENGOLD AVAILABLE TO YOU?</h4>
+            <p class="obh3">
+              Here you can easily find out whether a Morgengold delivery
+              service is available in your area. Simply enter your postcode and click on "Check".
+            </p>
+            <div class="row m-0 px-0 my-2">
+              <input type="text" id="date" formControlName="partnerPostalCode" class="form-control">
+              <span *ngIf="rf.partnerPostalCode.touched && rf.partnerPostalCode.invalid">
+                <p class="text-danger mx-">{{partnerPostalCodeError()}}</p>
+              </span>
               <div class="rght my-2">
-              <button type="submit" class="a-button rbtn">Check</button>
+                <button type="submit" class="a-button rbtn" (click)="checkPartner()">Check</button>
+              </div>
             </div>
           </div>
-
         </div>
-        <div class="rght mr-3">
-        <button (click)='nextDiv()' class="a-button rbtn">Continue</button>
-        <button class="d-button">Continue</button>
-      </div>
-        </div>
-      </div>
-      <!-- <div>
+      </div> -->
+      <div *ngIf="partnerInfo.id">
         <div class="row m-0 px-3 my-2 ">
           <h4 class="obh3">Available In Your Area</h4>
           <p class="obh3">The following Brotchengold partner regularly supplies you with fresh
-             baked goods.
+            baked goods.
           </p>
         </div>
         <div class="row m-0 px-3">
           <div class="col-md-3 p-0">
-            <img src="../assets/images/franchies-01.jpg" class="h-1">
+            <img [src]="absPath(partnerInfo.image)" class="h-1">
           </div>
           <div class="col-md-9 px-5">
-            <h5 class="mb-4">Brotchengold Breakfast service Kassel</h5>
+            <h5 class="mb-4">{{partnerInfo.name}}</h5>
             <div class="row mx-0 my-1">
               <img src="../assets/images/icons/b-icon1.png" class="icns">
-              <p class="pt-2">1282 Vick Rd, Effie, LA, 71331 Germany</p>
+              <p class="pt-2">{{partnerInfo.houseStreetNumber}}</p>
             </div>
             <div class="row mx-0 my-1">
               <img src="../assets/images/icons/email-icon.png" class="icns">
-              <p class="pt-2">sufi22@brotchengold.de</p>
+              <p class="pt-2">{{partnerInfo.email}}</p>
             </div>
             <div class="row mx-0 my-1">
               <img src="../assets/images/icons/phone-icon.png" class="icns">
-              <p class="pt-2">0711/658 30 7-69</p>
+              <p class="pt-2">{{partnerInfo.phone}}</p>
             </div>
             <button (click)='nextDiv()' class="a-button rbtn">Continue</button>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <div *ngIf="showDiv == 2" class="rrow my-2 p-4 ">
-      <div class="row m-0 px-3 my-2 ">
-        <h4 class="obh3">Desired Date for your Sample Shipment</h4>
-        <p >Desired Date <span class="yellow mx-2">
-          <i class="fa fa-calendar yellow mx-3" aria-hidden="true">October 20,2021</i></span>
+      <div class="container">
+        <div class="row p-0">
+          <div class="daybar mb-2">
+            <label for="drop" class="toggle">Select Days <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </label>
+            <input type="checkbox" id="drop" />
+            <ul class="days">
+              <li class="dc" (click)="selectedDay(day)" [class.activeDay]="day.day == activeDay" *ngFor="let day of tempDaysWithProduct">{{day.day}}</li>
+              <li class="dc2 activeDay">Weekly price € {{overAllProductPrice}}</li>
+            </ul>
+          </div>
+        </div>
+        <p class="my-2 pointer">
+          <span (click)="pop1(days)">Day Takeover</span>
+
+          <span class="ml-3" (click)="pop2(delet)">Delete Selection</span>
         </p>
       </div>
-      <div class="row m-0 px-3 my-2">
-        <div class="col-md-12">
-          <input type="date" id="date" formControlName="desiredDate" class="form-control" >
-          <span *ngIf="rf.desiredDate.touched && rf.desiredDate.invalid">
-            <p class="text-danger mx-">{{desiredDate()}}</p>
-          </span>
+      <div class="container my-3" *ngIf="isChanged">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <ng-container *ngFor="let category of categoryProducts; let i=index">
+            <li [ngbNavItem]="i" >
+              <a ngbNavLink>{{category.title}}</a>
+              <ng-template ngbNavContent >
+                <div class="row p-0 ">
+                  <div class="col-md-4 mb-3" *ngFor="let product of category.relatedProducts">
+                    <img [src]="absPath(product.image)" class="h-1">
+                    <div class="row my-2 mx-1 orw">
+                      <div class="title">{{product.name}}</div>
+                      <div class="price">€ {{product.productPrice}}</div>
+                    </div>
+                    <p>Availability: Mon,Teu,Wed,Thur,Fri,Sat</p>
+                    <div class="row my-2 mx-1 orw">
+                      <div class="title">
+                        <div class="stepper-input stepper__input">
+                          <button class="cssCircle minusSign toggle-less" (click)="subtractProduct(product)">&#8211;</button>
+                          <div class="stepper-input-field inptcnt" name="range-value" aria-atomic="true"
+                            aria-live="polite" aria-relevant="all">
+                            {{product.quantity}}
+                          </div>
+                          <button class="cssCircle plusSign toggle-more" (click)="addProduct(product)">&#43;</button>
+                        </div>
+                      </div>
+                      <div class="price yellow">{{product.quantity}} *€ {{product.productPrice}}</div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </ng-container>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        <div class="row p-0 m-0">
+          <p class="my-2">
+            The prices given apply to one item including VAT and excluding delivery charges.
+            The delivery charges are € 0.75 each Monday to Friday and € 1.45 each on Saturdays,
+            Sundays and public holidays. The delivery fee is charged per delivery.
+            The minimum order value for your breakfast service is € 15.00 per 4 weeks
+            (including delivery fee).
+          </p>
+          <div class="text-center rgful">
+            <button class="a-button" (click)='nextDiv()'>Continue</button>
+          </div>
         </div>
       </div>
-      <button (click)='previousDiv()' class="a-button">Back</button>
-      <button (click)='nextDiv()' class="a-button ml-5">Continue</button>
-      <button class="d-button">Continue</button>
+
+      <ng-template #days let-modal>
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-2 text-center">
+          <h3>Unfortunately, the following baked goods are not available</h3>
+          <h4>Friday</h4>
+          <p>All positions have been taken over</p>
+          <h4>Wednessday</h4>
+          <p>All positions have been taken over</p>
+          <h4>Saturday</h4>
+          <p>All positions have been taken over</p>
+          <h4>Sunday</h4>
+          <p>There will be no delivery on this day as<br>
+            none of the baked goods ordered are <br>
+            available:
+          </p>
+          <div class="">
+            <p class="lm-01"><i class="fa fa-circle yellow mx-2 "></i> Rye mix 500 g</p>
+            <p class="lm-01"><i class="fa fa-circle yellow mx-2 "></i> Heather bread 750 g</p>
+            <p class="lm-01"><i class="fa fa-circle yellow mx-2 "></i> Pumpkin bread 750 g</p>
+          </div>
+          <h4>Monday</h4>
+          <p>All positions have been taken over</p>
+          <h4>Teusday</h4>
+          <p>All positions have been taken over</p>
+          <h4>Thursday</h4>
+          <p>All positions have been taken over</p>
+          <div class="text-center">
+            <button class="a-button" (click)="modal.close('Save click')">Continue</button>
+
+          </div>
+        </div>
+      </ng-template>
+
+
+      <ng-template #delet let-modal>
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-5 text-center">
+          <h3>For which days would you like to use the Monday selection</h3>
+          <div class="row p-2">
+            <ul class="ul1">
+              <li>MON</li>
+              <li>TEU</li>
+              <li>WED</li>
+              <li>THUR</li>
+              <li>FRI</li>
+            </ul>
+            <ul class="ul2">
+              <li>SAT</li>
+              <li>SUN</li>
+            </ul>
+          </div>
+          <div class="text-center mt-4">
+            <button class="a-button" (click)="modal.close('Save click')">Continue</button>
+          </div>
+        </div>
+      </ng-template>
     </div>
 
     <div *ngIf="showDiv == 3" class="rrow my-2 p-4">
@@ -119,7 +229,7 @@
             </span>
           </div>
         </div>
-        <div class="row m-0 px-0 my-1">
+        <!-- <div class="row m-0 px-0 my-1">
           <div class="col-md-6 my-2">
             <label>Password</label>
             <input type="text" id="company" class="form-control" formControlName="password">
@@ -134,7 +244,7 @@
               <p class="text-danger">{{confirmPasswordError()}}</p>
             </span>
           </div>
-        </div>
+        </div> -->
         <h4 class="m-3">Delivery Address</h4>
         <div class="row m-0 px-0 my-1">
           <div class="col-md-12">
@@ -204,7 +314,7 @@
         </div>
         <h4 class="m-3">Email Address</h4>
         <div class="row m-0 px-0 my-1">
-          <div class="col-md-6 my-2">
+          <div class="col-md-12">
             <label>E-mail *</label>
             <input type="text" id="company" class="form-control" formControlName="email">
             <span *ngIf="rf.email.touched && rf.email.invalid">
@@ -216,13 +326,13 @@
               <p class="text-danger">{{emailError()}}</p>
             </span>
           </div> -->
-          <div class="col-md-6 my-2">
+          <!-- <div class="col-md-6 my-2">
             <label>Repeat E-mail *</label>
             <input type="text" id="firstname" class="form-control" formControlName="confirmEmail">
             <span *ngIf="rf.confirmEmail.touched && rf.confirmEmail.invalid">
               <p class="text-danger">{{confirmEmailError()}}</p>
             </span>
-          </div>
+          </div> -->
           <!-- <div>
             <span *ngIf="rf.confirmEmail.touched && rf.confirmEmail.invalid">
               <p class="text-danger">{{confirmEmailError()}}</p>
@@ -297,8 +407,9 @@
 
 
       <button (click)='previousDiv()' class="a-button mr-5">Back</button>
-      <button [disabled]='!rf.termCondition.value || !rf.sendOffer.value' (click)='nextDiv()' class="a-button ml-5">Continue</button>
-      <button class="d-button">Continue</button>
+      <button [disabled]='!rf.termCondition.value || !rf.sendOffer.value'
+      [class.d-button]='!rf.termCondition.value || !rf.sendOffer.value' (click)='nextDiv()'
+      class="a-button ml-5">Continue</button>
     </div>
   </form>
 
@@ -311,21 +422,21 @@
     </div>
     <div class="row m-0 px-3">
       <div class="col-md-3 p-0">
-        <img src="../assets/images/franchies-01.jpg" class="h-1">
+        <img [src]="absPath(partnerInfo.image)" class="h-1">
       </div>
       <div class="col-md-9 px-5">
-        <h5 class="mb-4">Brotchengold Breakfast service Kassel</h5>
+        <h5 class="mb-4">{{partnerInfo.name}}</h5>
         <div class="row mx-0 my-1">
           <img src="../assets/images/icons/b-icon1.png" class="icns">
-          <p class="pt-2">1282 Vick Rd, Effie, LA, 71331 Germany</p>
+          <p class="pt-2">{{partnerInfo.houseStreetNumber}}</p>
         </div>
         <div class="row mx-0 my-1">
           <img src="../assets/images/icons/email-icon.png" class="icns">
-          <p class="pt-2">sufi22@brotchengold.de</p>
+          <p class="pt-2">{{partnerInfo.email}}</p>
         </div>
         <div class="row mx-0 my-1">
           <img src="../assets/images/icons/phone-icon.png" class="icns">
-          <p class="pt-2">0711/658 30 7-69</p>
+          <p class="pt-2">{{partnerInfo.phone}}</p>
         </div>
 
       </div>
@@ -334,7 +445,7 @@
     <div class="row m-0 px-3 my-4 ">
       <div class="col-sm-3 my-1 bld">My Trial Order:</div>
       <!-- <div class="col-sm-9 my-1">Desired date: Tuesday, October 20, 2020</div> -->
-      <div class="col-sm-9 my-1">Desired date: {{rf.desiredDate.value}}</div>
+      <div class="col-sm-9 my-1">Desired date: {{rf.desiredDate.value |  date:'fullDate'}}</div>
       <div class="col-sm-3 my-1 bld">My Phone Number:</div>
       <div class="col-sm-9 my-1">The phone number also serves as the registration name for logging in
         {{rf.phone.value}}</div>
@@ -345,7 +456,7 @@
       <div class="col-sm-3 my-1 bld">Email Address:</div>
       <div class="col-sm-9 my-1">{{rf.email.value}}</div>
       <div class="col-sm-3 my-1 bld">More Information:</div>
-      <div class="col-sm-9 my-1">My birthday: {{rf.birthDay.value}</div>
+      <div class="col-sm-9 my-1">My birthday: {{rf.birthDay.value | date: 'longDate'}}</div>
     </div>
 
     <div class="row m-0 px-3 my-4 ">
@@ -392,8 +503,8 @@
 
     </div>
     <div class="text-center">
-      <button class="a-button">Continue</button>
-      <button class="d-button">Continue</button>
+      <button class="a-button" (click)="registerCustomer()">Continue</button>
+      <!-- <button class="d-button">Continue</button> -->
       <br>
       <a href="../imprint" class="yellow">Data Protection Imprint</a>
     </div>
@@ -403,4 +514,3 @@
   </div>
 </div>
 
-  

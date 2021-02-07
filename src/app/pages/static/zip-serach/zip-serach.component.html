@@ -1,14 +1,15 @@
+<ngx-spinner></ngx-spinner>
 <div class="cont-04 background-img">
     <div class="container">
         <div class="c4-box">
             <h4 class="my-3">Brotchengold In Your Area</h4>
-            <p>Here you can easily find out whether a 
-                Mrotchengold delivery service is available in your area. 
+            <p>Here you can easily find out whether a
+                Mrotchengold delivery service is available in your area.
                 Simply enter your postcode and click on "Check".
             </p>
             <form>
-                <input type="text" name="zip-serach" placeholder="Enter Postcode" class="zip-search">
-                <a [routerLink]="['/register']"><button class="h-button">Check</button></a>
+                <input type="number" [(ngModel)]="postalCode" name="zip-serach" placeholder="Enter Postcode" class="zip-search">
+                <a ><button (click)="searchPartner()" class="h-button">Check</button></a>
             </form>
 
         </div>

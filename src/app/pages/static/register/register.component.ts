@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-// import { PartnerService } from `../../../services/partner/partner.service`;
+import { PartnerService } from '../../../services/partner/partner.service';
+import { CustomerService } from '../../../services/customer/customer.service';
+import { CategoryService } from '../../../services/category/category.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/common/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,23 +19,24 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegisterComponent implements OnInit {
   public RegistrationForm: FormGroup;
-  public active = 1;
+  public active = 0;
 
-  public product1Value = 0;
-  public product2Value = 0;
-  public product3Value = 0;
-  public product4Value = 0;
-  public product5Value = 0;
-  public product6Value = 0;
-  public product7Value = 0;
-  public product8Value = 0;
-  public product9Value = 0;
   public closeResult: any;
   public showDiv = 1;
-  public newregister: FormGroup;
 
-  private partnerId: number = 123;
-  private postalCode: number;
+  private partnerId: number;
+  public partnerInfo: any = {};
+
+  private userInfo: any = {};
+  public categoryProducts = [];
+
+  public tempDaysWithProduct = [];
+  public activeDay: any;
+  public isChanged = false;
+
+  public orderOverview = [];
+
+  public overAllProductPrice = 0;
 
 
   // function for matching of password and confirm password.
@@ -50,19 +56,28 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private toasterService: ToastrService,
-    private modalService: NgbModal
-    // private partnerService: PartnerService
+    private modalService: NgbModal,
+    private partnerService: PartnerService,
+    private customerService: CustomerService,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private categoryService: CategoryService
   ) {
     // tslint:disable-next-line: deprecation
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe(params => {
       if (params[`code`]) {
-        this.postalCode = + params[`code`];
+        this.spinner.show();
+        const code = + params[`code`];
+        this.getPartner(code);
       }
     });
   }
 
   ngOnInit(): void {
     this.renderForm();
+
+    const userData = AuthService.getLoggedUser();
+    this.userInfo = userData.data;
 
     //// get partner by postal code
 
@@ -71,7 +86,7 @@ export class RegisterComponent implements OnInit {
   //// initializing form
   renderForm(): void {
     this.RegistrationForm = this.formBuilder.group({
-      desiredDate: [''],
+      desiredDate: ['', [Validators.required]],
       fName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       lName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       salutation: ['', [Validators.required]],
@@ -89,9 +104,12 @@ export class RegisterComponent implements OnInit {
       partyInHouse: [``],
       deliverNotes: [``],
       recommendationOf: [``],
-      partnerId: ['123', [Validators.required]],
+      partnerId: ['', [Validators.required]],
+      partnerPostalCode: ['', [Validators.required,  Validators.pattern("^[0-9]*$"), Validators.minLength(5), Validators.maxLength(5)]],
       termCondition: [false],
-      sendOffer: [false]
+      sendOffer: [false],
+      isTrail: [true],
+      isWeb: [true]
     });
   }
 
@@ -100,17 +118,57 @@ export class RegisterComponent implements OnInit {
       ///// checking div number
       if (this.showDiv === 1) {
         if (!this.partnerId ) {
+          this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
+          return;
+        }
+
+        this.spinner.show();
+
+        this.categoryService.getCategories(this.userInfo.partnerId)
+          .subscribe(response => {
+            this.spinner.hide();
+            this.tempDaysWithProduct = response.data;
+            this.categoryProducts = response.data[0].categories;
+            this.isChanged = true;
+            this.activeDay = `MON`;
+
+            ///// adding quantity
+            this.tempDaysWithProduct.forEach(element => {
+              this.addQuantityToProduct(element.categories);
+            });
+            // this.addQuantityToProduct(this.categoryProducts);
+            // console.log(this.categoryProducts);
+          }, error => {
+            this.spinner.hide();
+            console.log(error);
+          });
+
+      }
+      if (this.showDiv === 2) {
+        // this.tempDaysWithProduct.forEach(days => {
+        //   const day = days.day;
+        //   const obj = { day: ``, product: []};
+        //   days.categories.forEach(category => {
+        //     const temp = category.relatedProducts.filter(product => {
+        //       return product.quantity > 0;
+        //     });
+        //     if (temp.length) {
+        //       obj.day = day;
+        //       obj.product.push(temp);
+        //     }
+        //   });
+        //   if (obj.product.length) {
+        //     this.orderOverview.push(obj);
+        //   }
+        // });
+
+        const desiredDate = this.RegistrationForm.value.desiredDate;
+        if (!desiredDate || desiredDate === ``) {
+          this.RegistrationForm.controls.desiredDate.markAllAsTouched();
+          this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
           return;
         }
       }
-      // if (this.showDiv === 2) {
-      //   const desiredDate = this.RegistrationForm.value.desiredDate;
-      //   if (!desiredDate || desiredDate === ``) {
-      //     this.RegistrationForm.controls.desiredDate.markAllAsTouched();
-      //     this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
-      //     return;
-      //   }
-      // }
 
       if (this.showDiv === 3) {
         if (this.RegistrationForm.invalid) {
@@ -137,6 +195,9 @@ export class RegisterComponent implements OnInit {
         }
       }
       if (value === 3) {
+        if (!this.partnerId ) {
+          return;
+        }
         const desiredDate = this.RegistrationForm.value.desiredDate;
         if (!desiredDate || desiredDate === ``) {
           this.RegistrationForm.controls.desiredDate.markAllAsTouched();
@@ -154,6 +215,109 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line: typedef
+  selectedDay(day) {
+    this.spinner.show();
+    this.isChanged = false;
+    this.activeDay = day.day;
+    this.categoryProducts = day.categories;
+
+    setTimeout(() => {
+      this.spinner.hide();
+      this.isChanged = true;
+    }, 500);
+  }
+
+  addQuantityToProduct(categories): void {
+    for (const category of categories) {
+      for (const product of category.relatedProducts) {
+        product.quantity = 0;
+      }
+    }
+  }
+
+  ///// find partner
+  checkPartner(): void {
+    //// validating input
+    this.spinner.show();
+    if (!this.rf.partnerPostalCode.value || this.rf.partnerPostalCode.invalid ) {
+      this.rf.partnerPostalCode.markAllAsTouched();
+      this.spinner.hide();
+      return;
+    }
+
+    //// calling api
+    const code = + this.rf.partnerPostalCode.value;
+    this.getPartner(code);
+  }
+
+  getPartner(code): void {
+    this.partnerService.getPartnerByPostalCode(code)
+      .subscribe(response => {
+        if (response.status === `Success`) {
+          this.spinner.hide();
+          this.partnerInfo = response.data;
+          this.partnerId = this.partnerInfo.id;
+          this.rf.partnerId.setValue(this.partnerId);
+        }
+      }, error => {
+        this.spinner.hide();
+        this.toasterService.warning(error.error.message[0].message);
+      });
+  }
+
+  ///// submit registration form here
+  // tslint:disable-next-line: typedef
+  registerCustomer() {
+    this.spinner.show();
+    if (this.RegistrationForm.invalid) {
+      this.RegistrationForm.markAllAsTouched();
+      this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
+      this.spinner.hide();
+      return;
+    }
+
+    const formData = this.RegistrationForm.value;
+    this.customerService.registerCustomer(formData)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          // console.log(response);
+          this.toasterService.success(response.message, response.status);
+          this.RegistrationForm.reset();
+          this.router.navigateByUrl(`auth/login`);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.toasterService.warning(error.error.message[0].message, `Error`);
+        } else {
+          this.toasterService.warning(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+
+  ///// to display image
+  // tslint:disable-next-line: typedef
+  absPath(file) {
+    return environment.fileBaseUrl + file;
+  }
+
+  // tslint:disable-next-line: typedef
+  addProduct(product) {
+    product.quantity += 1;
+    this.overAllProductPrice += product.productPrice;
+  }
+
+  subtractProduct(product): void {
+    if (product.quantity > 0) {
+      product.quantity -= 1;
+      this.overAllProductPrice -= product.productPrice;
+    }
+  }
+
   // convenience getter for easy access to registration form fields
   // tslint:disable-next-line: typedef
   get rf() {
@@ -166,6 +330,15 @@ export class RegisterComponent implements OnInit {
   // tslint:disable-next-line: typedef
   desiredDate() {
     return this.rf.desiredDate.hasError('required') ? 'Date is required' :
+              '';
+  }
+
+  // tslint:disable-next-line: typedef
+  partnerPostalCodeError() {
+    return this.rf.partnerPostalCode.hasError('required') ? 'Please Enter Postal Code' :
+        this.rf.partnerPostalCode.hasError('minlength') ? 'Please Enter Valid Postal Code' :
+          this.rf.partnerPostalCode.hasError('maxlength') ? 'Please Enter Valid Postal Code' :
+          this.rf.partnerPostalCode.hasError('pattern') ? 'Please Enter Valid Postal Code' :
               '';
   }
 
@@ -262,8 +435,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -273,92 +444,4 @@ export class RegisterComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
-
-  toggleMore(value): void {
-    if ( value == 1) {
-      this.product1Value++;
-    }
-
-    if ( value == 2) {
-      this.product2Value++;
-    }
-
-    if ( value == 3) {
-      this.product3Value++;
-    }
-
-    if ( value == 4) {
-      this.product4Value++;
-    }
-
-    if ( value == 5) {
-      this.product5Value++;
-    }
-
-    if ( value == 6) {
-      this.product6Value++;
-    }
-    if ( value == 7) {
-      this.product7Value++;
-    }
-    if ( value == 8) {
-      this.product8Value++;
-    }
-    if ( value == 9) {
-      this.product9Value++;
-    }
-  }
-
-  toggleLess(value): void {
-    if (value == 1) {
-      if (this.product1Value > 0) {
-        this.product1Value--;
-      }
-    }
-
-    if (value == 2) {
-      if (this.product2Value > 0) {
-        this.product2Value--;
-      }
-    }
-    if (value == 3) {
-      if (this.product3Value > 0) {
-        this.product3Value--;
-      }
-    }
-    if (value == 4) {
-      if (this.product4Value > 0) {
-        this.product4Value--;
-      }
-    }
-    if (value == 5) {
-      if (this.product5Value > 0) {
-        this.product5Value--;
-      }
-    }
-
-    if (value == 6) {
-      if (this.product6Value > 0) {
-        this.product6Value--;
-      }
-    }
-    if (value == 7) {
-      if (this.product7Value > 0) {
-        this.product7Value--;
-      }
-    }
-    if (value == 8) {
-      if (this.product8Value > 0) {
-        this.product8Value--;
-      }
-    }
-    if (value == 9) {
-      if (this.product9Value > 0) {
-        this.product9Value--;
-      }
-    }
-  }
-
-
 }

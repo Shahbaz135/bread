@@ -6,6 +6,7 @@ import { WrapHttpService } from '../common/wrap-http.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PartnerService {
   public readonly apiUrl = HttpConfig.getApiUrl() + '/partner';
 
@@ -13,7 +14,12 @@ export class PartnerService {
 
   getPartnerByPostalCode(postalCode: number): Observable<any> {
     const conditions: object = { postalCode};
-    return this.http.get(this.apiUrl + WrapHttpService.objToQuery(conditions));
+    return this.http.get(this.apiUrl + `/getByPostalCode` + WrapHttpService.objToQuery(conditions));
+  }
+
+  getPartnerById(id: number): Observable<any> {
+    const conditions: object = {id};
+    return this.http.get(this.apiUrl + `/getByPostalCode` + WrapHttpService.objToQuery(conditions));
   }
 
 }

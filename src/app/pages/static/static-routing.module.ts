@@ -73,7 +73,7 @@ const routes: Routes = [
     component:TrailOrderComponent
   },
   {
-    path:'',
+    path:'pop',
     component:ShowPopComponent
   }
 

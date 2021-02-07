@@ -41,10 +41,10 @@ export class AuthService {
   }
 
   // tslint:disable-next-line: typedef
-  static setLoggedUser(token, permissions) {
+  static setLoggedUser(token, permissions?) {
     const userDetails = JSON.parse(atob(token.split('.')[1]));
     userDetails.tokenInfo = token;
-    userDetails.permissions = permissions;
+    // userDetails.permissions = permissions;
     StorageService.setItem(AuthService.LOGGED_USER_KEY, userDetails);
     this.logStatus.next(true);
   }

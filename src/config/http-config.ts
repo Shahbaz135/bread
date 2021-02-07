@@ -6,4 +6,8 @@ export class HttpConfig {
   static getApiUrl() {
     return environment.url + this.API_URL + '/auth';
   }
+
+  static fileBaseUrl() {
+    return environment.fileBaseUrl;
+  }
 }

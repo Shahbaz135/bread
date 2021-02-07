@@ -1,8 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-// import { PartnerService } from `../../../services/partner/partner.service`;
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { PartnerService } from '../../../services/partner/partner.service';
+import { CustomerService } from '../../../services/customer/customer.service';
+import { CategoryService } from '../../../services/category/category.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/common/auth.service';
 
 @Component({
   selector: 'app-trail-order',
@@ -12,14 +18,26 @@ import { ToastrService } from 'ngx-toastr';
 
 })
 export class TrailOrderComponent implements OnInit {
-
   public RegistrationForm: FormGroup;
+  public active = 0;
 
+  public closeResult: any;
   public showDiv = 1;
   public newregister: FormGroup;
 
-  private partnerId: number = 123;
-  private postalCode: number;
+  private partnerId: number;
+  public partnerInfo: any = {};
+
+  private userInfo: any = {};
+  public categoryProducts = [];
+
+  public tempDaysWithProduct = [];
+  public activeDay: any;
+  public isChanged = false;
+
+  public orderOverview = [];
+
+  public overAllProductPrice = 0;
 
 
   // function for matching of password and confirm password.
@@ -38,35 +56,33 @@ export class TrailOrderComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private toasterService: ToastrService,
-    // private partnerService: PartnerService
+    private modalService: NgbModal,
+    private partnerService: PartnerService,
+    private customerService: CustomerService,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private categoryService: CategoryService
   ) {
-    // tslint:disable-next-line: deprecation
-    this.activatedRoute.params.subscribe(params => {
-      if (params[`code`]) {
-        this.postalCode = + params[`code`];
-      }
-    });
    }
 
    ngOnInit(): void {
     this.renderForm();
 
-    //// get partner by postal code
+    const userData = AuthService.getLoggedUser();
+    this.userInfo = userData.data;
 
+    this.getPartner(+this.userInfo.partnerId);
   }
-  
+
   //// initializing form
   renderForm(): void {
     this.RegistrationForm = this.formBuilder.group({
-      desiredDate: [''],
+      desiredDate: ['', [Validators.required]],
       fName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       lName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       salutation: ['', [Validators.required]],
       email: ['', [Validators.required , Validators.email, Validators.maxLength(100)]],
-      confirmEmail: ['', [Validators.required, Validators.email, Validators.maxLength(100), TrailOrderComponent.matchValues('email')]],
       phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), TrailOrderComponent.matchValues('password')]],
       postalCode: ['', []],
       town: ['', []],
       houseStreetNumber: ['', [Validators.required]],
@@ -76,10 +92,21 @@ export class TrailOrderComponent implements OnInit {
       partyInHouse: [``],
       deliverNotes: [``],
       recommendationOf: [``],
-      partnerId: ['123', [Validators.required]],
-      termCondition: [false],
-      sendOffer: [false]
+      partnerId: ['', [Validators.required]],
+      partnerPostalCode: [''],
+      termCondition: [true],
+      sendOffer: [true],
+      isTrail: [false],
+      isWeb: [true]
     });
+  }
+
+  populateForm(): void {
+    this.RegistrationForm.patchValue(this.userInfo);
+
+    this.rf.email.disable();
+    this.rf.phone.disable();
+    this.rf.birthDay.disable();
   }
 
   nextDiv(): void {
@@ -87,17 +114,55 @@ export class TrailOrderComponent implements OnInit {
       ///// checking div number
       if (this.showDiv === 1) {
         if (!this.partnerId ) {
+          this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
           return;
         }
+
+        this.spinner.show();
+
+        this.getCategories(+this.userInfo.partnerId);
+
+        // this.categoryService.getCategories(this.userInfo.partnerId)
+        //   .subscribe(response => {
+        //     this.spinner.hide();
+        //     this.tempDaysWithProduct = response.data;
+        //     this.categoryProducts = response.data[0].categories;
+        //     this.isChanged = true;
+        //     this.activeDay = `MON`;
+
+        //     ///// adding quantity
+        //     this.tempDaysWithProduct.forEach(element => {
+        //       this.addQuantityToProduct(element.categories);
+        //     });
+        //     // this.addQuantityToProduct(this.categoryProducts);
+        //     // console.log(this.categoryProducts);
+        //   }, error => {
+        //     this.spinner.hide();
+        //     console.log(error);
+        //   });
+
       }
-      // if (this.showDiv === 2) {
-      //   const desiredDate = this.RegistrationForm.value.desiredDate;
-      //   if (!desiredDate || desiredDate === ``) {
-      //     this.RegistrationForm.controls.desiredDate.markAllAsTouched();
-      //     this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
-      //     return;
-      //   }
-      // }
+      if (this.showDiv === 2) {
+        this.maintainProducts();
+
+        this.populateForm();
+        // this.tempDaysWithProduct.forEach(days => {
+        //   const day = days.day;
+        //   const obj = { day: ``, product: []};
+        //   days.categories.forEach(category => {
+        //     const temp = category.relatedProducts.filter(product => {
+        //       return product.quantity > 0;
+        //     });
+        //     if (temp.length) {
+        //       obj.day = day;
+        //       obj.product.push(temp);
+        //     }
+        //   });
+        //   if (obj.product.length) {
+        //     this.orderOverview.push(obj);
+        //   }
+        // });
+      }
 
       if (this.showDiv === 3) {
         if (this.RegistrationForm.invalid) {
@@ -108,6 +173,49 @@ export class TrailOrderComponent implements OnInit {
       }
       this.showDiv += 1;
     }
+  }
+
+  maintainProducts(): void {
+    this.tempDaysWithProduct.forEach(days => {
+      const day = days.day;
+      const obj = { day: ``, product: []};
+      days.categories.forEach(category => {
+        const temp = category.relatedProducts.filter(product => {
+          return product.quantity > 0;
+        });
+        if (temp.length) {
+          obj.day = day;
+          obj.product.push(temp);
+        }
+      });
+      if (obj.product.length) {
+        this.orderOverview.push(obj);
+      }
+    });
+  }
+
+  getCategories(partnerId): void {
+    this.isChanged = false;
+    this.spinner.show();
+    this.categoryService.getCategories(this.userInfo.partnerId)
+      .subscribe(response => {
+        this.spinner.hide();
+        this.tempDaysWithProduct = response.data;
+        this.categoryProducts = response.data[0].categories;
+        this.isChanged = true;
+        this.activeDay = `MON`;
+
+        ///// adding quantity
+        this.tempDaysWithProduct.forEach(element => {
+          this.addQuantityToProduct(element.categories);
+        });
+        // this.addQuantityToProduct(this.categoryProducts);
+        // console.log(this.categoryProducts);
+      }, error => {
+        this.spinner.hide();
+        this.isChanged = true;
+        console.log(error);
+      });
   }
 
   previousDiv(): void {
@@ -122,13 +230,15 @@ export class TrailOrderComponent implements OnInit {
         if (!this.partnerId ) {
           return;
         }
+
+        this.getCategories(+this.userInfo.partnerId);
       }
       if (value === 3) {
-        const desiredDate = this.RegistrationForm.value.desiredDate;
-        if (!desiredDate || desiredDate === ``) {
-          this.RegistrationForm.controls.desiredDate.markAllAsTouched();
+        if (!this.partnerId ) {
           return;
         }
+
+        this.maintainProducts();
       }
 
       if (value === 4) {
@@ -138,6 +248,121 @@ export class TrailOrderComponent implements OnInit {
         }
       }
       this.showDiv = value;
+    }
+  }
+
+  // tslint:disable-next-line: typedef
+  selectedDay(day) {
+    this.spinner.show();
+    this.isChanged = false;
+    this.activeDay = day.day;
+    this.categoryProducts = day.categories;
+
+    setTimeout(() => {
+      this.spinner.hide();
+      this.isChanged = true;
+    }, 500);
+  }
+
+  addQuantityToProduct(categories): void {
+    for (const category of categories) {
+      for (const product of category.relatedProducts) {
+        product.quantity = 0;
+      }
+    }
+  }
+
+  getPartner(id): void {
+    this.partnerService.getPartnerById(id)
+      .subscribe(response => {
+        if (response.status === `Success`) {
+          this.spinner.hide();
+          this.partnerInfo = response.data;
+          this.partnerId = this.partnerInfo.id;
+          this.rf.partnerId.setValue(this.partnerId);
+        }
+      }, error => {
+        this.spinner.hide();
+        this.toasterService.warning(error.error.message[0].message);
+      });
+  }
+
+   ///// submit registration form here
+  // tslint:disable-next-line: typedef
+  registerCustomer() {
+    this.spinner.show();
+    if (this.RegistrationForm.invalid) {
+      this.RegistrationForm.markAllAsTouched();
+      this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
+      this.spinner.hide();
+      return;
+    }
+
+    const formData = this.RegistrationForm.value;
+    this.customerService.registerCustomer(formData)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          // console.log(response);
+          this.toasterService.success(response.message, response.status);
+          this.RegistrationForm.reset();
+          this.router.navigateByUrl(`auth/login`);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.toasterService.warning(error.error.message[0].message, `Error`);
+        } else {
+          this.toasterService.warning(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+
+  ///// to display image
+  // tslint:disable-next-line: typedef
+  absPath(file) {
+    return environment.fileBaseUrl + file;
+  }
+
+  // tslint:disable-next-line: typedef
+  addProduct(product) {
+    product.quantity += 1;
+    this.overAllProductPrice += product.productPrice;
+  }
+
+  subtractProduct(product): void {
+    if (product.quantity > 0) {
+      product.quantity -= 1;
+      this.overAllProductPrice -= product.productPrice;
+    }
+  }
+
+
+  pop1(days) {
+    this.modalService.open(days, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  pop2(delet) {
+    this.modalService.open(delet, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 
