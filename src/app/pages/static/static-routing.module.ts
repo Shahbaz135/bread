@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ShowPopComponent } from './show-pop/show-pop.component';
 import { TestySliderComponent } from './testy-slider/testy-slider.component';
 import { TrailOrderComponent } from './trail-order/trail-order.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
@@ -75,6 +76,11 @@ const routes: Routes = [
   {
     path:'pop',
     component:ShowPopComponent
+  }
+  ,
+  {
+    path:'welcome',
+    component:WelcomeComponent
   }
 
 

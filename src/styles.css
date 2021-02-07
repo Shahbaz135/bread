@@ -12,6 +12,7 @@ a{
 }
 a:hover{
   text-decoration: none;
+  color: none;
 }
 body{
     margin: 0;
@@ -43,6 +44,9 @@ border-radius: 12px !important;
   border-radius: 4px;
   margin: 1rem 0;
   cursor: text !important;
+}
+.simg {
+  min-width: 180px;
 }
 .rrow{
   width: 80% !important;
@@ -98,6 +102,10 @@ border-radius: 12px;
 }
 .frm input{
   padding: 1.3rem .6rem;
+}
+.px5{
+  padding-left: 3rem!important;
+  padding-right: 3rem!important;
 }
 .a-button{
   padding: .8rem 2rem;
@@ -181,6 +189,9 @@ border-radius: 12px;
 @media(max-width:768px){
 .rrow{
   width: 100% !important;
+  }
+  .px5{
+    padding: 1rem .5rem!important;
   }
   .c102{
     order: 1;

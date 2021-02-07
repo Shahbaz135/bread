@@ -1,0 +1,59 @@
+<div class="baner background-img"></div>
+<div class="container text-center">
+    <div class="row mx-0 my-4 text-center">
+        <h2 class="obh3"> Welcome, {{userInfo.salutation}}. {{userInfo.fName}} {{userInfo.lName}}!</h2>
+        <p class="my-2 t-cntr">
+            As a Brotchengold customer, you can now enjoy permanently crispy rolls with just a few clicks:
+        </p>
+        <p class="my-0 t-cntr">
+            1) Click on "Immediately become a customer", select your favorite baked goods and the desired delivery date.
+        </p>
+        <p class="my-0 t-cntr">
+            2) Then complete your customer account to complete your order.
+        </p>
+        <p class="my-0 t-cntr">
+            3) In the Normal case * You can then look forward to your fresh baked goods early in the morning.
+        </p>
+    </div>
+    <div class="wrw t-cntr">
+        <button class="a-button" [routerLink]="['/trail-order']">Instant Customer Be</button>
+        <br>
+        <p class="mt-0 t-cntr">
+            View complete range as <a class="yellow">PDF</a>
+        </p>
+    </div>
+    <div class="row mx-0 my-2 text-center">
+        <p class="mt-0 t-cntr">
+            If you want to check whether or which allergens are contained in the baked goods of your choice,
+            simply move the mouse over the item name or tap on it.
+        </p>
+        <p class="mb-2 t-cntr">
+            You can obtain further information on allergens by telephone during
+            the office hours of your <a href="#" class="yellow">Brotchengold partner.</a>
+
+        </p>
+    </div>
+    <div class="row p-0 mb-3">
+        <div class="wrow row m-0 p-3">
+            <div class="col-md-3 p-0">
+                <img [src]="absPath(partnerInfo.image)" class="h-1 simg">
+            </div>
+            <div class="col-md-9 px5">
+                <h5 class="mb-4 text-left">{{partnerInfo.name}}</h5>
+                <div class="row mx-0 my-1">
+                    <img src="../assets/images/icons/b-icon1.png" class="icns">
+                    <p class="pt-2">{{partnerInfo.houseStreetNumber}}</p>
+                </div>
+                <div class="row mx-0 my-1">
+                    <img src="../assets/images/icons/email-icon.png" class="icns">
+                    <p class="pt-2">{{partnerInfo.email}}</p></div>
+                    <div class="row mx-0 my-1">
+                        <img src="../assets/images/icons/phone-icon.png" class="icns">
+                        <p class="pt-2">{{partnerInfo.phone}}</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+

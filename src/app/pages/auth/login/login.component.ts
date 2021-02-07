@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           this.spinner.hide();
           AuthService.setLoggedUser(response.data.tokenInfo);
           this.toasterService.success(response.message, response.status);
-          this.router.navigateByUrl(`account`);
+          this.router.navigateByUrl(`welcome`);
         }
       }, (error) => {
         console.log(error);

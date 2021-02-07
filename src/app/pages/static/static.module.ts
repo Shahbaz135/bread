@@ -19,6 +19,7 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrailOrderComponent } from './trail-order/trail-order.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     TestySliderComponent,
     RegisterComponent,
     OrderComponent,
-    TrailOrderComponent],
+    TrailOrderComponent,
+    WelcomeComponent],
   imports: [
     CommonModule,
     StaticRoutingModule,

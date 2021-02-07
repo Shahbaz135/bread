@@ -6,6 +6,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PartnerService } from '../../../services/partner/partner.service';
 import { CustomerService } from '../../../services/customer/customer.service';
 import { CategoryService } from '../../../services/category/category.service';
+import { OrderService } from '../../../services/order/order.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/common/auth.service';
@@ -61,7 +62,8 @@ export class TrailOrderComponent implements OnInit {
     private customerService: CustomerService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private orderService: OrderService
   ) {
    }
 
@@ -319,6 +321,63 @@ export class TrailOrderComponent implements OnInit {
       });
   }
 
+  ///// to create new order
+  // tslint:disable-next-line: typedef
+  createOrder() {
+    this.spinner.show();
+    if (!this.orderOverview.length) {
+      this.spinner.hide();
+      this.toasterService.info(`You did not select any product`, `Info`);
+      return;
+    }
+
+    console.log(this.orderOverview);
+
+    const finalOrder = [];
+    this.orderOverview.forEach(days => {
+      const day = days.day;
+      const obj: any = {};
+      days.product.forEach(product => {
+        product.forEach(element => {
+          obj.product = element.name;
+          obj.day = day;
+          obj.quantity = element.quantity;
+          obj.price = element.productPrice;
+
+          finalOrder.push(obj);
+        });
+      });
+    });
+
+    const formData = {
+      overAllPrice: this.overAllProductPrice,
+      isOneTime: false,
+      validFrom: this.rf.desiredDate.value,
+      partnerId: +this.userInfo.partnerId,
+      customerId: +this.userInfo.id,
+      order: finalOrder
+    };
+
+    //// calling api
+    this.orderService.createOrder(formData)
+      .subscribe(response => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.toasterService.success(response.message, response.status);
+          // this.RegistrationForm.reset();
+          this.router.navigateByUrl(`home`);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.toasterService.warning(error.error.message[0].message, `Error`);
+        } else {
+          this.toasterService.warning(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
 
   ///// to display image
   // tslint:disable-next-line: typedef
@@ -338,7 +397,6 @@ export class TrailOrderComponent implements OnInit {
       this.overAllProductPrice -= product.productPrice;
     }
   }
-
 
   pop1(days) {
     this.modalService.open(days, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

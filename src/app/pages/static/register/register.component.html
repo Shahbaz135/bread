@@ -12,7 +12,7 @@
 
     <div class="r-colr point" [class.activate]="showDiv>1" (click)="specificDiv(2)">
       <div class="round">2</div>
-      <p class="my-2 r-txt">Order</p>
+      <p class="my-2 r-txt">Desired Date</p>
     </div>
 
     <div class="col-1 lne"></div>
@@ -462,7 +462,7 @@
       </div>
     </div>
 
-    <div class="row m-0 px-3 my-4 ">
+    <div class="row m-0 px-3 mt-4 ">
       <div class="col-sm-3 my-1 bld">My Trial Order:</div>
       <div class="col-sm-9 my-1">Desired date: {{rf.desiredDate.value |  date:'fullDate'}}</div>
       <div class="col-sm-3 my-1 bld">My Phone Number:</div>
@@ -475,6 +475,9 @@
       <ng-template #other>{{rf.houseStreetNumber.value}}</ng-template>
       <div class="col-sm-3 my-1 bld">Email Address:</div>
       <div class="col-sm-9 my-1">{{rf.email.value}}</div>
+    </div>
+
+    <div class="row m-0 px-3 mb-4 ">
       <div class="col-sm-3 my-1 bld">More Information:</div>
       <div class="col-sm-9 my-1">My birthday: {{rf.birthDay.value | date: 'longDate'}}</div>
     </div>

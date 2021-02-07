@@ -12,7 +12,7 @@
 
     <div class="r-colr point" [class.activate]="showDiv>1" (click)="specificDiv(2)">
       <div class="round">2</div>
-      <p class="my-2 r-txt">Desired Date</p>
+      <p class="my-2 r-txt">Order</p>
     </div>
 
     <div class="col-1 lne"></div>
@@ -459,6 +459,70 @@
       <div class="col-sm-9 my-1">My birthday: {{rf.birthDay.value | date: 'longDate'}}</div>
     </div>
 
+    <div class="container my-5">
+      <div class="row my-5">
+          <h3 class="fh1">Your Order Review</h3>
+      </div>
+      <div class="cont-o1">
+        <div class="row p-0">
+            <p>Valid From: <span class="yellow pl-3">{{rf.desiredDate.value | date: 'longDate'}}</span></p>
+        </div>
+
+        <div class="row p-1 mb-3 " *ngFor="let review of orderOverview">
+            <h5 class="mb-2 fl1">{{review.day}} <a (click)="specificDiv(2)" class="yellow cursor">(To Change)</a></h5>
+            <ng-container *ngFor="let product of review.product">
+              <div class="or-box" *ngFor="let subProd of product">
+                <div class="col-10">{{subProd.quantity}} x {{subProd.name}}</div>
+                <div class="col-2">€ {{subProd.productPrice}}</div>
+            </div>
+            </ng-container>
+            <!-- <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div> -->
+        </div>
+
+        <!-- <div class="row p-1 mb-3 ">
+            <h5 class="mb-2 fl1">Wednesday <a class="yellow">(To Change)</a></h5>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+            <div class="or-box">
+                <div class="col-10">1 x Rye mix 500 g</div>
+                <div class="col-2">€ 3.50</div>
+            </div>
+        </div> -->
+
+        <div class=" row my-2 btm-brd">
+            <div class="or-box py-2">
+                <div class="col-10 rht"><h6>Weekly Rate:</h6></div>
+                <div class="col-2">€ {{overAllProductPrice}}</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row m-0 px-3 my-4 ">
       <h5 class="mb-4 obh3">My Declerations of Consents</h5>
       <div class="lst">
@@ -503,7 +567,7 @@
 
     </div>
     <div class="text-center">
-      <button class="a-button" (click)="registerCustomer()">Continue</button>
+      <button class="a-button" (click)="createOrder()">Submit Order</button>
       <!-- <button class="d-button">Continue</button> -->
       <br>
       <a href="../imprint" class="yellow">Data Protection Imprint</a>
