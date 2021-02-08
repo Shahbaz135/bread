@@ -256,7 +256,8 @@ color: white;
 }
 .h-1{
   width: 100%;
-  height: auto;
+  height: 300px !important;
+  /* height: auto; */
   border-radius: 12px;
 }
 .text-danger{
