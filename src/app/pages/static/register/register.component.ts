@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   private partnerId: number;
   public partnerInfo: any = {};
 
-  private userInfo: any = {};
   public categoryProducts = [];
 
   public tempDaysWithProduct = [];
@@ -74,12 +73,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
+    setTimeout(() => {
+      this.showDiv = 1;
+      this.spinner.hide();
+    }, 400);
+
     this.renderForm();
-
-    const userData = AuthService.getLoggedUser();
-    this.userInfo = userData.data;
-
-    //// get partner by postal code
 
   }
 
@@ -121,47 +121,8 @@ export class RegisterComponent implements OnInit {
           this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
           return;
         }
-
-        this.spinner.show();
-
-        this.categoryService.getCategories(this.userInfo.partnerId)
-          .subscribe(response => {
-            this.spinner.hide();
-            this.tempDaysWithProduct = response.data;
-            this.categoryProducts = response.data[0].categories;
-            this.isChanged = true;
-            this.activeDay = `MON`;
-
-            ///// adding quantity
-            this.tempDaysWithProduct.forEach(element => {
-              this.addQuantityToProduct(element.categories);
-            });
-            // this.addQuantityToProduct(this.categoryProducts);
-            // console.log(this.categoryProducts);
-          }, error => {
-            this.spinner.hide();
-            console.log(error);
-          });
-
       }
       if (this.showDiv === 2) {
-        // this.tempDaysWithProduct.forEach(days => {
-        //   const day = days.day;
-        //   const obj = { day: ``, product: []};
-        //   days.categories.forEach(category => {
-        //     const temp = category.relatedProducts.filter(product => {
-        //       return product.quantity > 0;
-        //     });
-        //     if (temp.length) {
-        //       obj.day = day;
-        //       obj.product.push(temp);
-        //     }
-        //   });
-        //   if (obj.product.length) {
-        //     this.orderOverview.push(obj);
-        //   }
-        // });
-
         const desiredDate = this.RegistrationForm.value.desiredDate;
         if (!desiredDate || desiredDate === ``) {
           this.RegistrationForm.controls.desiredDate.markAllAsTouched();
@@ -212,27 +173,6 @@ export class RegisterComponent implements OnInit {
         }
       }
       this.showDiv = value;
-    }
-  }
-
-  // tslint:disable-next-line: typedef
-  selectedDay(day) {
-    this.spinner.show();
-    this.isChanged = false;
-    this.activeDay = day.day;
-    this.categoryProducts = day.categories;
-
-    setTimeout(() => {
-      this.spinner.hide();
-      this.isChanged = true;
-    }, 500);
-  }
-
-  addQuantityToProduct(categories): void {
-    for (const category of categories) {
-      for (const product of category.relatedProducts) {
-        product.quantity = 0;
-      }
     }
   }
 
@@ -303,19 +243,6 @@ export class RegisterComponent implements OnInit {
   // tslint:disable-next-line: typedef
   absPath(file) {
     return environment.fileBaseUrl + file;
-  }
-
-  // tslint:disable-next-line: typedef
-  addProduct(product) {
-    product.quantity += 1;
-    this.overAllProductPrice += product.productPrice;
-  }
-
-  subtractProduct(product): void {
-    if (product.quantity > 0) {
-      product.quantity -= 1;
-      this.overAllProductPrice -= product.productPrice;
-    }
   }
 
   // convenience getter for easy access to registration form fields
@@ -416,32 +343,5 @@ export class RegisterComponent implements OnInit {
   houseStreetNumberError() {
     return this.rf.houseStreetNumber.hasError('required') ? 'Please enter house Street Number or Road name' :
       '';
-  }
-
-
-  pop1(days) {
-    this.modalService.open(days, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  pop2(delet) {
-    this.modalService.open(delet, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 }

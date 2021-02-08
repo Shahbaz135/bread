@@ -27,4 +27,12 @@ export class CustomerService {
     const conditions: object = { id};
     return this.http.get(this.apiUrl + `/getById` + WrapHttpService.objToQuery(conditions));
   }
+
+  validatePassword(data): Observable<any> {
+    return this.http.post(this.apiUrl + `/checkPassword`, data );
+  }
+
+  changePassword(data): Observable<any> {
+    return this.http.post(this.apiUrl + `/changePassword`, data );
+  }
 }

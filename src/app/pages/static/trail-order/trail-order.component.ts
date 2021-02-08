@@ -233,7 +233,9 @@ export class TrailOrderComponent implements OnInit {
           return;
         }
 
-        this.getCategories(+this.userInfo.partnerId);
+        if (!this.tempDaysWithProduct.length) {
+          this.getCategories(+this.userInfo.partnerId);
+        }
       }
       if (value === 3) {
         if (!this.partnerId ) {
@@ -269,7 +271,9 @@ export class TrailOrderComponent implements OnInit {
   addQuantityToProduct(categories): void {
     for (const category of categories) {
       for (const product of category.relatedProducts) {
-        product.quantity = 0;
+        if (!product.quantity) {
+          product.quantity = 0;
+        }
       }
     }
   }
