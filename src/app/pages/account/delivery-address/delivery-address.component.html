@@ -1,54 +1,66 @@
+<ngx-spinner></ngx-spinner>
 <h2 class="my-4">Your Delivery Address</h2>
-
 <div class="row m-0 ">
-    <form class="border border-light frm my-3">
+    <form class="border border-light frm my-3" [formGroup]="CustomerForm">
         <div class="form-row mb-4">
             <div class="col-md-6">
                 <label>Your Customer Number</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" [value]="id" disabled>
             </div>
             <div class="col-md-6">
                 <label>First Name</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" formControlName="fName">
+                <span *ngIf="rf.fName.touched && rf.fName.invalid">
+                  <p class="text-danger">{{fNameError()}}</p>
+                </span>
             </div>
         </div>
         <div class="form-row mb-4">
             <div class="col-md-6">
                 <label>Surname</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" formControlName="lName">
+                <span *ngIf="rf.lName.touched && rf.lName.invalid">
+                  <p class="text-danger">{{lNameError()}}</p>
+                </span>
             </div>
             <div class="col-md-6">
                 <label>Road</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="houseStreetNumber">
             </div>
         </div>
         <div class="form-row mb-4">
             <div class="col-md-6">
                 <label>Postcode</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" formControlName="postalCode">
             </div>
             <div class="col-md-6">
                 <label>Place of Residence</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" formControlName="town">
             </div>
         </div>
         <div class="form-row mb-4">
             <div class="col-md-6">
                 <label>E-mial</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" formControlName="email">
+                <span *ngIf="rf.email.touched && rf.email.invalid">
+                  <p class="text-danger">{{emailError()}}</p>
+                </span>
             </div>
             <div class="col-md-6">
                 <label>Phone</label>
-                <input type="text"  class="form-control">
+                <input type="text"  class="form-control" formControlName="phone">
+                <span *ngIf="rf.phone.touched && rf.phone.invalid">
+                  <p class="text-danger">{{phoneError()}}</p>
+                </span>
             </div>
         </div>
         <div class="form-row mb-4">
             <div class="col-md-12">
                 <label>Delivery Notes</label>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea class="form-control" rows="5" formControlName="deliverNotes"></textarea>
             </div>
         </div>
-        <button class="a-button my-4">Apply Changes</button>
+        <button class="a-button my-4" (click)="updateCustomer()">Apply Changes</button>
     </form>
 </div>
 

@@ -18,4 +18,13 @@ export class CustomerService {
   customerLogin(data): Observable<any> {
     return this.http.post(this.apiUrl + `/login`, data );
   }
+
+  updateCustomer(id, data): Observable<any> {
+    return this.http.put(this.apiUrl + `/update/` + id, data );
+  }
+
+  getCustomerById(id): Observable<any> {
+    const conditions: object = { id};
+    return this.http.get(this.apiUrl + `/getById` + WrapHttpService.objToQuery(conditions));
+  }
 }

@@ -1,39 +1,46 @@
+<ngx-spinner></ngx-spinner>
 <div class="row m-0 px-5 pmob">
     <h3>Your Billing Addresss</h3>
 
-    <form class="border border-light frm my-3">
+    <form class="border border-light frm my-3" [formGroup]="CustomerForm">
         <div class="form-row mb-4">
         <div class="col-md-6">
           <label>Company</label>
-          <input type="text" id="company" class="form-control" >
+          <input type="text" id="company" class="form-control" formControlName="company">
         </div>
         <div class="col-md-6">
           <label>First Name</label>
-          <input type="text" id="firstname" class="form-control" >
+          <input type="text" id="firstname" class="form-control" formControlName="fName">
+          <span *ngIf="rf.fName.touched && rf.fName.invalid">
+            <p class="text-danger">{{fNameError()}}</p>
+          </span>
         </div>
       </div>
       <div class="form-row mb-4">
         <div class="col-md-6">
           <label>Surname</label>
-          <input type="text" id="surname" class="form-control">
+          <input type="text" id="surname" class="form-control" formControlName="lName">
+          <span *ngIf="rf.lName.touched && rf.lName.invalid">
+            <p class="text-danger">{{lNameError()}}</p>
+          </span>
         </div>
         <div class="col-md-6">
           <label>Road</label>
-          <input type="text" id="road" class="form-control" >
+          <input type="text" id="road" class="form-control" formControlName="houseStreetNumber">
         </div>
       </div>
       <div class="form-row mb-4">
         <div class="col-md-6">
           <label>Post Code</label>
-          <input type="text" id="postcode" class="form-control">
+          <input type="text" id="postcode" class="form-control" formControlName="postalCode">
         </div>
         <div class="col-md-6">
           <label>Plae Of Residence</label>
-          <input type="text" id="plaeofresidence" class="form-control" >
+          <input type="text" id="plaeofresidence" class="form-control" formControlName="town">
         </div>
       </div>
-      
-      <button class="a-button my-4">Apply Changes</button>
+
+      <button class="a-button my-4" (click)="updateCustomer()">Apply Changes</button>
     </form>
 </div>
 

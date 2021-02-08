@@ -18,13 +18,18 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { OneTimeComponent } from './one-time/one-time.component';
 import { RecurringComponent } from './recurring/recurring.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
   declarations: [CreateOrderComponent, AdditionalOrderComponent, ContactComponent, ChangeOrderComponent, BillsComponent, BillingAddressComponent, InvoiceHistoryComponent, OrderBreakageComponent, ChangePasswordComponent, PaymentsComponent, CreditsComponent, PersonalDetailComponent, OrderHistoryComponent, DeliveryAddressComponent, OneTimeComponent, RecurringComponent],
   imports: [
     CommonModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class AccountModule { }

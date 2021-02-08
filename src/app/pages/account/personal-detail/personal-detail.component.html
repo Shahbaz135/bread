@@ -1,92 +1,118 @@
+<ngx-spinner></ngx-spinner>
 <h2 class="my-4">Personal Details</h2>
 <div class="row mx-0">
-    <p>Your personal details are clearly listed on this page.<br>
-        Should any data (e.g. telephone or bank details) change, please contact your
-         personal brotchengold partner.<br>
-         You also have the option of changing your password on this page.
-    </p>
+  <p>Your personal details are clearly listed on this page.<br>
+    Should any data (e.g. telephone or bank details) change, please contact your
+    personal brotchengold partner.<br>
+    You also have the option of changing your password on this page.
+  </p>
 </div>
 <div class="row m-0 ">
-    <form class="border border-light frm my-3">
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>Salutation</label>
-                <input type="text"  class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Name</label>
-                <input type="text"  class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>First Name</label>
-                <input type="text"  class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>password</label>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>Email</label>
-                <input type="text"  class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Company</label>
-                <input type="text"  class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>Street, House Number</label>
-                <input type="text"  class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Zip Code Residential Address</label>
-                <input type="text"  class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>Phone Number</label>
-                <input type="text" class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Mobile Number</label>
-                <input type="text"  class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>Date of Birth</label>
-                <input type="text"  class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Notice for the Deliverer</label>
-                <input type="text"  class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <label>Number of parties</label>
-                <input type="text"  class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Entry Date</label>
-                <input type="text"  class="form-control">
-            </div>
-        </div>
-        <div class="form-row mb-4">
-            <div class="col-md-6">
-                <button class="a-button my-4">Change Data</button>
-            </div>
-            <div class="col-md-6">
-                <button class="a2-button my-4">Make Contact</button>
-            </div>
-        </div>
+  <form class="border border-light frm my-3" [formGroup]="CustomerForm">
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Salutation *</label>
+        <select class="form-control" formControlName="salutation">
+          <option value="Mr">Mr</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Ms">Ms</option>
+        </select>
+        <span *ngIf="rf.salutation.touched && rf.salutation.invalid">
+          <p class="text-danger">{{salutationError()}}</p>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="fName">
+        <span *ngIf="rf.fName.touched && rf.fName.invalid">
+          <p class="text-danger">{{fNameError()}}</p>
+        </span>
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="lName">
+        <span *ngIf="rf.lName.touched && rf.lName.invalid">
+          <p class="text-danger">{{lNameError()}}</p>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <label>password</label>
+        <input type="password" class="form-control" value="**********" disabled>
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Email</label>
+        <input type="text" class="form-control" formControlName="email">
+        <span *ngIf="rf.email.touched && rf.email.invalid">
+          <p class="text-danger">{{emailError()}}</p>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <label>Company</label>
+        <input type="text" class="form-control" formControlName="company">
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Street, House Number</label>
+        <input type="text" class="form-control" formControlName="houseStreetNumber">
+        <span *ngIf="rf.houseStreetNumber.touched && rf.houseStreetNumber.invalid">
+          <p class="text-danger">{{houseStreetNumberError()}}</p>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <label>Zip Code Residential Address</label>
+        <input type="text" class="form-control" formControlName="postalCode">
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" formControlName="phone">
+        <span *ngIf="rf.phone.touched && rf.phone.invalid">
+          <p class="text-danger">{{phoneError()}}</p>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <label>Mobile Number</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Date of Birth</label>
+        <input type="date" id="date" formControlName="birthDay" class="form-control" >
+        <span *ngIf="rf.birthDay.touched && rf.birthDay.invalid">
+          <p class="text-danger">{{birthdayError()}}</p>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <label>Notice for the Deliverer</label>
+        <input type="text" class="form-control" formControlName="deliverNotes">
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <label>Parties in House</label>
+        <input type="text" class="form-control" formControlName="partyInHouse">
+      </div>
+      <div class="col-md-6">
+        <label>Desired Date</label>
+        <input type="date" class="form-control" formControlName="desiredDate">
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-6">
+        <button class="a-button my-4" (click)="updateCustomer()">Change Data</button>
+      </div>
+      <div class="col-md-6">
+        <!-- <button class="a2-button my-4">Make Contact</button> -->
+      </div>
+    </div>
 
-        
-    </form>
+
+  </form>
 </div>
