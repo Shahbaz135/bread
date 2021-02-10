@@ -178,6 +178,7 @@ export class TrailOrderComponent implements OnInit {
   }
 
   maintainProducts(): void {
+    this.orderOverview = [];
     this.tempDaysWithProduct.forEach(days => {
       const day = days.day;
       const obj = { day: ``, product: []};
