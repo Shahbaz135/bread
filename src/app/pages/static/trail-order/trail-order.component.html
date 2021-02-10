@@ -29,29 +29,11 @@
 
   <form [formGroup]="RegistrationForm">
     <div *ngIf="showDiv == 1" class="rrow my-2 p-4 ">
-      <!-- <div *ngIf="!partnerInfo.id">
+      <div *ngIf="!partnerInfo.id">
         <div class="row p-0 m-0">
-          <div class="col-md-5">
-            <img src="../assets/images/service_map_small.jpg" class="h-1">
-          </div>
-          <div class="col-md-7 mt-3 ">
-            <h4 class="obh3">BROTCHENGOLD AVAILABLE TO YOU?</h4>
-            <p class="obh3">
-              Here you can easily find out whether a Morgengold delivery
-              service is available in your area. Simply enter your postcode and click on "Check".
-            </p>
-            <div class="row m-0 px-0 my-2">
-              <input type="text" id="date" formControlName="partnerPostalCode" class="form-control">
-              <span *ngIf="rf.partnerPostalCode.touched && rf.partnerPostalCode.invalid">
-                <p class="text-danger mx-">{{partnerPostalCodeError()}}</p>
-              </span>
-              <div class="rght my-2">
-                <button type="submit" class="a-button rbtn" (click)="checkPartner()">Check</button>
-              </div>
-            </div>
-          </div>
+          <p>No Partner Record found, It may happened that your partner is deleted</p>
         </div>
-      </div> -->
+      </div>
       <div *ngIf="partnerInfo.id">
         <div class="row m-0 px-3 my-2 ">
           <h4 class="obh3">Available In Your Area</h4>

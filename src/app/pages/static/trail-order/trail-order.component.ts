@@ -68,11 +68,13 @@ export class TrailOrderComponent implements OnInit {
    }
 
    ngOnInit(): void {
+
     this.renderForm();
 
     const userData = AuthService.getLoggedUser();
     this.userInfo = userData.data;
 
+    this.spinner.show();
     this.getPartner(+this.userInfo.partnerId);
   }
 

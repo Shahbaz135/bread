@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:3000',
-  fileBaseUrl: 'http://localhost:3000/'
-    // url: 'http://bread.brightmedium.com',
-    // fileBaseUrl: 'http://bread.brightmedium.com/'
+  // url: 'http://localhost:3000',
+  // fileBaseUrl: 'http://localhost:3000/'
+    url: 'http://bread.brightmedium.com',
+    fileBaseUrl: 'http://bread.brightmedium.com/'
 };
 
 /*
