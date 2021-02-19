@@ -41,7 +41,7 @@ export class PersonalDetailComponent implements OnInit {
       salutation: ['', [Validators.required]],
       email: ['', [Validators.required , Validators.email, Validators.maxLength(100)]],
       phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      postalCode: ['', []],
+      postalCode: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(5), Validators.maxLength(5)]],
       town: ['', []],
       houseStreetNumber: ['', [Validators.required]],
       company: [``],
@@ -173,6 +173,14 @@ export class PersonalDetailComponent implements OnInit {
   houseStreetNumberError() {
     return this.rf.houseStreetNumber.hasError('required') ? 'Please enter house Street Number or Road name' :
       '';
+  }
+
+   // tslint:disable-next-line: typedef
+   postalCodeError() {
+    return this.rf.postalCode.hasError('minlength') ? 'Please Enter Valid Postal Code' :
+        this.rf.postalCode.hasError('maxlength') ? 'Please Enter Valid Postal Code' :
+        this.rf.postalCode.hasError('pattern') ? 'Please Enter Valid Postal Code' :
+          '';
   }
 
 }

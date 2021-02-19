@@ -30,8 +30,11 @@
         </div>
         <div class="form-row mb-4">
             <div class="col-md-6">
-                <label>Postcode</label>
-                <input type="text"  class="form-control" formControlName="postalCode">
+              <label>Postcode</label>
+              <input type="text"  class="form-control" formControlName="postalCode">
+              <span *ngIf="rf.postalCode.touched && rf.postalCode.invalid">
+                <p class="text-danger">{{postalCodeError()}}</p>
+              </span>
             </div>
             <div class="col-md-6">
                 <label>Place of Residence</label>

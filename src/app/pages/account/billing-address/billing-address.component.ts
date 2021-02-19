@@ -36,7 +36,7 @@ export class BillingAddressComponent implements OnInit {
     this.CustomerForm = this.formBuilder.group({
       fName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       lName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      postalCode: ['', []],
+      postalCode: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(5), Validators.maxLength(5)]],
       town: ['', []],
       houseStreetNumber: ['', [Validators.required]],
       company: [``],
@@ -134,6 +134,14 @@ export class BillingAddressComponent implements OnInit {
   houseStreetNumberError() {
     return this.rf.houseStreetNumber.hasError('required') ? 'Please enter house Street Number or Road name' :
       '';
+  }
+
+  // tslint:disable-next-line: typedef
+  postalCodeError() {
+    return this.rf.postalCode.hasError('minlength') ? 'Please Enter Valid Postal Code' :
+        this.rf.postalCode.hasError('maxlength') ? 'Please Enter Valid Postal Code' :
+        this.rf.postalCode.hasError('pattern') ? 'Please Enter Valid Postal Code' :
+          '';
   }
 
 }

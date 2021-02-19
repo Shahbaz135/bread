@@ -66,6 +66,9 @@
       <div class="col-md-6">
         <label>Zip Code Residential Address</label>
         <input type="text" class="form-control" formControlName="postalCode">
+        <span *ngIf="rf.postalCode.touched && rf.postalCode.invalid">
+          <p class="text-danger">{{postalCodeError()}}</p>
+        </span>
       </div>
     </div>
     <div class="form-row mb-4">

@@ -33,6 +33,9 @@
         <div class="col-md-6">
           <label>Post Code</label>
           <input type="text" id="postcode" class="form-control" formControlName="postalCode">
+          <span *ngIf="rf.postalCode.touched && rf.postalCode.invalid">
+            <p class="text-danger">{{postalCodeError()}}</p>
+          </span>
         </div>
         <div class="col-md-6">
           <label>Plae Of Residence</label>
