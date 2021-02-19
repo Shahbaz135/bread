@@ -95,7 +95,7 @@ export class RegisterComponent implements OnInit {
       phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16), RegisterComponent.matchValues('password')]],
-      postalCode: ['', []],
+      postalCode: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(5), Validators.maxLength(5)]],
       town: ['', []],
       houseStreetNumber: ['', [Validators.required]],
       differentAddress: [''],
@@ -267,6 +267,14 @@ export class RegisterComponent implements OnInit {
           this.rf.partnerPostalCode.hasError('maxlength') ? 'Please Enter Valid Postal Code' :
           this.rf.partnerPostalCode.hasError('pattern') ? 'Please Enter Valid Postal Code' :
               '';
+  }
+
+  // tslint:disable-next-line: typedef
+  postalCodeError() {
+    return this.rf.postalCode.hasError('minlength') ? 'Please Enter Valid Postal Code' :
+        this.rf.postalCode.hasError('maxlength') ? 'Please Enter Valid Postal Code' :
+        this.rf.postalCode.hasError('pattern') ? 'Please Enter Valid Postal Code' :
+          '';
   }
 
   // tslint:disable-next-line: typedef
