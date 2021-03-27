@@ -1,3 +1,5 @@
+<ngx-spinner></ngx-spinner>
+
 <h3>Additional Order</h3>
 <p>Here you can order somthing in additional to an existing order / Permanent order without having change
     the order / permanent order!
@@ -7,6 +9,95 @@
 <h6>Our delivery days: <span class="d-yellow">by 2:30 PM on Friday</span></h6>
 
 <div class="row my-3 mx-0">
-    <button class="a-button">New Additional Order</button>
-    <button class="a2-button">Show Existing Additional Orders</button>
+  <button class="a-button" (click)="onNewOrder()">New Additional Order</button>
+  <button class="a2-button" (click)="onShowExisting()">Show Existing Additional Orders</button>
 </div>
+
+<ng-container *ngIf="createOrder">
+  <div class="form-row mb-4 mx-0">
+    <div class="col-md-6">
+        <label>Delivery Date</label>
+        <input type="date" [(ngModel)]="deliveryDate" class="form-control" (change)="dateChange()">
+    </div>
+  </div>
+
+  <div class="row my-3 mx-0" *ngIf="categoryProductData.length<1">
+    <h4>Currently No delivery of products available in your area</h4>
+  </div>
+
+  <div class="row p-0 mx-0">
+      <ul class="ul-one bg-yellow">
+          <li>Order Cost Per Week</li>
+          <li>Products: 0.00 €</li>
+          <li>Delivery Charges: 0.00 €</li>
+          <li>Total: {{totalPrice}} €</li>
+      </ul>
+  </div>
+
+  <div class="row p-0 mx-0">
+    <table class="table tbl" *ngFor="let category of categoryProductData">
+        <thead>
+            <th>{{category.title}}</th>
+            <th> </th>
+            <th> </th>
+            <th *ngFor="let day of allDays">{{day}}</th>
+            <!-- <th>Sun</th> -->
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of category.Products">
+                <td><img [src]="absPath(product.image)" class="one-img"></td>
+                <td>{{product.name}}</td>
+                <td>{{product.productPrice}}</td>
+                <td *ngFor="let day of allDays; let i=index">
+                  <ng-container  *ngFor="let pday of product.availableDays">
+                    <span *ngIf="pday.day === day">
+                      <input class="quantity" (keyup)="onAddQuantity(product, $event, pday)" style="width: 45px;" type="number">
+                    </span>
+                  </ng-container>
+
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div class="row my-3 mx-0">
+      <button class="a-button" (click)="submitOrder()">Create a changeable order</button>
+  </div>
+  <div class="row m-0">
+      <span class="infoicon"><i class="fa fa-info"></i></span>
+      <div class="infobox">
+          <p>All prices include the saturday value-added tax of currently
+              5%. The bread rolls are baked by plucker GmbH backery. </p>
+          <h5>Delivery Charges:</h5>
+          <p>
+              <span> Working days:1:10 EUR</span>
+              <span class="mx-3"> Saturday:1:10 EUR</span><br>
+              <span> Sunday:1:10 EUR</span>
+
+          </p>
+      </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="showExistingOrders">
+  <div class="row m-0 my-4">
+    <table class="table">
+        <thead>
+            <th>Date</th>
+            <th>Process</th>
+            <th>Delivery Date</th>
+            <th>Total Price</th>
+        </thead>
+        <tbody>
+            <tr class="tb-row tr2" *ngFor="let order of allAdditionalOrders">
+                <td>{{order.createdAt | date: 'shortDate'}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.deliveryDate | date: 'shortDate'}}</td>
+                <td>{{order.overAllPrice}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</ng-container>

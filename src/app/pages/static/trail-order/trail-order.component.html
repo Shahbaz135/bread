@@ -91,7 +91,7 @@
               <a ngbNavLink>{{category.title}}</a>
               <ng-template ngbNavContent >
                 <div class="row p-0 ">
-                  <div class="col-md-4 mb-3" *ngFor="let product of category.relatedProducts">
+                  <div class="col-md-4 mb-3" *ngFor="let product of category.Products">
                     <img [src]="absPath(product.image)" class="h-1">
                     <div class="row my-2 mx-1 orw">
                       <div class="title">{{product.name}}</div>
@@ -112,11 +112,18 @@
                       <div class="price yellow">{{product.quantity}} *€ {{product.productPrice}}</div>
                     </div>
                   </div>
+                  <div *ngIf="category.Products.length < 1" class="erroMessage">
+                    <h4>Sorry, no products available on this day</h4>
+                  </div>
                 </div>
               </ng-template>
             </li>
           </ng-container>
+          <div *ngIf="categoryProducts < 1" >
+            <h4>Sorry, No category & product available on this day</h4>
+          </div>
         </ul>
+
 
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
         <div class="row p-0 m-0">

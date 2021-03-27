@@ -1,15 +1,43 @@
 <h3 >Order Interuption</h3>
-<div class="row m-0">    
-    <button class="a-button my-4">New Request</button>
-    <p class="obh3">No Interuptions have been created so far</p>
+<div class="row m-0">
+    <button class="a-button my-4" [routerLink]="['/account/create-breakage']">New Request</button>
+    <p class="obh3" *ngIf="orderInterruptions.length < 1">No Interuptions have been created so far</p>
 </div>
+<div class="row m-0 my-4" *ngIf="orderInterruptions.length > 0">
+  <table class="table">
+      <thead>
+          <th>Date</th>
+          <th>Valid From</th>
+          <th>Date of Expiry</th>
+          <!-- <th>Action</th> -->
+      </thead>
+      <tbody>
+          <tr class="tb-row tr2" *ngFor="let order of orderInterruptions">
+              <td>{{order.createdAt | date: 'shortDate'}}</td>
+              <td>{{order.validFrom | date: 'shortDate'}}</td>
+              <td>{{order.expiryDate | date: 'shortDate'}}</td>
+
+              <!-- <td class="text-center ">
+                <a *ngIf="order.isActive" [routerLink]="['/account/recurring-change', order.id]">
+                  <i class="fa fa-edit black"></i>
+                </a>
+                &nbsp;
+                <a *ngIf="order.isActive" (click)="onDelete(order)">
+                  <i class="fa fa-trash black"></i>
+                </a>
+              </td> -->
+          </tr>
+      </tbody>
+  </table>
+</div>
+
 <div class="row m-0">
     <span class="infoicon"><i class="fa fa-info"></i></span>
     <div class="infobox">
-        <p>Order interruptions are particularly useful if you have set up a standing order. 
-            If you do not want to receive a delivery for a certain period of time, e.g. 
-            because you are on vacation, you can stop the delivery for this period. 
-            After the interruption in your order, you will receive your order as usual 
+        <p>Order interruptions are particularly useful if you have set up a standing order.
+            If you do not want to receive a delivery for a certain period of time, e.g.
+            because you are on vacation, you can stop the delivery for this period.
+            After the interruption in your order, you will receive your order as usual
             and fully automatically. </p>
     </div>
-  </div>
+</div>

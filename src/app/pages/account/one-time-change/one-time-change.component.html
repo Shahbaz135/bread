@@ -1,0 +1,82 @@
+<ngx-spinner></ngx-spinner>
+
+<div class="row p-0 mx-0">
+  <h3 class="obh3 my-2">Change Order</h3>
+  <h6 class="obh3">You setup a standing order:</h6>
+  <p class="obh3">On the left, select the date from which your order should be valid.</p>
+</div>
+
+<div class="form-row mb-4 mx-0">
+<div class="col-md-6">
+  <label>Valid From</label>
+  <input type="date" [(ngModel)]="validFrom" class="form-control">
+</div>
+<div class="col-md-6">
+  <label>Date of Expiry</label>
+  <input type="date" [(ngModel)]="expiryDate" class="form-control">
+</div>
+</div>
+
+<div class="row my-3 mx-0">
+<button class="a-button" (click)="submitOrder()">Create a changeable order</button>
+<button class="a2-button mx-3" (click)="emptyForm()">Empty From</button>
+</div>
+
+<div class="row my-3 mx-0" *ngIf="categoryProductData.length<1">
+<h4>Currently No delivery of products available in your area</h4>
+</div>
+
+<div class="row p-0 mx-0">
+  <ul class="ul-one bg-yellow">
+      <li>Order Cost Per Week</li>
+      <li>Products: 0.00 €</li>
+      <li>Delivery Charges: 0.00 €</li>
+      <li>Total: {{totalPrice}} €</li>
+  </ul>
+</div>
+
+<div class="row p-0 mx-0">
+<table class="table tbl" *ngFor="let category of categoryProductData">
+  <thead>
+      <th>{{category.title}}</th>
+      <th> </th>
+      <th> </th>
+      <th *ngFor="let day of allDays">{{day}}</th>
+      <!-- <th>Sun</th> -->
+  </thead>
+  <tbody>
+      <tr *ngFor="let product of category.Products">
+          <td><img [src]="absPath(product.image)" class="one-img"></td>
+          <td>{{product.name}}</td>
+          <td>{{product.productPrice}}</td>
+          <td *ngFor="let day of allDays; let i=index">
+            <ng-container  *ngFor="let pday of product.availableDays">
+              <span *ngIf="pday.day === day">
+                <input class="quantity" [value]="pday.quantity" (keyup)="onAddQuantity(product, $event, pday)" style="width: 45px;" type="number">
+              </span>
+            </ng-container>
+
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+
+
+<div class="row my-3 mx-0">
+  <button class="a-button" (click)="submitOrder()">Create a changeable order</button>
+</div>
+<div class="row m-0">
+  <span class="infoicon"><i class="fa fa-info"></i></span>
+  <div class="infobox">
+      <p>All prices include the saturday value-added tax of currently
+          5%. The bread rolls are baked by plucker GmbH backery. </p>
+      <h5>Delivery Charges:</h5>
+      <p>
+          <span> Working days:1:10 EUR</span>
+          <span class="mx-3"> Saturday:1:10 EUR</span><br>
+          <span> Sunday:1:10 EUR</span>
+
+      </p>
+  </div>
+</div>

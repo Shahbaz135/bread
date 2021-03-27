@@ -1,10 +1,10 @@
 <ngx-spinner></ngx-spinner>
-<h3>Order History</h3>
-<p>This page lists all orders and transactions that have been made so far.<br>
-    Click on the information icon to see individual orders and processes in detail.
+<h3>All One Time Orders</h3>
+<p>This page lists all one time orders that have been made so far.<br>
+  Select order from list to change it.
 </p>
-
 <div class="row m-0 my-4">
+
     <table class="table">
         <thead>
             <th>Date</th>
@@ -12,6 +12,7 @@
             <th>Type</th>
             <th>Valid From</th>
             <th>Date of Expiry</th>
+            <th>Action</th>
         </thead>
         <tbody>
             <tr class="tb-row tr2" *ngFor="let order of orderHistory">
@@ -22,6 +23,15 @@
                 <td>{{order.validFrom | date: 'shortDate'}}</td>
                 <td *ngIf="order.expiryDate">{{order.expiryDate | date: 'shortDate'}}</td>
                 <td *ngIf="!order.expiryDate">-</td>
+                <td class="text-center ">
+                  <a *ngIf="order.isActive" [routerLink]="['/account/one-time-change', order.id]">
+                    <i class="fa fa-edit black"></i>
+                  </a>
+                  &nbsp;
+                  <a *ngIf="order.isActive" (click)="onDelete(order)">
+                    <i class="fa fa-trash black"></i>
+                  </a>
+                </td>
             </tr>
         </tbody>
     </table>

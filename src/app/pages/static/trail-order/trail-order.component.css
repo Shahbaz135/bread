@@ -267,6 +267,11 @@ color: white;
   text-align: right;
   width: 100%;
 }
+.erroMessage {
+  width: 100%;
+  text-align: center;
+  margin: 1rem;
+}
 /* ...................................... */
 
 @media all and (max-width : 992px) {

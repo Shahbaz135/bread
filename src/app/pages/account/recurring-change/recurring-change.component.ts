@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -9,32 +9,36 @@ import { environment } from 'src/environments/environment';
 
 
 @Component({
-  selector: 'app-additional-order',
-  templateUrl: './additional-order.component.html',
-  styleUrls: ['./additional-order.component.css']
+  selector: 'app-recurring-change',
+  templateUrl: './recurring-change.component.html',
+  styleUrls: ['./recurring-change.component.css']
 })
-export class AdditionalOrderComponent implements OnInit {
+export class RecurringChangeComponent implements OnInit {
   userInfo: any;
+  orderId: number;
+
+  orderData: any = {};
 
   categoryProductData = [];
   allDays = [];
 
   totalPrice = 0;
-  deliveryDate: Date;
+  validFrom: Date;
 
-  createOrder = false;
-  showExistingOrders = false;
-
-  allAdditionalOrders = [];
-
+  minDate: Date;
 
   constructor(
     private categoryService: CategoryService,
     private toasterService: ToastrService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private route: ActivatedRoute
   ) {
+    this.minDate = new Date();
+    this.route.params.subscribe(params => {
+      this.orderId = params[`id`];
+    });
   }
 
   ngOnInit(): void {
@@ -44,54 +48,89 @@ export class AdditionalOrderComponent implements OnInit {
       this.router.navigateByUrl(`auth/login`);
     } else {
       this.userInfo = userData.data;
-      // this.getCategoryProducts();
+      this.getCategoryProducts();
     }
   }
 
-  onNewOrder(): void {
-    this.createOrder = true;
-    this.showExistingOrders = false;
+   //// get current order details
+   getOrderDetails(): void {
+    const data = {
+      id: this.orderId,
+      isOneTime: false
+    };
+
+    this.orderService.getOrderById(data)
+      .subscribe(response => {
+        if (response.status === `Success`) {
+          this.orderData = response.data;
+          this.setOrderData();
+          // this.categoryProductData = response.data.categoryDays;
+          // this.allDays = response.data.allDays;
+
+        }
+      }, error => {
+        console.log(error);
+        this.toasterService.error(`Something went wrong`, `Error`);
+      });
   }
 
-  onShowExisting(): void {
-    this.createOrder = false;
-    this.showExistingOrders = true;
+  setOrderData(): void {
+    this.validFrom = this.orderData.validFrom;
+    this.totalPrice = this.orderData.overAllPrice;
 
-    this.getAdditionalOrders();
+    this.populateFields();
   }
 
-  dateChange(): void {
-    let day = new Date(this.deliveryDate).getDay();
-    if (day === 0) {
-      day = 7;
+  populateFields(): void {
+    const selectedOrders = this.orderData.OrderDetail;
+
+    for (const product of selectedOrders) {
+      const productName = product.product;
+      const dayId = product.OrderDay.id;
+      const day = product.OrderDay.day;
+      const quantity = product.quantity;
+
+      //// iterating through all categories & products
+      for (const category of this.categoryProductData) {
+        const foundProduct = category.Products.find(x => x.name === productName);
+        if (foundProduct) {
+          const foundDay = foundProduct.availableDays.find(x => x.id === dayId);
+
+          if (foundDay) {
+            foundDay.quantity = quantity;
+
+            /// adding to selected products
+            const obj = {
+              id: dayId,
+              quantity,
+              day
+            };
+
+            foundProduct.selectedProducts.push(obj);
+          }
+        }
+      }
     }
-
-    if (day) {
-      this.getCategoryProducts(day);
-    }
   }
 
-  getCategoryProducts(day): void {
-    this.spinner.show();
+  getCategoryProducts(): void {
     const data = {
       partnerId: this.userInfo.partnerId,
-      postCode: this.userInfo.postalCode,
-      dayId: day
+      postCode: this.userInfo.postalCode
     };
 
     this.categoryService.getCategoriesRegular(data)
       .subscribe(response => {
         if (response.status === `Success`) {
-          this.spinner.hide();
           this.categoryProductData = response.data.categoryDays;
           this.allDays = response.data.allDays;
 
           /// adding field
           this.addQuantityField();
+          this.getOrderDetails();
         }
       }, error => {
         console.log(error);
-        this.spinner.hide();
         this.toasterService.error(`Something went wrong`, `Error`);
       });
   }
@@ -137,13 +176,24 @@ export class AdditionalOrderComponent implements OnInit {
     }
   }
 
+  emptyForm(): void {
+    const field = document.getElementsByClassName(`quantity`);
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < field.length; i++) {
+      field[i].value = null;
+    }
+
+    this.totalPrice = 0;
+    this.addQuantityField();
+  }
 
   // tslint:disable-next-line: typedef
   submitOrder() {
     this.spinner.show();
-    if (!this.deliveryDate) {
+    if (!this.validFrom) {
       this.spinner.hide();
-      this.toasterService.warning(`Please Select Date`, `Delivery Date`);
+      this.toasterService.warning(`Please Select Date`, `Valid From`);
       return;
     }
 
@@ -173,21 +223,22 @@ export class AdditionalOrderComponent implements OnInit {
     // console.log(finalOrder);
     const formData = {
       overAllPrice: this.totalPrice,
-      deliveryDate: this.deliveryDate,
+      isOneTime: false,
+      isTrail: false,
+      validFrom: this.validFrom,
       partnerId: +this.userInfo.partnerId,
       customerId: +this.userInfo.id,
       order: finalOrder
     };
 
      //// calling api
-    this.orderService.createAdditionalOrder(formData)
+    this.orderService.changeOrder(formData, this.orderId)
      .subscribe(response => {
        this.spinner.hide();
        if (response.status === `Success`) {
          this.toasterService.success(response.message, response.status);
          // this.RegistrationForm.reset();
-         this.emptyForm();
-         this.router.navigateByUrl(`account/additional-order`);
+         this.router.navigateByUrl(`account/change-recurring-list`);
        }
       }, (error) => {
        this.spinner.hide();
@@ -206,35 +257,4 @@ export class AdditionalOrderComponent implements OnInit {
     return environment.fileBaseUrl + file;
   }
 
-  emptyForm(): void {
-    const field = document.getElementsByClassName(`quantity`);
-
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < field.length; i++) {
-      field[i].value = null;
-    }
-
-    this.totalPrice = 0;
-    this.addQuantityField();
-  }
-
-  getAdditionalOrders(): void {
-    this.spinner.show();
-    const data = {
-      partnerId: +this.userInfo.partnerId,
-      customerId: +this.userInfo.postalCode
-    };
-
-    this.orderService.getAdditionalOrders(data)
-      .subscribe(response => {
-        if (response.status === `Success`) {
-          this.spinner.hide();
-          this.allAdditionalOrders = response.data;
-        }
-      }, error => {
-        console.log(error);
-        this.spinner.hide();
-        this.toasterService.error(`Something went wrong`, `Error`);
-      });
-  }
 }

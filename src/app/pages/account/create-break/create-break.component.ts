@@ -6,19 +6,21 @@ import { AuthService } from 'src/app/services/common/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
-  selector: 'app-order-breakage',
-  templateUrl: './order-breakage.component.html',
-  styleUrls: ['./order-breakage.component.css']
+  selector: 'app-create-break',
+  templateUrl: './create-break.component.html',
+  styleUrls: ['./create-break.component.css']
 })
-export class OrderBreakageComponent implements OnInit {
+export class CreateBreakComponent implements OnInit {
+  validFrom: Date;
+  expiryDate: Date;
+
   userInfo: any = {};
-  orderInterruptions = [];
 
   constructor(
     private toasterService: ToastrService,
     private spinner: NgxSpinnerService,
-    private orderService: OrderService,
     private router: Router,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
@@ -29,22 +31,32 @@ export class OrderBreakageComponent implements OnInit {
     } else {
       this.userInfo = userData.data;
     }
-
-    this.getAllInterruptions();
   }
 
-  getAllInterruptions(): void {
+  createInterruption(): void {
+    this.spinner.show();
+    if (!this.validFrom || !this.expiryDate) {
+      this.toasterService.warning(`Error`, `Please Select valid from and expiry dates`);
+      this.spinner.hide();
+      return;
+    }
+
     // console.log(finalOrder);
     const formData = {
-      CustomerId: +this.userInfo.id,
+      validFrom: this.validFrom,
+      expiryDate: this.expiryDate,
+      partnerId: +this.userInfo.partnerId,
+      customerId: +this.userInfo.id,
     };
 
      //// calling api
-    this.orderService.getOrderInterruptions(formData)
+    this.orderService.createOrderInterruption(formData)
       .subscribe(response => {
         this.spinner.hide();
         if (response.status === `Success`) {
-          this.orderInterruptions = response.data;
+          this.toasterService.success(response.message, response.status);
+          // this.RegistrationForm.reset();
+          this.router.navigateByUrl(`account/order-breakage`);
         }
         }, (error) => {
         this.spinner.hide();

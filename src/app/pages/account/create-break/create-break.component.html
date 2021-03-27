@@ -1,0 +1,31 @@
+<ngx-spinner></ngx-spinner>
+<h3 >Order Interuption</h3>
+<!-- <div class="row m-0">
+    <button class="a-button my-4" [routerLink]="['/account/create-breakage']">New Request</button>
+</div> -->
+
+<div class="form-row mb-4 mx-0">
+  <div class="col-md-6">
+    <label>Valid From</label>
+    <input type="date" [(ngModel)]="validFrom" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label>Date of Expiry</label>
+    <input type="date" [(ngModel)]="expiryDate" class="form-control">
+  </div>
+</div>
+
+<div class="row my-3 mx-0">
+  <button class="a-button" (click)="createInterruption()">Save Order Interruption</button>
+</div>
+
+<div class="row m-0">
+  <span class="infoicon"><i class="fa fa-info"></i></span>
+  <div class="infobox">
+      <p>Order interruptions are particularly useful if you have set up a standing order.
+          If you do not want to receive a delivery for a certain period of time, e.g.
+          because you are on vacation, you can stop the delivery for this period.
+          After the interruption in your order, you will receive your order as usual
+          and fully automatically. </p>
+  </div>
+</div>

@@ -13,7 +13,11 @@ export class CategoryService {
   constructor(public http: WrapHttpService) { }
 
   getCategories(partnerId: number): Observable<any> {
-    const conditions: object = { partnerId };
+    const conditions: object = {partnerId};
     return this.http.get(this.apiUrl + `/getByPartner` + WrapHttpService.objToQuery(conditions));
+  }
+
+  getCategoriesRegular(data): Observable<any> {
+    return this.http.get(this.apiUrl + `/getByAreaRegular` + WrapHttpService.objToQuery(data));
   }
 }

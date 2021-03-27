@@ -20,10 +20,15 @@ import { OneTimeComponent } from './one-time/one-time.component';
 import { RecurringComponent } from './recurring/recurring.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { OneTimeChangeComponent } from './one-time-change/one-time-change.component';
+import { RecurringChangeComponent } from './recurring-change/recurring-change.component';
+import { ChangeOneTimeListComponent } from './change-one-time-list/change-one-time-list.component';
+import { ChangeRecurringListComponent } from './change-recurring-list/change-recurring-list.component';
+import { CreateBreakComponent } from './create-break/create-break.component';
 
 
 @NgModule({
-  declarations: [CreateOrderComponent, AdditionalOrderComponent, ContactComponent, ChangeOrderComponent, BillsComponent, BillingAddressComponent, InvoiceHistoryComponent, OrderBreakageComponent, ChangePasswordComponent, PaymentsComponent, CreditsComponent, PersonalDetailComponent, OrderHistoryComponent, DeliveryAddressComponent, OneTimeComponent, RecurringComponent],
+  declarations: [CreateOrderComponent, AdditionalOrderComponent, ContactComponent, ChangeOrderComponent, BillsComponent, BillingAddressComponent, InvoiceHistoryComponent, OrderBreakageComponent, ChangePasswordComponent, PaymentsComponent, CreditsComponent, PersonalDetailComponent, OrderHistoryComponent, DeliveryAddressComponent, OneTimeComponent, RecurringComponent, OneTimeChangeComponent, RecurringChangeComponent, ChangeOneTimeListComponent, ChangeRecurringListComponent, CreateBreakComponent],
   imports: [
     CommonModule,
     AccountRoutingModule,

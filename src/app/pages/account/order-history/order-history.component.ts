@@ -19,14 +19,17 @@ export class OrderHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    ///// getting looged user info
+    ///// getting logged user info
     const userInfo = AuthService.getLoggedUser().data;
 
     this.spinner.show();
-    this.orderService.getOrders(userInfo.id)
+    const data = {
+      CustomerId: userInfo.id
+    };
+
+    this.orderService.getOrders(data)
       .subscribe(response => {
         this.spinner.hide();
-        console.log(response);
         if (response.status === `Success`) {
           this.orderHistory = response.data;
         }

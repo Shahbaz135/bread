@@ -48,40 +48,42 @@
 
   <div class="acnt-menu">
     <h4 class="my-3">Order</h4>
-    <ul class="menu-ul" id="menu-ul-m" *ngIf="showMyContainer">
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['create-order']" class="links link2 activate">Create</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['change-order']" class="links link2">Change</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['order-breakage']" class="links link2">Interrupt</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['additional-order']" class="links link2">Order Additionally</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['order-history']" class="links link2">Order History</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['invoice-history']" class="links link2">Invoice History</a></li>
-      <h4 class="my-3">Accounting</h4>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['bills']" class="links link2">Bills</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['credits']" class="links link2">Credits</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['payment']" class="links link2">Payment Option</a></li>
-      <h4 class="my-3">Your Data</h4>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['personal-detail']" class="links link2">Personal Details</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['delivery-address']" class="links link2">Delivery Address</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['billing-address']" class="links link2">Billing Address</a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['change-password']" class="links link2">Password</a></li>
-      <h4 class="my-3">Contact</h4>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['contact']" class="links link2">Contact </a></li>
-      <i class="fa fa-circle yellow fl"></i>
-      <li><a [routerLink]="['imprint']" class="links link2">Imprint</a></li>
+    <ul class="menu-ul" id="menu-ul-m" >
+      <ng-container *ngIf="showMyContainer">
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['create-order']" class="link2 activate">Create</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['change-order']" class="link2">Change</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['order-breakage']" class="link2">Interrupt</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['additional-order']" class="link2">Order Additionally</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['order-history']" class="link2">Order History</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['invoice-history']" class="link2">Invoice History</a></li>
+        <h4 class="my-3">Accounting</h4>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['bills']" class="links link2">Bills</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['credits']" class="links link2">Credits</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['payment']" class="links link2">Payment Option</a></li>
+        <h4 class="my-3">Your Data</h4>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['personal-detail']" class="links link2">Personal Details</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['delivery-address']" class="links link2">Delivery Address</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['billing-address']" class="links link2">Billing Address</a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['change-password']" class="links link2">Password</a></li>
+        <h4 class="my-3">Contact</h4>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['contact']" class="links link2">Contact </a></li>
+        <i class="fa fa-circle yellow fl"></i>
+        <li><a [routerLink]="['imprint']" class="links link2">Imprint</a></li>
+      </ng-container>
     </ul>
   </div>
 </div>

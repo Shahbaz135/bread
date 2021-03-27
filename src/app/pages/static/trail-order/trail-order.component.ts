@@ -182,13 +182,15 @@ export class TrailOrderComponent implements OnInit {
   maintainProducts(): void {
     this.orderOverview = [];
     this.tempDaysWithProduct.forEach(days => {
+      const dayId = days.id;
       const day = days.day;
-      const obj = { day: ``, product: []};
-      days.categories.forEach(category => {
-        const temp = category.relatedProducts.filter(product => {
+      const obj = { dayId: ``, day: ``, product: []};
+      days.categoryDays.forEach(category => {
+        const temp = category.Products.filter(product => {
           return product.quantity > 0;
         });
         if (temp.length) {
+          obj.dayId = dayId;
           obj.day = day;
           obj.product.push(temp);
         }
@@ -202,17 +204,18 @@ export class TrailOrderComponent implements OnInit {
   getCategories(partnerId): void {
     this.isChanged = false;
     this.spinner.show();
+
     this.categoryService.getCategories(this.userInfo.partnerId)
       .subscribe(response => {
         this.spinner.hide();
         this.tempDaysWithProduct = response.data;
-        this.categoryProducts = response.data[0].categories;
+        this.categoryProducts = response.data[0].categoryDays;
         this.isChanged = true;
-        this.activeDay = `MON`;
+        this.activeDay = `Monday`;
 
         ///// adding quantity
         this.tempDaysWithProduct.forEach(element => {
-          this.addQuantityToProduct(element.categories);
+          this.addQuantityToProduct(element.categoryDays);
         });
         // this.addQuantityToProduct(this.categoryProducts);
         // console.log(this.categoryProducts);
@@ -245,6 +248,7 @@ export class TrailOrderComponent implements OnInit {
           return;
         }
 
+        this.populateForm();
         this.maintainProducts();
       }
 
@@ -263,7 +267,7 @@ export class TrailOrderComponent implements OnInit {
     this.spinner.show();
     this.isChanged = false;
     this.activeDay = day.day;
-    this.categoryProducts = day.categories;
+    this.categoryProducts = day.categoryDays;
 
     setTimeout(() => {
       this.spinner.hide();
@@ -273,7 +277,7 @@ export class TrailOrderComponent implements OnInit {
 
   addQuantityToProduct(categories): void {
     for (const category of categories) {
-      for (const product of category.relatedProducts) {
+      for (const product of category.Products) {
         if (!product.quantity) {
           product.quantity = 0;
         }
@@ -296,38 +300,6 @@ export class TrailOrderComponent implements OnInit {
       });
   }
 
-   ///// submit registration form here
-  // tslint:disable-next-line: typedef
-  registerCustomer() {
-    this.spinner.show();
-    if (this.RegistrationForm.invalid) {
-      this.RegistrationForm.markAllAsTouched();
-      this.toasterService.info(`Please fill all required filed`, `Incomplete Form`);
-      this.spinner.hide();
-      return;
-    }
-
-    const formData = this.RegistrationForm.value;
-    this.customerService.registerCustomer(formData)
-      .subscribe((response) => {
-        this.spinner.hide();
-        if (response.status === `Success`) {
-          // console.log(response);
-          this.toasterService.success(response.message, response.status);
-          this.RegistrationForm.reset();
-          this.router.navigateByUrl(`auth/login`);
-        }
-      }, (error) => {
-        this.spinner.hide();
-        console.log(error);
-        if (error.error) {
-          this.toasterService.warning(error.error.message[0].message, `Error`);
-        } else {
-          this.toasterService.warning(`Something went wrong, Please try again`, `Error`);
-        }
-      });
-  }
-
   ///// to create new order
   // tslint:disable-next-line: typedef
   createOrder() {
@@ -342,12 +314,12 @@ export class TrailOrderComponent implements OnInit {
 
     const finalOrder = [];
     this.orderOverview.forEach(days => {
-      const day = days.day;
+      const dayId = days.dayId;
       const obj: any = {};
       days.product.forEach(product => {
         product.forEach(element => {
           obj.product = element.name;
-          obj.day = day;
+          obj.WeekDaysId = dayId;
           obj.quantity = element.quantity;
           obj.price = element.productPrice;
 
@@ -359,6 +331,7 @@ export class TrailOrderComponent implements OnInit {
     const formData = {
       overAllPrice: this.overAllProductPrice,
       isOneTime: false,
+      isTrail: true,
       validFrom: this.rf.desiredDate.value,
       partnerId: +this.userInfo.partnerId,
       customerId: +this.userInfo.id,

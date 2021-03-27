@@ -8,6 +8,7 @@ import { WrapHttpService } from '../common/wrap-http.service';
 })
 export class OrderService {
   public readonly apiUrl = HttpConfig.getApiUrl() + '/order';
+  public readonly interruptionUrl = HttpConfig.getApiUrl() + '/interruption';
 
   constructor(public http: WrapHttpService) { }
 
@@ -15,8 +16,39 @@ export class OrderService {
     return this.http.post(this.apiUrl + `/create`, data );
   }
 
-  getOrders(customerId): Observable<any> {
-    const conditions: object = { CustomerId : customerId};
-    return this.http.get(this.apiUrl + `/get` + WrapHttpService.objToQuery(conditions));
+  getOrders(data): Observable<any> {
+    return this.http.get(this.apiUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  getOrderById(data): Observable<any> {
+    return this.http.get(this.apiUrl + `/getById` + WrapHttpService.objToQuery(data));
+  }
+
+  changeOrder(data, id): Observable<any> {
+    return this.http.put(this.apiUrl + `/` + id, data );
+  }
+
+  deleteOrder(id): Observable<any> {
+    return this.http.delete(this.apiUrl + `/` + id);
+  }
+
+  createOrderInterruption(data): Observable<any> {
+    return this.http.post(this.interruptionUrl + `/create`, data );
+  }
+
+  getOrderInterruptions(data): Observable<any> {
+    return this.http.get(this.interruptionUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  createAdditionalOrder(data): Observable<any> {
+    return this.http.post(this.apiUrl + `/addition/create`, data );
+  }
+
+  getAdditionalOrders(data): Observable<any> {
+    return this.http.get(this.apiUrl + `/addition/get` + WrapHttpService.objToQuery(data));
+  }
+
+  deleteAdditionalOrder(id): Observable<any> {
+    return this.http.delete(this.apiUrl + `/addition/` + id);
   }
 }
