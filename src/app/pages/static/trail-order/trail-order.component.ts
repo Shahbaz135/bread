@@ -123,49 +123,12 @@ export class TrailOrderComponent implements OnInit {
         }
 
         this.spinner.show();
-
         this.getCategories(+this.userInfo.partnerId);
-
-        // this.categoryService.getCategories(this.userInfo.partnerId)
-        //   .subscribe(response => {
-        //     this.spinner.hide();
-        //     this.tempDaysWithProduct = response.data;
-        //     this.categoryProducts = response.data[0].categories;
-        //     this.isChanged = true;
-        //     this.activeDay = `MON`;
-
-        //     ///// adding quantity
-        //     this.tempDaysWithProduct.forEach(element => {
-        //       this.addQuantityToProduct(element.categories);
-        //     });
-        //     // this.addQuantityToProduct(this.categoryProducts);
-        //     // console.log(this.categoryProducts);
-        //   }, error => {
-        //     this.spinner.hide();
-        //     console.log(error);
-        //   });
-
       }
       if (this.showDiv === 2) {
         this.maintainProducts();
 
         this.populateForm();
-        // this.tempDaysWithProduct.forEach(days => {
-        //   const day = days.day;
-        //   const obj = { day: ``, product: []};
-        //   days.categories.forEach(category => {
-        //     const temp = category.relatedProducts.filter(product => {
-        //       return product.quantity > 0;
-        //     });
-        //     if (temp.length) {
-        //       obj.day = day;
-        //       obj.product.push(temp);
-        //     }
-        //   });
-        //   if (obj.product.length) {
-        //     this.orderOverview.push(obj);
-        //   }
-        // });
       }
 
       if (this.showDiv === 3) {
@@ -204,8 +167,11 @@ export class TrailOrderComponent implements OnInit {
   getCategories(partnerId): void {
     this.isChanged = false;
     this.spinner.show();
+    const data = {
+      postCode: this.userInfo.postalCode
+    };
 
-    this.categoryService.getCategories(this.userInfo.partnerId)
+    this.categoryService.getCategories(data)
       .subscribe(response => {
         this.spinner.hide();
         this.tempDaysWithProduct = response.data;
@@ -310,8 +276,6 @@ export class TrailOrderComponent implements OnInit {
       return;
     }
 
-    console.log(this.orderOverview);
-
     const finalOrder = [];
     this.orderOverview.forEach(days => {
       const dayId = days.dayId;
@@ -369,6 +333,7 @@ export class TrailOrderComponent implements OnInit {
   addProduct(product) {
     product.quantity += 1;
     this.overAllProductPrice += product.productPrice;
+    this.overAllProductPrice = +this.overAllProductPrice.toFixed(2);
   }
 
   subtractProduct(product): void {

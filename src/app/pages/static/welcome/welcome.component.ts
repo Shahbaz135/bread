@@ -22,7 +22,6 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfo = AuthService.getLoggedUser().data;
-    console.log(this.userInfo);
 
     //// getting partner
     this.getPartner(+this.userInfo.partnerId);

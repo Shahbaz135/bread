@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/services/common/auth.guard';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { BreakfastComponent } from './breakfast/breakfast.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
@@ -71,6 +72,7 @@ const routes: Routes = [
   },
   {
     path:'trail-order',
+    canActivate: [AuthGuard],
     component:TrailOrderComponent
   },
   {
@@ -80,6 +82,7 @@ const routes: Routes = [
   ,
   {
     path:'welcome',
+    canActivate: [AuthGuard],
     component:WelcomeComponent
   }
 

@@ -74,7 +74,6 @@ export class AdditionalOrderComponent implements OnInit {
   getCategoryProducts(day): void {
     this.spinner.show();
     const data = {
-      partnerId: this.userInfo.partnerId,
       postCode: this.userInfo.postalCode,
       dayId: day
     };
@@ -207,7 +206,7 @@ export class AdditionalOrderComponent implements OnInit {
   }
 
   emptyForm(): void {
-    const field = document.getElementsByClassName(`quantity`);
+    const field: any = document.getElementsByClassName(`quantity`);
 
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < field.length; i++) {

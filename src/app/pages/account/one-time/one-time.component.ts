@@ -49,7 +49,6 @@ export class OneTimeComponent implements OnInit {
 
   getCategoryProducts(): void {
     const data = {
-      partnerId: this.userInfo.partnerId,
       postCode: this.userInfo.postalCode
     };
 
@@ -57,7 +56,6 @@ export class OneTimeComponent implements OnInit {
       .subscribe(response => {
         if (response.status === `Success`) {
           this.categoryProductData = response.data.categoryDays;
-          console.log(this.categoryProductData);
           this.allDays = response.data.allDays;
 
           /// adding field
@@ -111,7 +109,7 @@ export class OneTimeComponent implements OnInit {
   }
 
   emptyForm(): void {
-    const field = document.getElementsByClassName(`quantity`);
+    const field: any = document.getElementsByClassName(`quantity`);
 
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < field.length; i++) {

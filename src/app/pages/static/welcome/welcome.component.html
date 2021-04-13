@@ -36,7 +36,8 @@
     <div class="row p-0 mb-3">
         <div class="wrow row m-0 p-3">
             <div class="col-md-3 p-0">
-                <img [src]="absPath(partnerInfo.image)" class="h-1 simg">
+              <img *ngIf="!partnerInfo.image" src="../../../../assets/images/franchies-01.jpg" class="h-1 simg">
+              <img *ngIf="partnerInfo.image" [src]="absPath(partnerInfo.image)" class="h-1 simg">
             </div>
             <div class="col-md-9 px5">
                 <h5 class="mb-4 text-left">{{partnerInfo.name}}</h5>

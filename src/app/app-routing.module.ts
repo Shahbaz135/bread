@@ -5,11 +5,6 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 import { AuthGuard } from './services/common/auth.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'en',
-  //   pathMatch: 'full',
-  // },
   {
     path: '',
     component: DefaultLayoutComponent,

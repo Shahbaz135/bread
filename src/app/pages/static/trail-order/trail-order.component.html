@@ -43,7 +43,8 @@
         </div>
         <div class="row m-0 px-3">
           <div class="col-md-3 p-0">
-            <img [src]="absPath(partnerInfo.image)" class="h-1">
+            <img *ngIf="!partnerInfo.image" src="../../../../assets//images/franchies-01.jpg" class="h-1">
+            <img *ngIf="partnerInfo.image" [src]="absPath(partnerInfo.image)" class="h-1">
           </div>
           <div class="col-md-9 px-5">
             <h5 class="mb-4">{{partnerInfo.name}}</h5>
@@ -411,7 +412,8 @@
     </div>
     <div class="row m-0 px-3">
       <div class="col-md-3 p-0">
-        <img [src]="absPath(partnerInfo.image)" class="h-1">
+        <img *ngIf="!partnerInfo.image" src="../../../../assets/images/franchies-01.jpg" class="h-1">
+        <img *ngIf="partnerInfo.image" [src]="absPath(partnerInfo.image)" class="h-1">
       </div>
       <div class="col-md-9 px-5">
         <h5 class="mb-4">{{partnerInfo.name}}</h5>

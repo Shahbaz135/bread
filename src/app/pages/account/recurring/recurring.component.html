@@ -25,20 +25,20 @@
         <li>Order Cost Per Week</li>
         <li>Products: 0.00 €</li>
         <li>Delivery Charges: 0.00 €</li>
-        <li>Total: {{totalPrice}} €</li>
+        <li>Total: {{totalPrice.toFixed(3)}} €</li>
     </ul>
 </div>
 
 <div class="row p-0 mx-0">
   <table class="table tbl" *ngFor="let category of categoryProductData">
-      <thead>
+      <thead *ngIf="category.Products.length">
           <th>{{category.title}}</th>
           <th> </th>
           <th> </th>
           <th *ngFor="let day of allDays">{{day}}</th>
           <!-- <th>Sun</th> -->
       </thead>
-      <tbody>
+      <tbody *ngIf="category.Products.length">
           <tr *ngFor="let product of category.Products">
               <td><img [src]="absPath(product.image)" class="one-img"></td>
               <td>{{product.name}}</td>
