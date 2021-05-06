@@ -16,6 +16,7 @@ export class WrapHttpService {
       if (!headers) {
         headers = {};
       }
+      headers['Content-Type'] = 'application/pdf';
       headers['Authorization'] = 'Bearer ' + user.tokenInfo;
       headers['Accept'] = '*/*';
     }
@@ -47,6 +48,10 @@ export class WrapHttpService {
     // console.log(WrapHttpService.createHeaderOptions(headers));
     return this.http.get(url, WrapHttpService.createHeaderOptions(headers));
   }
+  // get(url: string, headers?: object): Observable<any> {
+  //   // console.log(WrapHttpService.createHeaderOptions(headers));
+  //   return this.http.get(url, { headers: {'Content-Type': 'application/pdf'} });
+  // }
   post(url: string, data: object, headers?: object): Observable<any> {
     return this.http.post(url, data, WrapHttpService.createHeaderOptions(headers));
   }

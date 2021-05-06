@@ -9,6 +9,7 @@ import { WrapHttpService } from '../common/wrap-http.service';
 export class OrderService {
   public readonly apiUrl = HttpConfig.getApiUrl() + '/order';
   public readonly interruptionUrl = HttpConfig.getApiUrl() + '/interruption';
+  public readonly invoiceUrl = HttpConfig.getApiUrl() + '/invoice';
 
   constructor(public http: WrapHttpService) { }
 
@@ -50,5 +51,13 @@ export class OrderService {
 
   deleteAdditionalOrder(id): Observable<any> {
     return this.http.delete(this.apiUrl + `/addition/` + id);
+  }
+
+  getInvoices(data?): Observable<any> {
+    return this.http.get(this.invoiceUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  getInvoicePDF(data?): Observable<any> {
+    return this.http.get(this.invoiceUrl + `/get/pdf` + WrapHttpService.objToQuery(data));
   }
 }

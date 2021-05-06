@@ -1,48 +1,33 @@
+<ngx-spinner></ngx-spinner>
 <h3>Bills</h3>
 <div class="row m-0 my-4">
-    
-    <table class="table">
-        <thead>
-            <th>Created On</th>
-            <th>Bill Number</th>
-            <th>Amount</th>
-            <th></th>
-        </thead>
-        <tbody>
-            <tr class="tb-row tr2">
-                <td>12/02/21</td>
-                <td>232124</td>
-                <td>$233</td>
-                <td class="text-right mr-2"><i class="fa fa-file-pdf-o"></i></td>
-            </tr>
-            <tr class="tb-row ">
-                <td>12/02/21</td>
-                <td>232125</td>
-                <td>$233</td>
-                <td class="text-right mr-2"><i class="fa fa-file-pdf-o"></i></td>
-            </tr>
-            <tr class="tb-row tr2">
-                <td>12/02/21</td>
-                <td>232124</td>
-                <td>$233</td>
-                <td class="text-right mr-2"><i class="fa fa-file-pdf-o"></i></td>
-            </tr>
-            <tr class="tb-row ">
-                <td>12/02/21</td>
-                <td>232125</td>
-                <td>$233</td>
-                <td class="text-right mr-2"><i class="fa fa-file-pdf-o"></i></td>
-            </tr>
-        </tbody>
-    </table>
+
+  <table class="table">
+    <thead>
+      <th>Created On</th>
+      <th>Bill Number</th>
+      <th>Amount</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr class="tb-row " [class.tr2]="i%2==0" *ngFor="let invoice of invoiceHistory; let i=index">
+        <td>{{invoice.createdAt | date:"shortDate"}}</td>
+        <td>{{invoice.invoiceNumber}}</td>
+        <td>${{invoice.amount | number}}</td>
+        <td class="text-right mr-2">
+          <i class="fa fa-file-pdf-o" (click)="getPDF(invoice)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="row m-0">
-    <span class="infoicon"><i class="fa fa-info"></i></span>
-    <div class="infobox">
-        <h4>We Bill retrospectivily once a month.</h4>
-        <p>if your business address is also your shipping address, you can amit this information.
-            As long as no Billing is given, the delivery will be use for invoicing.
-        </p>
-    </div>
+  <span class="infoicon"><i class="fa fa-info"></i></span>
+  <div class="infobox">
+    <h4>We Bill retrospectivily once a month.</h4>
+    <p>if your business address is also your shipping address, you can amit this information.
+      As long as no Billing is given, the delivery will be use for invoicing.
+    </p>
+  </div>
 </div>
