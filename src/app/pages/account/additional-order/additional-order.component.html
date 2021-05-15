@@ -26,12 +26,12 @@
   </div>
 
   <div class="row p-0 mx-0">
-      <ul class="ul-one bg-yellow">
-          <li>Order Cost Per Week</li>
-          <li>Products: 0.00 €</li>
-          <li>Delivery Charges: 0.00 €</li>
-          <li>Total: {{totalPrice.toFixed(3)}} €</li>
-      </ul>
+    <ul class="ul-one bg-yellow">
+        <li>Order Cost Per Week</li>
+        <li>Products: {{productPrice.toFixed(3)}} €</li>
+        <li>Delivery Charges: {{deliveryCharges.saturday}} €</li>
+        <li>Total: {{totalPrice.toFixed(3)}} €</li>
+    </ul>
   </div>
 
   <div class="row p-0 mx-0">
@@ -67,16 +67,16 @@
   <div class="row m-0">
       <span class="infoicon"><i class="fa fa-info"></i></span>
       <div class="infobox">
-          <p>All prices include the saturday value-added tax of currently
-              5%. The bread rolls are baked by plucker GmbH backery. </p>
-          <h5>Delivery Charges:</h5>
-          <p>
-              <span> Working days:1:10 EUR</span>
-              <span class="mx-3"> Saturday:1:10 EUR</span><br>
-              <span> Sunday:1:10 EUR</span>
+        <p>All prices include the saturday value-added tax of currently
+            5%. The bread rolls are baked by plucker GmbH backery. </p>
+        <h5>Delivery Charges:</h5>
+        <p>
+            <span> Working days:{{deliveryCharges.workingDays}} EUR</span>
+            <span class="mx-3"> Saturday:{{deliveryCharges.saturday}} EUR</span><br>
+            <span> Sunday:{{deliveryCharges.sunday}} EUR</span>
 
-          </p>
-      </div>
+        </p>
+    </div>
   </div>
 
 </ng-container>

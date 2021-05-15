@@ -19,6 +19,8 @@ export class AdditionalOrderComponent implements OnInit {
   categoryProductData = [];
   allDays = [];
 
+  deliveryCharges: any = {};
+  productPrice = 0;
   totalPrice = 0;
   deliveryDate: Date;
 
@@ -44,8 +46,23 @@ export class AdditionalOrderComponent implements OnInit {
       this.router.navigateByUrl(`auth/login`);
     } else {
       this.userInfo = userData.data;
+      this.getDeliveryCharges();
       // this.getCategoryProducts();
     }
+  }
+
+  getDeliveryCharges(): void {
+    this.orderService.getDeliveryCharges()
+      .subscribe(response => {
+        if (response.status === `Success`) {
+          this.deliveryCharges.workingDays = response.data.workingDays;
+          this.deliveryCharges.saturday = response.data.saturday;
+          this.deliveryCharges.sunday = response.data.sunday;
+        }
+      }, error => {
+        console.log(error);
+        this.toasterService.error(`Something went wrong`, `Error`);
+      });
   }
 
   onNewOrder(): void {
@@ -116,23 +133,34 @@ export class AdditionalOrderComponent implements OnInit {
 
       if (index === -1) {
         product.selectedProducts.push(obj);
-        this.totalPrice += product.productPrice * value;
+        this.productPrice += product.productPrice * value;
+        // this.totalPrice += product.productPrice * value;
       } else {
         // console.log(product.selectedProducts[index]);
         const price = product.selectedProducts[index].quantity * product.productPrice;
-        this.totalPrice -= price;
+        // this.totalPrice -= price;
+        this.productPrice -= price;
 
         //// adding new price
-        this.totalPrice += product.productPrice * value;
+        this.productPrice += product.productPrice * value;
+        // this.totalPrice += product.productPrice * value;
         product.selectedProducts[index] = obj;
       }
 
     } else {
       if (index > -1) {
         const price = product.selectedProducts[index].quantity * product.productPrice;
-        this.totalPrice -= price;
+        // this.totalPrice -= price;
+        this.productPrice -= price;
         product.selectedProducts.splice(index, 1);
       }
+    }
+
+     //// adding total amount
+    if (this.productPrice > 0) {
+      this.totalPrice = this.deliveryCharges.saturday + this.productPrice;
+    } else {
+      this.totalPrice = 0;
     }
   }
 
@@ -146,7 +174,7 @@ export class AdditionalOrderComponent implements OnInit {
       return;
     }
 
-    if (this.totalPrice === 0) {
+    if (this.productPrice === 0) {
       this.spinner.hide();
       this.toasterService.warning(`Please Enter Order First`, `Warning`);
       return;
@@ -171,6 +199,8 @@ export class AdditionalOrderComponent implements OnInit {
 
     // console.log(finalOrder);
     const formData = {
+      productPrice: this.productPrice,
+      deliveryCharges: this.deliveryCharges.saturday,
       overAllPrice: this.totalPrice,
       deliveryDate: this.deliveryDate,
       partnerId: +this.userInfo.partnerId,
@@ -214,6 +244,7 @@ export class AdditionalOrderComponent implements OnInit {
     }
 
     this.totalPrice = 0;
+    this.productPrice = 0;
     this.addQuantityField();
   }
 

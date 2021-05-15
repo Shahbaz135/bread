@@ -22,6 +22,8 @@ export class RecurringChangeComponent implements OnInit {
   categoryProductData = [];
   allDays = [];
 
+  deliveryCharges: any = {};
+  productPrice = 0;
   totalPrice = 0;
   validFrom: Date;
 
@@ -49,11 +51,26 @@ export class RecurringChangeComponent implements OnInit {
     } else {
       this.userInfo = userData.data;
       this.getCategoryProducts();
+      this.getDeliveryCharges();
     }
   }
 
+  getDeliveryCharges(): void {
+    this.orderService.getDeliveryCharges()
+      .subscribe(response => {
+        if (response.status === `Success`) {
+          this.deliveryCharges.workingDays = response.data.workingDays;
+          this.deliveryCharges.saturday = response.data.saturday;
+          this.deliveryCharges.sunday = response.data.sunday;
+        }
+      }, error => {
+        console.log(error);
+        this.toasterService.error(`Something went wrong`, `Error`);
+      });
+  }
+
    //// get current order details
-   getOrderDetails(): void {
+  getOrderDetails(): void {
     const data = {
       id: this.orderId,
       isOneTime: false
@@ -77,6 +94,8 @@ export class RecurringChangeComponent implements OnInit {
   setOrderData(): void {
     this.validFrom = this.orderData.validFrom;
     this.totalPrice = this.orderData.overAllPrice;
+    this.productPrice = this.orderData.productPrice;
+    this.deliveryCharges.saturday = this.orderData.deliveryCharges;
 
     this.populateFields();
   }
@@ -155,14 +174,17 @@ export class RecurringChangeComponent implements OnInit {
 
       if (index === -1) {
         product.selectedProducts.push(obj);
-        this.totalPrice += product.productPrice * value;
+        // this.totalPrice += product.productPrice * value;
+        this.productPrice += product.productPrice * value;
       } else {
         // console.log(product.selectedProducts[index]);
         const price = product.selectedProducts[index].quantity * product.productPrice;
-        this.totalPrice -= price;
+        // this.totalPrice -= price;
+        this.productPrice -= price;
 
         //// adding new price
-        this.totalPrice += product.productPrice * value;
+        // this.totalPrice += product.productPrice * value;
+        this.productPrice += product.productPrice * value;
         product.selectedProducts[index] = obj;
 
         // this.totalPrice = +this.totalPrice.toFixed(3);
@@ -171,9 +193,17 @@ export class RecurringChangeComponent implements OnInit {
     } else {
       if (index > -1) {
         const price = product.selectedProducts[index].quantity * product.productPrice;
-        this.totalPrice -= price;
+        // this.totalPrice -= price;
+        this.productPrice -= price;
         product.selectedProducts.splice(index, 1);
       }
+    }
+
+     //// adding total amount
+    if (this.productPrice > 0) {
+      this.totalPrice = this.deliveryCharges.saturday + this.productPrice;
+    } else {
+      this.totalPrice = 0;
     }
   }
 
@@ -186,6 +216,7 @@ export class RecurringChangeComponent implements OnInit {
     }
 
     this.totalPrice = 0;
+    this.productPrice = 0;
     this.addQuantityField();
   }
 
@@ -223,6 +254,8 @@ export class RecurringChangeComponent implements OnInit {
 
     // console.log(finalOrder);
     const formData = {
+      productPrice: this.productPrice,
+      deliveryCharges: this.deliveryCharges.saturday,
       overAllPrice: this.totalPrice,
       isOneTime: false,
       isTrail: false,

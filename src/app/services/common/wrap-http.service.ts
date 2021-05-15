@@ -16,7 +16,7 @@ export class WrapHttpService {
       if (!headers) {
         headers = {};
       }
-      headers['Content-Type'] = 'application/pdf';
+      // headers['Content-Type'] = 'application/pdf';
       headers['Authorization'] = 'Bearer ' + user.tokenInfo;
       headers['Accept'] = '*/*';
     }
