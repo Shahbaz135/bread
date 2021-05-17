@@ -16,7 +16,7 @@
         <td>{{invoice.createdAt | date:"shortDate"}}</td>
         <td>{{invoice.invoiceNumber}}</td>
         <!-- <td>${{invoice.amount | number}}</td> -->
-        <td class="text-center "><i class="fa fa-eye black"></i></td>
+        <td class="text-center "><i class="fa fa-eye black" (click)="getPDF(invoice)"></i></td>
       </tr>
       <!-- <tr class="tb-row">
         <td>Onion Bread</td>

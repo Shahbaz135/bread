@@ -54,7 +54,6 @@ export class BillsComponent implements OnInit {
       .subscribe(response => {
         this.spinner.hide();
         if (response.status === `Success`) {
-          console.log(response);
         }
       }, error => {
         console.log(error);
