@@ -3,6 +3,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/common/auth.service';
+import {FileSaver} from 'file-saver';
 
 @Component({
   selector: 'app-bills',
@@ -53,8 +54,9 @@ export class BillsComponent implements OnInit {
     this.orderService.getInvoicePDF(data)
       .subscribe(response => {
         this.spinner.hide();
-        if (response.status === `Success`) {
-        }
+        console.log(`Success == `);
+        console.log(response);
+        FileSaver.saveAs(response.data);
       }, error => {
         console.log(error);
         this.spinner.hide();

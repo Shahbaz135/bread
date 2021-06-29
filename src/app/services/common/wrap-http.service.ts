@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import * as _ from 'lodash';
 import { AuthService } from './auth.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +48,10 @@ export class WrapHttpService {
   get(url: string, headers?: object): Observable<any> {
     // console.log(WrapHttpService.createHeaderOptions(headers));
     return this.http.get(url, WrapHttpService.createHeaderOptions(headers));
+  }
+  getPDF(url: string, headers?: object): Observable<any> {
+    // console.log(WrapHttpService.createHeaderOptions(headers));
+    return this.http.get(url, {responseType: 'blob'});
   }
   // get(url: string, headers?: object): Observable<any> {
   //   // console.log(WrapHttpService.createHeaderOptions(headers));
