@@ -51,20 +51,23 @@ export class BillsComponent implements OnInit {
       id: invoice.id
     };
 
-    this.orderService.getInvoicePDF(data)
-      .subscribe(response => {
-        this.spinner.hide();
-        console.log(`Success == `);
-        console.log(response);
-        FileSaver.saveAs(response.data);
-      }, error => {
-        console.log(error);
-        this.spinner.hide();
-        if (error.error) {
-          this.toastService.warning(error.error.message[0].message, `Error`);
-        } else {
-          this.toastService.warning(`Something went wrong, Please try again`, `Error`);
-        }
-      });
+    this.orderService.getInvoicePDF(data);
+    this.spinner.hide();
+
+    // this.orderService.getInvoicePDF(data)
+    //   .subscribe(response => {
+    //     this.spinner.hide();
+    //     console.log(`Success == `);
+    //     console.log(response);
+    //     FileSaver.saveAs(response.data);
+    //   }, error => {
+    //     console.log(error);
+    //     this.spinner.hide();
+    //     if (error.error) {
+    //       this.toastService.warning(error.error.message[0].message, `Error`);
+    //     } else {
+    //       this.toastService.warning(`Something went wrong, Please try again`, `Error`);
+    //     }
+    //   });
   }
 }

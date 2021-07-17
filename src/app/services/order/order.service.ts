@@ -58,8 +58,9 @@ export class OrderService {
     return this.http.get(this.invoiceUrl + `/get` + WrapHttpService.objToQuery(data));
   }
 
-  getInvoicePDF(data?): Observable<any> {
-    return this.http.getPDF(this.invoiceUrl + `/get/pdf` + WrapHttpService.objToQuery(data));
+  getInvoicePDF(data?) {
+    // return this.http.getPDF(this.invoiceUrl + `/get/pdf` + WrapHttpService.objToQuery(data));
+    window.open(this.invoiceUrl + `/get/pdf` + WrapHttpService.objToQuery(data));
   }
 
   getDeliveryCharges(data?): Observable<any> {
